@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block meta_data %}
+        <title>Редакция | bes.media</title>
+    <link rel="canonical" href="https://bes.media/authors/"/>
+
+    {# — Description и keywords — #}
+    <meta name="description"
+          content="Знакомьтесь: авторы и редакция bes.media." />
+    <meta name="keywords" content="авторы, редакция, bes.media" />
+    <meta name="author" content="Редакция bes.media" />
+
+    {# — Open Graph — #}
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="Редакция | bes.media" />
+    <meta property="og:description" content="Знакомьтесь: авторы и редакция bes.media." />
+    <meta property="og:url"         content="https://bes.media/authors/" />
+    <meta property="og:image"       content="https://bes.media/static/img/plug.jpg" />
+
+    {# — Twitter Card — #}
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Редакция | bes.media" />
+    <meta name="twitter:description" content="Знакомьтесь: авторы и редакция bes.media." />
+    <meta name="twitter:image:src"   content="https://bes.media/static/img/plug.jpg" />
+
+    {# — JSON-LD: CollectionPage со списком авторов — #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Редакция",
+      "description": "Знакомьтесь: авторы и редакция bes.media.",
+      "url": "https://bes.media/authors/",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {% for author in authors %}
+          {
+            "@type": "ListItem",
+            "position": {{ loop.index }},
+            "url": "https://bes.media/authors/{{ author.id }}/",
+            "name": "{{ author.firstName }} {{ author.lastName }}"
+          }{{ "," if not loop.last else "" }}
+          {% endfor %}
+        ]
+      }
+    }
+    </script>
+
+    {# — JSON-LD: BreadcrumbList — #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://bes.media/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Редакция",
+          "item": "https://bes.media/authors/"
+        }
+      ]
+    }
+    </script>
+{% endblock meta_data %}
+{% block content %}
+    {% include 'header.html' %}
+    <main>
+        <section class="adSection adDesctop">
+        <div class="ad-container">
+          <div class="ad-wrapper-desctop">
+            <div id="ad-placeholder" class="ad-placeholder">BES.media</div>
+            <div id="adfox_170955537553561307" class="ad-block"></div>
+            <script>
+              window.yaContextCb.push(() => {
+                Ya.adfoxCode.createAdaptive(
+                  {
+                    ownerId: 264109,
+                    containerId: "adfox_170955537553561307",
+                    params: {
+                      p1: "dbhtm",
+                      p2: "iwpg",
+                    },
+                  },
+                  ["desktop", "tablet"],
+                  {
+                    tabletWidth: 830,
+                    phoneWidth: 480,
+                    isAutoReloads: false,
+                  }
+                );
+
+                const placeholder = document.getElementById("ad-placeholder");
+                const adBlock = document.getElementById(
+                  "adfox_170955537553561307"
+                );
+
+                const observer = new MutationObserver(() => {
+                  if (adBlock.children.length > 0) {
+                    placeholder?.remove();
+                    observer.disconnect();
+                  }
+                });
+
+                observer.observe(adBlock, { childList: true });
+              });
+            </script>
+          </div>
+        </div>
+        </section>
+        <section class="authorsPage" class="sectionDesctopMargin">
+            <div class="container">
+              <div class="authorsPage__wrapper">
+                <h1 class="page__title">Редакция</h1>
+                <div class="authorsPage__list">
+                    {% for author in authors %}
+                      {% with
+                        image_webp_800 = author.image.image_webp_800 | default(author.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+                        image_jpeg_800 = author.image.image_jpeg_800 | default(author.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+                      %}
+                      <div class="authorCard">
+                        <a href="https://bes.media/authors/{{ author.id }}/">
+                          <picture>
+                            <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
+                            <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
+                            <img data-src="{{ image_jpeg_800 }}" alt="{{ author.image.alt or (author.firstName ~ ' ' ~ author.lastName) }}" class="lazy" />
+                          </picture>
+                          <div class="authorCard__content">
+                            <div class="authorCard__title">{{ author.firstName }} {{ author.lastName }}</div>
+                            <div class="authorCard__role">{{ author.position or '' }}</div>
+                            <div class="authorCard__mail">{{ author.email }}</div>
+                          </div>
+                        </a>
+                      </div>
+                      {% endwith %}
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+        </section>
+    </main>
+    {% include 'footer.html' %}
+    {% include 'drawer.html' %}
+{% endblock content %}
+    {% block scripts %}
+ <script src="/static/js/index.bundle.js?v=1.7" defer></script>
+{% endblock scripts %}

@@ -1,0 +1,174 @@
+{% extends "base.html" %} {% block meta_data %}
+        <title>Что такое BES.media | bes.media</title>
+    <link rel="canonical" href="https://bes.media/about/"/>
+
+    {# — Описание и ключевые слова — #}
+    <meta name="description"
+          content="Наша цель — донести до людей важную информацию простыми словами. BES.media — медиа, созданное журналистами." />
+    <meta name="keywords" content="BES.media, о нас, миссия, СМИ" />
+    <meta name="author" content="Редакция bes.media" />
+
+    {# — Open Graph — #}
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="Что такое BES.media | bes.media" />
+    <meta property="og:description" content="Наша цель — донести до людей важную информацию простыми словами. BES.media — медиа, созданное журналистами." />
+    <meta property="og:url"         content="https://bes.media/about/" />
+    <meta property="og:image"       content="https://bes.media/static/img/plug.jpg" />
+
+    {# — JSON-LD: AboutPage — #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "Что такое BES.media",
+      "description": "Наша цель — донести до людей важную информацию простыми словами. BES.media — медиа, созданное журналистами.",
+      "url": "https://bes.media/about/"
+    }
+    </script>
+
+    {# — JSON-LD: BreadcrumbList — #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://bes.media/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "О нас",
+          "item": "https://bes.media/about/"
+        }
+      ]
+    }
+    </script>
+{% endblock meta_data %} {%
+block content %} {% include 'header.html' %}
+<main>
+      <section class="adSection adDesctop">
+        <div class="ad-container">
+          <div class="ad-wrapper-desctop">
+            <div id="ad-placeholder" class="ad-placeholder">BES.media</div>
+            <div id="adfox_170955537553561307" class="ad-block"></div>
+            <script>
+              window.yaContextCb.push(() => {
+                Ya.adfoxCode.createAdaptive(
+                  {
+                    ownerId: 264109,
+                    containerId: "adfox_170955537553561307",
+                    params: {
+                      p1: "dbhtm",
+                      p2: "iwpg",
+                    },
+                  },
+                  ["desktop", "tablet"],
+                  {
+                    tabletWidth: 830,
+                    phoneWidth: 480,
+                    isAutoReloads: false,
+                  }
+                );
+
+                const placeholder = document.getElementById("ad-placeholder");
+                const adBlock = document.getElementById(
+                  "adfox_170955537553561307"
+                );
+
+                const observer = new MutationObserver(() => {
+                  if (adBlock.children.length > 0) {
+                    placeholder?.remove();
+                    observer.disconnect();
+                  }
+                });
+
+                observer.observe(adBlock, { childList: true });
+              });
+            </script>
+          </div>
+        </div>
+        </section>
+      <section class="outPage" class="sectionDesctopMargin">
+        <div class="container">
+          <div class="outPage__wrapper">
+            <div class="outPage__body">
+              <h1 class="page__title">Что такое BES.media</h1>
+              <div class="content">
+                <p>
+                    Наша цель – донести до людей важную информацию простыми словами. Мы убеждены, что казахстанцы должны знать обо всех решениях, которые принимаются государственным аппаратом, а также куда и на какие цели расходуются бюджетные тенге. Чиновники, в свою очередь, тоже должны знать, что волнует людей и какие у них есть проблемы, каким люди хотят видеть своё будущее в стране. Мы, журналисты, стараемся обеспечивать двухстороннюю связь.
+                </p>
+                <p><b>BES.media</b> – медиа, созданное самими журналистами. Мы пишем о тех событиях, которые считаем важными для всех граждан Казахстана.</p>
+                <h2>Как получать новости BES.media?</h2>
+                <p>Мы публикуемся в Telegram, поэтому предлагаем подписаться на наш канал в <a href="https://t.me/bessimptomno_bot">Telegram</a> и чаще заходить на наш сайт.</p>
+                <h2>Как с нами связаться?</h2>
+                <p>Если у вас есть чем поделиться или вы стали очевидцем событий, пишите, присылайте фото, аудио и видео, документы, в наш анонимный бот <a href="https://t.me/bessimptomno_bot">@‌bessimptomno_bot</a>.</p>
+                <p>Контакты редакции BES.media <a href="https://bes.media/contacts/" itemprop="url">тут</a></p>
+                <h2>Кто делает новости?</h2>
+                <p>С командой BES.media познакомиться можно <a href="https://bes.media/authors/" itemprop="url">тут</a></p>
+              </div>
+            </div>
+            <div class="outPage__aside">
+               <div class="ad-wrapper-desctop-aside">
+                  <div id="ad-placeholder" class="ad-placeholder">
+                    BES.media
+                  </div>
+                  <div id="adfox_170955552941919482"></div>
+                  <script>
+                    window.yaContextCb.push(() => {
+                      Ya.adfoxCode.createAdaptive(
+                        {
+                          ownerId: 264109,
+                          containerId: "adfox_170955552941919482",
+                          params: {
+                            p1: "dbhto",
+                            p2: "iwpl",
+                          },
+                        },
+                        ["desktop", "tablet"],
+                        {
+                          tabletWidth: 830,
+                          phoneWidth: 480,
+                          isAutoReloads: false,
+                        }
+                      );
+                    });
+                  </script>
+                </div>
+                <div class="ad-wrapper-mobile-big adMobile">
+                  <div id="ad-placeholder" class="ad-placeholder">
+                    BES.media
+                  </div>
+                  <div id="adfox_17095555565288808"></div>
+                  <script>
+                    window.yaContextCb.push(() => {
+                      Ya.adfoxCode.createAdaptive(
+                        {
+                          ownerId: 264109,
+                          containerId: "adfox_17095555565288808",
+                          params: {
+                            p1: "dbhtj",
+                            p2: "iwpn",
+                          },
+                        },
+                        ["phone"],
+                        {
+                          tabletWidth: 830,
+                          phoneWidth: 480,
+                          isAutoReloads: false,
+                        }
+                      );
+                    });
+                  </script>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</main>
+{% include 'footer.html' %} {% endblock content %} {% block scripts %}
+<script src="/static/js/index.bundle.js?v=1.7" defer></script>
+{% endblock scripts %}

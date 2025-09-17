@@ -1,0 +1,23 @@
+<div class="moreNews">
+                    <div class="moreNews__title">
+                      <span>Больше на Forbes</span>
+                    </div>
+                    <div class="moreNews__list">
+                        {% for related_article in related_articles %}
+                      <div class="card redactor">
+                        <a href="{{ url_for('articles', slug=related_article.alias) }}">
+                          <picture>
+                            <source media="(max-width: 699px)" data-srcset="{{ related_article.image.image_800_webp }}" class="lazy" />
+                            <source media="(min-width: 700px)" data-srcset="{{ related_article.image.image_800_webp }}" class="lazy" />
+                            <img data-src="/static/img/plug.webp" alt="{{ related_article.image.alt }}" class="lazy" />
+                          </picture>
+                          <div class="card__content">
+                            <div class="card__time">{{ related_article.published_date | pretty_date }}</div>
+                            <div class="card__title"> {{ related_article.title }} </div>
+                          </div>
+                        </a>
+                      </div>
+                        {% endfor %}
+
+                    </div>
+                  </div>

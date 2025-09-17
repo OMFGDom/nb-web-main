@@ -1,0 +1,246 @@
+{% extends "base.html" %} {% block meta_data %}
+        {# — Title и canonical — #}
+    <title>Реклама | bes.media</title>
+    <link rel="canonical" href="https://bes.media/advertising/"/>
+
+    <meta name="description"
+          content="По вопросам размещения рекламы и PR-материалов на bes.media обращайтесь по e-mail bes.media.sales@gmail.com или телефону +7 777 169 21 39." />
+    <meta name="keywords" content="реклама, PR, размещение рекламы, bes.media" />
+    <meta name="author" content="Редакция bes.media" />
+
+    {# — Open Graph — #}
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="Реклама | bes.media" />
+    <meta property="og:description" content="По вопросам размещения рекламы и PR-материалов на bes.media обращайтесь по e-mail bes.media.sales@gmail.com или телефону +7 777 169 21 39." />
+    <meta property="og:url"         content="https://bes.media/advertising/" />
+    <meta property="og:image"       content="https://bes.media/static/img/plug.jpg" />
+
+    {# — JSON-LD: WebPage — #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Реклама",
+      "description": "По вопросам размещения рекламы и PR-материалов на bes.media обращайтесь по e-mail bes.media.sales@gmail.com или телефону +7 777 169 21 39.",
+      "url": "https://bes.media/advertising/"
+    }
+    </script>
+
+    {# — JSON-LD: BreadcrumbList — #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://bes.media/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Реклама",
+          "item": "https://bes.media/advertising/"
+        }
+      ]
+    }
+    </script>
+{% endblock meta_data %} {%
+block content %} {% include 'header.html' %}
+<main>
+      <section class="adSection adDesctop">
+        <div class="ad-container">
+          <div class="ad-wrapper-desctop">
+            <div id="ad-placeholder" class="ad-placeholder">BES.media</div>
+            <div id="adfox_170955537553561307" class="ad-block"></div>
+            <script>
+              window.yaContextCb.push(() => {
+                Ya.adfoxCode.createAdaptive(
+                  {
+                    ownerId: 264109,
+                    containerId: "adfox_170955537553561307",
+                    params: {
+                      p1: "dbhtm",
+                      p2: "iwpg",
+                    },
+                  },
+                  ["desktop", "tablet"],
+                  {
+                    tabletWidth: 830,
+                    phoneWidth: 480,
+                    isAutoReloads: false,
+                  }
+                );
+
+                const placeholder = document.getElementById("ad-placeholder");
+                const adBlock = document.getElementById(
+                  "adfox_170955537553561307"
+                );
+
+                const observer = new MutationObserver(() => {
+                  if (adBlock.children.length > 0) {
+                    placeholder?.remove();
+                    observer.disconnect();
+                  }
+                });
+
+                observer.observe(adBlock, { childList: true });
+              });
+            </script>
+          </div>
+        </div>
+        </section>
+      <section class="reklamaPage" class="sectionDesctopMargin">
+        <div class="container">
+          <div class="reklamaPage__wrapper">
+            <div class="reklamaPage__body">
+              <h1 class="page__title">Реклама</h1>
+              <div class="reklamaPage__description">
+                По вопросам размещения рекламы и PR-материалов обращаться:
+              </div>
+              <div class="reklamaPage__list">
+{#                <div class="reklamaCard">#}
+{#                  <div class="reklamaCard__block">#}
+{#                    <div class="reklamaCard__title">#}
+{#                      Контактный телефон#}
+{#                    </div>#}
+{#                    <a class="reklamaCard__link" href="tel:+7 777 169 21 39">#}
+{#                      +7 777 169 21 39#}
+{#                    </a>#}
+{#                  </div>#}
+{#                </div>#}
+                <div class="reklamaCard">
+                  <div class="reklamaCard__block">
+                    <div class="reklamaCard__title">
+                      E-mail для предложений и запросов
+                    </div>
+                    <a class="reklamaCard__link" href="mailto:bes.media.sales@gmail.com">
+                      bes.media.sales@gmail.com
+                    </a>
+                  </div>
+                </div>
+                <div class="reklamaCard">
+                  <div class="reklamaCard__wrap">
+                    <div class="reklamaCard__subTitle">
+                      Платные размещения, информподдержка, партнёрство:
+                    </div>
+                    <div class="reklamaCard__extra">
+                      <picture>
+                        <source
+                          media="(max-width: 699px)"
+                          srcset="/static/img/plug.jpg"
+                        />
+                        <source
+                          media="(min-width: 700px)"
+                          srcset="/static/img/plug.jpg"
+                        />
+                        <img
+                          src="/static/img/plug.jpg"
+                          alt="Клименко Маргарита"
+                        />
+                      </picture>
+                      <div class="reklamaCard__content">
+                        <div class="reklamaCard__title">
+                          Клименко Маргарита
+                        </div>
+                        <div class="reklamaCard__role">Коммерческий директор.</div>
+                        <a href="#" class="reklamaCard__link" href="+ 7 777 169 21 39">Телефон\WhatsApp: + 7 777 169 21 39</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="reklamaCard">
+                  <div class="reklamaCard__wrap">
+                    <div class="reklamaCard__subTitle">
+                      Платные размещения, госзаказ, квазигосзаказ, госинформзаказ:
+                    </div>
+                    <div class="reklamaCard__extra">
+                      <picture>
+                        <source
+                          media="(max-width: 699px)"
+                          srcset="/static/img/plug.jpg"
+                        />
+                        <source
+                          media="(min-width: 700px)"
+                          srcset="/static/img/plug.jpg"
+                        />
+                        <img
+                          src="/static/img/plug.jpg"
+                          alt="«Бакаева Елена"
+                        />
+                      </picture>
+                      <div class="reklamaCard__content">
+                        <div class="reklamaCard__title">
+                          Бакаева Елена
+                        </div>
+                        <div class="reklamaCard__role">Менеджер по работе с клиентами и госсектором</div>
+                        <a href="#" class="reklamaCard__link" href="+ 7 700 44 567 88">Телефон\WhatsApp: + 7 700 44 567 88</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="reklamaPage__aside">
+              <div class="ad-wrapper-desctop-aside">
+                  <div id="ad-placeholder" class="ad-placeholder">
+                    BES.media
+                  </div>
+                  <div id="adfox_170955552941919482"></div>
+                  <script>
+                    window.yaContextCb.push(() => {
+                      Ya.adfoxCode.createAdaptive(
+                        {
+                          ownerId: 264109,
+                          containerId: "adfox_170955552941919482",
+                          params: {
+                            p1: "dbhto",
+                            p2: "iwpl",
+                          },
+                        },
+                        ["desktop", "tablet"],
+                        {
+                          tabletWidth: 830,
+                          phoneWidth: 480,
+                          isAutoReloads: false,
+                        }
+                      );
+                    });
+                  </script>
+                </div>
+              <div class="ad-wrapper-mobile-big adMobile">
+                  <div id="ad-placeholder" class="ad-placeholder">
+                    BES.media
+                  </div>
+                  <div id="adfox_17095555565288808"></div>
+                  <script>
+                    window.yaContextCb.push(() => {
+                      Ya.adfoxCode.createAdaptive(
+                        {
+                          ownerId: 264109,
+                          containerId: "adfox_17095555565288808",
+                          params: {
+                            p1: "dbhtj",
+                            p2: "iwpn",
+                          },
+                        },
+                        ["phone"],
+                        {
+                          tabletWidth: 830,
+                          phoneWidth: 480,
+                          isAutoReloads: false,
+                        }
+                      );
+                    });
+                  </script>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</main>
+{% include 'footer.html' %} {% endblock content %} {% block scripts %}
+<script src="/static/js/index.bundle.js?v=1.7" defer></script>
+{% endblock scripts %}

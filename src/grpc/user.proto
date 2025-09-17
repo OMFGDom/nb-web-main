@@ -1,0 +1,57 @@
+syntax = "proto3";
+import "google/protobuf/struct.proto";
+
+service Users {
+    rpc GetUsersById(GetUserByIdRequest) returns (UserInfoResponce) {};
+    rpc GetUsersBySlug(GetUserBySlugRequest) returns (UserInfoResponce) {};
+    rpc PostCheckToken(CheckTokenRequest) returns (CheckTokenResponce) {};
+    rpc GetUserList(GetUsersRequest) returns (GetUserListResponce) {};
+    rpc GetUserListByRole(GetUserByFilterRequst) returns (GetUserListResponce) {};
+}
+
+message UserInfoResponce {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    string slug = 5;
+    string description = 6;
+    bool is_blogger = 7;
+    google.protobuf.Struct image = 8;
+    google.protobuf.Struct social_networks = 9;
+    string position = 10;
+}
+
+message GetUserByIdRequest {
+    string id = 1;
+}
+
+
+message GetUserBySlugRequest {
+    string slug = 1;
+}
+
+message CheckTokenRequest {
+    string user_id = 1;
+    string server_id = 2;
+}
+
+message CheckTokenResponce {
+    repeated string permissions = 1;
+}
+
+message GetUsersRequest {
+    string search = 1;
+    int32 page = 2;
+}
+
+message GetUserListResponce {
+    repeated UserInfoResponce users = 1;
+    int32 total_users = 2;
+}
+
+message GetUserByFilterRequst {
+    string search = 1;
+    int32 page = 2;
+    string role_id = 3;
+}

@@ -1,0 +1,12 @@
+**/.env
+**/.env_dev
+**/.env_prod
+**/.env-test
+**/venv/
+**/sitemaps/
+**/nginx/
+**/.idea/
+**/__pycache__/
+**/.ipynb_checkpoints/
+**/js_dev/
+**/js_prod/

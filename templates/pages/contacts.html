@@ -1,0 +1,165 @@
+{% extends "base.html" %} {% block meta_data %}
+    <title>Контакты | bes.media</title>
+    <link rel="canonical" href="https://bes.media/contacts/"/>
+
+    {# — Description и keywords — #}
+    <meta name="description"
+          content="Контактная информация редакции bes.media: адрес, email, телефон, Telegram-бот." />
+    <meta name="keywords" content="контакты, bes.media" />
+    <meta name="author" content="Редакция bes.media" />
+
+    {# — Open Graph — #}
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="Контакты | bes.media" />
+    <meta property="og:description" content="Контактная информация редакции bes.media: адрес, email, телефон, Telegram-бот." />
+    <meta property="og:url"         content="https://bes.media/contacts/" />
+    <meta property="og:image"       content="https://bes.media/static/img/plug.jpg" />
+
+    {# — Twitter Card — #}
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content="Контакты | bes.media" />
+    <meta name="twitter:description" content="Контактная информация редакции bes.media: адрес, email, телефон, Telegram-бот." />
+    <meta name="twitter:image:src"   content="https://bes.media/static/img/plug.jpg" />
+
+    {# — JSON-LD: ContactPage — #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Контакты",
+      "description": "Контактная информация редакции bes.media: адрес, email, телефон, Telegram-бот.",
+      "url": "https://bes.media/contacts/",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "info@bes.media",
+          "telephone": "+7 700 823 4567",
+          "areaServed": "KZ",
+          "availableLanguage": ["Russian"]
+        }
+      ]
+    }
+    </script>
+
+    {# — JSON-LD: BreadcrumbList — #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://bes.media/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Контакты",
+          "item": "https://bes.media/contacts/"
+        }
+      ]
+    }
+    </script>
+{% endblock meta_data %} {%
+block content %} {% include 'header.html' %}
+<main>
+      <section class="adSection adDesctop">
+        <div class="ad-container">
+          <div class="ad-wrapper-desctop">
+            <div id="ad-placeholder" class="ad-placeholder">BES.media</div>
+            <div id="adfox_170955537553561307" class="ad-block"></div>
+            <script>
+              window.yaContextCb.push(() => {
+                Ya.adfoxCode.createAdaptive(
+                  {
+                    ownerId: 264109,
+                    containerId: "adfox_170955537553561307",
+                    params: {
+                      p1: "dbhtm",
+                      p2: "iwpg",
+                    },
+                  },
+                  ["desktop", "tablet"],
+                  {
+                    tabletWidth: 830,
+                    phoneWidth: 480,
+                    isAutoReloads: false,
+                  }
+                );
+
+                const placeholder = document.getElementById("ad-placeholder");
+                const adBlock = document.getElementById(
+                  "adfox_170955537553561307"
+                );
+
+                const observer = new MutationObserver(() => {
+                  if (adBlock.children.length > 0) {
+                    placeholder?.remove();
+                    observer.disconnect();
+                  }
+                });
+
+                observer.observe(adBlock, { childList: true });
+              });
+            </script>
+          </div>
+        </div>
+        </section>
+      <section class="contactsPage" class="sectionDesctopMargin">
+        <div class="container">
+          <div class="contactsPage__wrapper">
+              <h1 class="page__title">Контакты</h1>
+              <div class="contactsPage__list">
+                <div class="contactCard">
+                  <div class="contactCard__block">
+                    <div class="contactCard__title">
+                      Адрес редакции BES.media
+                    </div>
+                    <div class="contactCard__text">
+                      050012, A05H0E3, РК, г. Алматы, ул. Толе би, 101, главный вход, 10 этаж
+                    </div>
+                  </div>
+                </div>
+                <div class="contactCard">
+                  <div class="contactCard__block">
+                    <div class="contactCard__title">
+                      Электронная почта
+                    </div>
+                    <a class="contactCard__link" href="mailto:info@bes.media">
+                      info@bes.media
+                    </a>
+                  </div>
+                </div>
+                <div class="contactCard">
+                  <div class="contactCard__block">
+                    <div class="contactCard__title">
+                      Контактный телефон
+                    </div>
+                    <a class="contactCard__link" href="tel:+77008234567">
+                      +7 700 823 4567
+                    </a>
+                  </div>
+                </div>
+                <div class="contactCard">
+                  <div class="contactCard__block">
+                    <div class="contactCard__title">
+                    Наш анонимный Telegram-бот
+                    </div>
+                    <a class="contactCard__link" href="https://t.me/bessimptomno_bot">
+                      @bessimptomno_bot
+                    </a>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </section>
+</main>
+    {% include 'footer.html' %}
+    {% include 'drawer.html' %}
+{% endblock content %} {% block scripts %}
+<script src="/static/js/index.bundle.js?v=1.7" defer></script>
+{% endblock scripts %}

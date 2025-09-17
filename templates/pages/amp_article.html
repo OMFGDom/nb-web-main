@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html amp lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title> {{ title|striptags|safe }} </title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/favicon/favicon180x180.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/favicon32x32.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/favicon16x16.svg" />
+    <link rel="shortcut icon" href="/static/img/favicon/favicon64x64.png">
+    <link rel="canonical" href="https://bes.media/news/{{ alias }}/" />
+    <meta name="description" content="{{ description|striptags|e }}" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+    {{ amp_scripts|safe }}
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+<style amp-custom>body,
+img {
+	height: 100%
+}
+
+body,
+ul {
+	margin: 0;
+	padding: 0
+}
+
+header,
+img {
+	width: 100%
+}
+
+.headerMenu__about,
+.headerMenu__nav {
+	grid-template-columns: 1fr;
+	border-bottom: 1px solid #9a9a9a
+}
+
+.content a,
+a,
+ul {
+	text-decoration: none
+}
+
+.content ul li:after,
+.content ul li:before {
+	background-color: #dc0000;
+	position: absolute
+}
+
+.content .accordion .accordion__title.active .accordion__icon,
+.navItem_icon.active {
+	transform: rotate(180deg)
+}
+
+table,
+table tbody {
+	overflow: auto
+}
+
+.addedNews a,
+.card.redactor a {
+	grid-template-columns: 100px 1fr
+}
+
+.news,
+footer,
+header {
+	max-width: 767px
+}
+
+.article__tags a:hover {
+	background-color: #121212;
+    color: #fff;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	min-width: 320px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center
+}
+
+* {
+	box-sizing: border-box
+}
+
+p {
+	line-height: 1.4em
+}
+
+img {
+	object-fit: cover
+}
+
+a {
+	transition: .3s;
+	color: #000
+}
+
+a:hover {
+	color: #336cda
+}
+
+ul {
+	list-style: none
+}
+
+ul li:active,
+ul li:hover {
+	opacity: .5
+}
+
+header {
+	margin-bottom: 30px
+}
+
+.header__wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: #fff;
+	box-shadow: 0 0 0 0 rgba(0, 0, 0, .01), 0 1px 1px 0 rgba(0, 0, 0, .01), 0 2px 2px 0 rgba(0, 0, 0, .01), 0 5px 3px 0 rgba(0, 0, 0, .01), 0 9px 4px 0 transparent, 0 15px 4px 0 transparent;
+	height: 60px;
+	padding: 0 15px;
+	width: 100%
+}
+
+.menu-btn,
+.menu-close {
+	width: 24px;
+	height: 24px
+}
+
+.header__logo,
+.header__logo a,
+.header__menu {
+	display: flex;
+	align-items: center
+}
+
+.menu-btn {
+	display: block;
+	cursor: pointer
+}
+
+.menu-close {
+	display: none
+}
+
+.headerMenu {
+	width: 100%;
+	height: calc(100vh - 40px);
+	margin-bottom: -20px
+}
+
+.headerMenu .container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 10px
+}
+
+.headerMenu__nav {
+	display: grid;
+	gap: 20px;
+	padding-bottom: 30px;
+	margin-bottom: 30px
+}
+
+.headerMenu__nav h2 {
+	background: #121212;
+	padding-right: 0;
+	border: none
+}
+
+.navItem_title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between
+}
+
+.navItem_title a {
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	color: #fff;
+	width: 100%
+}
+
+.headerMenu__about-list a,
+.navItem_list li a {
+	font-size: 16px;
+	font-weight: 500;
+	font-style: normal
+}
+
+.authorCard amp-img,
+.authorCard img {
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	object-fit: cover
+}
+
+.navItem_icon {
+	width: 40px;
+	height: 20px;
+	padding-left: 20px;
+	display: flex;
+	transition: .3s ease-in-out
+}
+
+.navItem_list {
+	padding: 15px 0 0 20px
+}
+
+.navItem_list li {
+	margin-bottom: 10px
+}
+
+.incut article h3,
+.incut_fw article h3,
+.navItem_list li:last-child,
+table td p {
+	margin-bottom: 0
+}
+
+.navItem_list li a {
+	color: #d4d4d4
+}
+
+.headerMenu__about {
+	display: grid;
+	gap: 12px;
+	padding-bottom: 20px
+}
+
+.headerMenu__about-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 25px
+}
+
+.headerMenu__about-list a {
+	color: #9e9e9e;
+	line-height: 150%
+}
+
+.news {
+	width: 100%;
+	padding: 0 15px 40px;
+	margin-bottom: 40px
+}
+
+.article__info {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	margin-bottom: 15px
+}
+
+.article__info .article__category {
+	color: #0058d3;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px
+}
+
+.article__info .article__date {
+	color: #a5a5a5;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px
+}
+
+.article__title {
+	color: #121212;
+	font-size: 32px;
+	font-weight: 400;
+	line-height: 130%;
+	margin-bottom: 20px
+}
+
+.article__description {
+	font-size: 17px;
+	font-weight: 400;
+	line-height: 145%;
+	color: #3b3b3b;
+	margin-bottom: 20px
+}
+
+.article__authors {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Удалены ::-webkit-scrollbar — AMP не поддерживает кастомные скроллбары */
+
+.article__authors-list {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.article__author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-right: 25px;
+  border-right: 1px solid #e8e8e8;
+}
+
+.article__author:last-child {
+  border-right: none;
+  padding-right: 0px;
+}
+
+.article__author:hover .article__author-name {
+  opacity: 0.8;
+}
+
+.article__author-name {
+  color: #0058d3;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 150%;
+  transition: all 0.3s ease-in-out;
+  white-space: nowrap;
+}
+
+.article__author-position {
+  color: #828282;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.article__tags {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 25px;
+    border-top: 1px solid #ebebeb;
+    margin-bottom: 40px;
+}
+
+.article__tags a {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    color: #737373;
+    padding: 5px 10px;
+    border: 1px solid #737373;
+    border-radius: 4px;
+	transition: .3s ease-in-out
+}
+
+.article__body figure {
+	margin: 0 -15px 18px
+}
+
+figure {
+  margin-bottom: 25px;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+  border-radius: 4px;
+}
+
+figure .image-cont {
+  position: relative;
+  height: 100%;
+  display: block;
+}
+
+figure .image-cont span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 7px 10px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+figure picture {
+  position: relative;
+  height: auto;
+  display: flex;
+}
+
+figure picture span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 7px 10px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+}
+
+figure figure {
+  margin-bottom: 0px;
+}
+
+figure figcaption {
+  text-align: left;
+  background: #faf7f5;
+  padding: 6px 10px;
+  color: #828282;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 130%;
+}
+
+.content .highlighted,
+.content p {
+	margin-bottom: 25px;
+}
+
+.article__body img {
+	max-width: 100%;
+	height: auto;
+	width: 100%
+}
+
+figcaption {
+	text-align: left;
+	margin: 10px 15px 0;
+	font-size: 12px;
+	line-height: 140%;
+	color: #737373
+}
+
+.content p {
+  color: #161616;
+  font-family: Lora;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 150%;
+  margin-bottom: 30px;
+}
+
+.content a {
+  color: #0058d3;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.content h2 {
+  color: #161616;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 28px;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 12px;
+  margin-bottom: 30px;
+}
+
+.content h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: #0058d3;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.content h3 {
+  color: #161616;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 28px;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 12px;
+  margin-bottom: 30px;
+}
+
+.content h3::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: #0058d3;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.content blockquote {
+  padding-left: 20px;
+  border-left: 3px solid #0058d3;
+  color: #161616;
+  font-family: Lora;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 150%;
+  margin-bottom: 30px;
+}
+
+.content blockquote p {
+  margin-bottom: 0;
+}
+
+.content ol {
+  margin-bottom: 30px;
+  list-style-type: none;
+  counter-reset: item;
+}
+
+.content ol li {
+  font-size: 17px;
+  line-height: 150%;
+  color: #161616;
+  margin-bottom: 15px;
+  padding-left: 34px;
+  position: relative;
+  counter-increment: item;
+  font-family: Lora;
+}
+
+.content ol li::before {
+  content: counter(item);
+  display: inline-block;
+  font-family: Lora;
+  font-size: 14px;
+  line-height: 20px;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 2px;
+  text-align: center;
+  background: #0058d3;
+  color: #ffffff;
+  border-radius: 50%;
+  margin-right: 5px;
+  font-weight: bold;
+  position: absolute;
+  left: 0px;
+  top: 2px;
+}
+
+.content ul {
+  list-style-type: none;
+  margin-bottom: 30px;
+}
+
+.content ul li {
+  position: relative;
+  font-size: 17px;
+  line-height: 150%;
+  color: #161616;
+  margin-bottom: 15px;
+  padding-left: 30px;
+  font-family: Lora;
+}
+
+.content ul li::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  background-color: #0058d3;
+  border-radius: 50%;
+  position: absolute;
+  left: 0px;
+  top: 8px;
+}
+
+.content iframe {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.content table {
+  max-width: 767px;
+  display: inline-block;
+  overflow: auto;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  scroll-behavior: smooth;
+}
+
+.content table th {
+  font-weight: bold;
+  padding: 2px;
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+}
+
+.content table td {
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* AMP не поддерживает ::-webkit-scrollbar — можно удалить или оставить, но эффект будет только в браузерах */
+
+.content .highlighted {
+  padding: 24px 28px;
+  background: #f5f5f5;
+  margin-bottom: 20px;
+  font-size: 17px;
+  line-height: 23px;
+  letter-spacing: -0.16px;
+}
+
+.content .highlighted.yellow {
+  background: #fffaea;
+}
+
+.content .highlighted.blue {
+  background: rgba(23, 69, 176, 0.06);
+}
+
+.content .highlighted.red {
+  background: #fff1f1;
+}
+
+.content .highlighted.green {
+  background: #eaffec;
+}
+
+.content .accordion {
+  height: 100%;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.content .accordion__title {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  justify-content: space-between;
+  padding-right: 44px;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 140%;
+  color: #3b3b3b;
+}
+
+.content .accordion__title::after {
+  content: "";
+  display: flex;
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M12.0006 13.1714L16.9504 8.22168L18.3646 9.63589L12.0006 15.9999L5.63672 9.63589L7.05093 8.22168L12.0006 13.1714Z' fill='%233B3B3B'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: 0.3s ease-in-out;
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
+
+.content .accordion__title.active::after {
+  transform: rotate(180deg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M12.0006 13.1714L16.9504 8.22168L18.3646 9.63589L12.0006 15.9999L5.63672 9.63589L7.05093 8.22168L12.0006 13.1714Z' fill='%230058D3'/%3E%3C/svg%3E");
+}
+
+.content .accordion__block {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  display: none;
+  padding-top: 20px;
+  color: #3b3b3b;
+  font-size: 15px;
+  line-height: 140%;
+}
+
+.content .accordion__block.active {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+
+footer {
+	width: 100%;
+	padding: 50px 15px 30px;
+    background: #faf7f5;
+}
+
+.footer__wrap {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 30px
+}
+
+.footer__info {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	row-gap: 20px
+}
+
+.footer__info a {
+	color: #333;
+	font-weight: 400;
+	margin-right: 50px
+}
+
+.copyright {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	row-gap: 10px
+}
+
+.copyright p {
+	color: #828282;
+	font-style: normal;
+	font-weight: 400;
+	margin: 0 25px 0 0
+}
+
+</style>
+{#    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>#}
+  </head>
+  <body>
+{#    <amp-analytics type="googleanalytics" config="https://amp.analytics-debugger.com/ga4.json" data-credentials="include">#}
+{#      <script type="application/json">#}
+{#        {#}
+{#          "vars": {#}
+{#            "GA4_MEASUREMENT_ID": "G-LZMJ16PB7C",#}
+{#            "GA4_ENDPOINT_HOSTNAME": "www.google-analytics.com",#}
+{#            "DEFAULT_PAGEVIEW_ENABLED": true,#}
+{#            "GOOGLE_CONSENT_ENABLED": true,#}
+{#            "WEBVITALS_TRACKING": true,#}
+{#            "PERFORMANCE_TIMING_TRACKING": true#}
+{#          }#}
+{#        }#}
+{#      </script>#}
+{#    </amp-analytics>#}
+{#    <amp-analytics type="metrika">#}
+{#      <script type="application/json">#}
+{#        {#}
+{#          "vars": {#}
+{#            "counterId": "11696335"#}
+{#          }#}
+{#        }#}
+{#      </script>#}
+{#    </amp-analytics>#}
+    <header>
+      <div class="header__wrapper">
+        <div class="header__logo">
+          <a href="{{ url_for('index') }}">
+              <svg width="158" height="26" viewBox="0 0 158 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.408 25V3.624H9.752C11.3093 3.624 12.696 3.784 13.912 4.104C15.128 4.40266 16.088 4.95733 16.792 5.768C17.5173 6.55733 17.88 7.69867 17.88 9.192C17.88 10.1733 17.656 11.0373 17.208 11.784C16.7813 12.5307 16.1627 13.1493 15.352 13.64C16.3547 13.9813 17.1653 14.536 17.784 15.304C18.424 16.072 18.744 17.1067 18.744 18.408C18.744 20.008 18.3813 21.288 17.656 22.248C16.952 23.208 15.9493 23.912 14.648 24.36C13.3467 24.7867 11.832 25 10.104 25H0.408ZM5.464 12.072H9.912C10.7653 12.072 11.4267 11.88 11.896 11.496C12.3867 11.0907 12.632 10.5573 12.632 9.896C12.632 9.21333 12.3867 8.69067 11.896 8.328C11.4267 7.944 10.7653 7.752 9.912 7.752H5.464V12.072ZM5.464 20.808H10.136C11.224 20.808 12.0347 20.5947 12.568 20.168C13.1227 19.72 13.4 19.1227 13.4 18.376C13.4 17.6293 13.1227 17.0427 12.568 16.616C12.0347 16.1893 11.224 15.976 10.136 15.976H5.464V20.808ZM20.8455 25V3.624H37.2935V8.072H25.9015V11.784H32.8455V16.232H25.9015V20.552H37.2935V25H20.8455ZM48.048 25.384C45.7227 25.384 43.76 24.9147 42.16 23.976C40.5813 23.016 39.4613 21.6827 38.8 19.976L43.408 18.312C43.7067 19.336 44.2613 20.0933 45.072 20.584C45.904 21.0747 46.9067 21.32 48.08 21.32C48.6987 21.32 49.296 21.256 49.872 21.128C50.448 20.9787 50.928 20.744 51.312 20.424C51.696 20.0827 51.888 19.6347 51.888 19.08C51.888 18.3333 51.5253 17.7573 50.8 17.352C50.0747 16.9253 49.136 16.6053 47.984 16.392L45.392 15.88C44.24 15.6453 43.1627 15.2933 42.16 14.824C41.1787 14.3333 40.3893 13.6933 39.792 12.904C39.1947 12.0933 38.896 11.08 38.896 9.864C38.896 8.712 39.1627 7.72 39.696 6.888C40.2293 6.056 40.9333 5.37333 41.808 4.84C42.704 4.30667 43.6853 3.912 44.752 3.656C45.8187 3.37867 46.8853 3.24 47.952 3.24C49.104 3.24 50.2133 3.4 51.28 3.72C52.368 4.04 53.3387 4.54133 54.192 5.224C55.0453 5.88533 55.696 6.77067 56.144 7.88L51.568 9.544C51.2907 8.81867 50.7893 8.264 50.064 7.88C49.36 7.496 48.5067 7.304 47.504 7.304C46.5227 7.304 45.7013 7.48533 45.04 7.848C44.4 8.18933 44.08 8.69067 44.08 9.352C44.08 9.88533 44.304 10.344 44.752 10.728C45.2 11.112 45.7867 11.3787 46.512 11.528L49.392 12.104C50.2667 12.2747 51.152 12.4987 52.048 12.776C52.944 13.032 53.7653 13.384 54.512 13.832C55.28 14.2587 55.8987 14.8347 56.368 15.56C56.8373 16.2853 57.072 17.2027 57.072 18.312C57.072 19.4427 56.8053 20.456 56.272 21.352C55.76 22.2267 55.0667 22.9627 54.192 23.56C53.3387 24.1573 52.3787 24.616 51.312 24.936C50.2453 25.2347 49.1573 25.384 48.048 25.384ZM61.7165 25.384C60.8632 25.384 60.1272 25.0747 59.5085 24.456C58.8898 23.8373 58.5805 23.1013 58.5805 22.248C58.5805 21.3733 58.8898 20.6373 59.5085 20.04C60.1272 19.4427 60.8632 19.144 61.7165 19.144C62.5698 19.144 63.2952 19.4427 63.8925 20.04C64.5112 20.6373 64.8205 21.3733 64.8205 22.248C64.8205 23.1013 64.5112 23.8373 63.8925 24.456C63.2952 25.0747 62.5698 25.384 61.7165 25.384ZM67.1938 25V9.128H71.4498L72.0578 11.24C72.4204 10.6427 73.0178 10.0667 73.8498 9.512C74.6818 8.95733 75.6844 8.68 76.8578 8.68C78.1164 8.68 79.1191 8.904 79.8658 9.352C80.6338 9.8 81.1991 10.4613 81.5618 11.336C82.1804 10.4613 82.9591 9.8 83.8978 9.352C84.8578 8.904 85.8924 8.68 87.0018 8.68C89.0284 8.68 90.4258 9.256 91.1938 10.408C91.9618 11.5387 92.3458 13.1813 92.3458 15.336V25H87.4818V16.552C87.4818 15.8053 87.4391 15.1227 87.3538 14.504C87.2684 13.8853 87.0551 13.3947 86.7138 13.032C86.3724 12.648 85.8071 12.456 85.0178 12.456C84.0364 12.456 83.3218 12.808 82.8738 13.512C82.4258 14.1947 82.2018 15.2293 82.2018 16.616V25H77.3058V16.552C77.3058 15.8053 77.2631 15.1227 77.1778 14.504C77.1138 13.8853 76.9111 13.3947 76.5698 13.032C76.2498 12.648 75.7058 12.456 74.9378 12.456C73.9351 12.456 73.1991 12.8187 72.7298 13.544C72.2818 14.2693 72.0578 15.3253 72.0578 16.712V25H67.1938ZM103.16 25.384C101.453 25.384 99.9382 25.0533 98.6155 24.392C97.3142 23.7093 96.2902 22.7387 95.5435 21.48C94.8182 20.2213 94.4555 18.7173 94.4555 16.968C94.4555 15.2827 94.8395 13.8213 95.6075 12.584C96.3968 11.3467 97.4315 10.3867 98.7115 9.704C100.013 9.02133 101.432 8.68 102.968 8.68C104.717 8.68 106.21 9.096 107.448 9.928C108.706 10.7387 109.656 11.8693 110.296 13.32C110.936 14.7493 111.202 16.4027 111.096 18.28H99.3515C99.4368 19.3893 99.8422 20.2213 100.568 20.776C101.314 21.3307 102.136 21.608 103.032 21.608C103.778 21.608 104.418 21.5013 104.952 21.288C105.506 21.0533 105.933 20.7653 106.232 20.424L110.104 21.832C109.272 23.048 108.226 23.944 106.968 24.52C105.73 25.096 104.461 25.384 103.16 25.384ZM99.3515 15.4H106.584C106.562 14.376 106.21 13.608 105.528 13.096C104.845 12.5627 104.034 12.296 103.095 12.296C102.178 12.296 101.357 12.5413 100.632 13.032C99.9275 13.5227 99.5008 14.312 99.3515 15.4ZM119.589 25.384C118.223 25.384 117.007 25.0427 115.941 24.36C114.895 23.6773 114.074 22.7067 113.477 21.448C112.879 20.168 112.581 18.664 112.581 16.936C112.581 15.208 112.879 13.736 113.477 12.52C114.074 11.2827 114.895 10.3333 115.941 9.672C117.007 9.01067 118.223 8.68 119.589 8.68C120.463 8.68 121.359 8.904 122.277 9.352C123.194 9.77867 123.909 10.4293 124.421 11.304V3.624H129.285V18.792C129.285 19.5813 129.317 20.52 129.381 21.608C129.466 22.696 129.615 23.8267 129.829 25H125.189L124.549 22.856C123.887 23.7733 123.109 24.424 122.213 24.808C121.338 25.192 120.463 25.384 119.589 25.384ZM121.157 21.608C122.095 21.608 122.906 21.256 123.589 20.552C124.293 19.848 124.645 18.6747 124.645 17.032C124.645 15.4107 124.293 14.248 123.589 13.544C122.906 12.8187 122.095 12.456 121.157 12.456C120.197 12.456 119.365 12.84 118.661 13.608C117.978 14.376 117.637 15.4853 117.637 16.936C117.637 18.408 117.978 19.56 118.661 20.392C119.365 21.2027 120.197 21.608 121.157 21.608ZM137.115 6.504C136.326 6.504 135.643 6.22667 135.067 5.672C134.512 5.096 134.235 4.41333 134.235 3.624C134.235 2.81333 134.512 2.13067 135.067 1.576C135.643 1.02133 136.326 0.743999 137.115 0.743999C137.926 0.743999 138.608 1.02133 139.163 1.576C139.718 2.13067 139.995 2.81333 139.995 3.624C139.995 4.41333 139.718 5.096 139.163 5.672C138.608 6.22667 137.926 6.504 137.115 6.504ZM134.651 25V12.84H131.643V9.128H139.547V25H134.651ZM147.209 25.384C146.206 25.384 145.289 25.192 144.457 24.808C143.625 24.424 142.963 23.8907 142.473 23.208C141.982 22.504 141.737 21.672 141.737 20.712C141.737 19.4107 142.185 18.376 143.081 17.608C143.998 16.84 145.246 16.264 146.825 15.88C148.403 15.496 150.217 15.2293 152.265 15.08C152.265 13.9493 152.083 13.1493 151.721 12.68C151.358 12.2107 150.654 11.976 149.609 11.976C148.947 11.976 148.361 12.136 147.849 12.456C147.358 12.7547 147.027 13.224 146.857 13.864L142.761 12.392C143.294 11.3253 144.179 10.44 145.417 9.736C146.675 9.032 148.211 8.68 150.025 8.68C152.286 8.68 154.025 9.18133 155.241 10.184C156.457 11.1867 157.065 12.8933 157.065 15.304V18.792C157.065 19.4747 157.086 20.2107 157.129 21C157.171 21.7893 157.235 22.536 157.321 23.24C157.406 23.944 157.502 24.5307 157.609 25H153.097L152.521 23.08C151.923 23.912 151.166 24.5093 150.249 24.872C149.353 25.2133 148.339 25.384 147.209 25.384ZM149.001 22.056C149.961 22.056 150.761 21.8 151.401 21.288C152.041 20.776 152.361 19.7947 152.361 18.344V17.96C150.675 18.1093 149.321 18.344 148.297 18.664C147.273 18.9627 146.761 19.528 146.761 20.36C146.761 20.872 146.974 21.288 147.401 21.608C147.827 21.9067 148.361 22.056 149.001 22.056Z" fill="#0058D3"></path>
+              </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+    <div class="news">
+      <div class="article__wrapper">
+        <div class="article__main">
+          <div class="article__body">
+            <div class="article__head">
+              <div class="article__info">
+                {% if categories %}
+                <div class="article__category">{{ categories[-1].title }}</div>
+                {% endif %}
+                <div class="article__date">{{ published_date }}</div>
+              </div>
+              <h1 class="article__title"> {{ title }} </h1>
+              <div class="article__description"> {{ description | safe }} </div>
+              <div class="article__authors">
+                  <div class="article__authors-list">
+                      {% for author in authors %}
+                        <a href="{{ url_for('author', slug=author.id) }}" class="article__author">
+                            <div class="article__author-name">{{author.firstName}} {{author.lastName}}</div>
+                            <div class="article__author-position">
+                              {{ author.position or '' }}
+                            </div>
+                        </a>
+                      {% endfor %}
+                  </div>
+              </div>
+            </div>
+            {% if image and not image.hide_in_page %}
+              {% with
+                image_webp_800 = image.image_webp_800 | default(image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+                image_jpeg_800 = image.image_jpeg_800 | default(image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+              %}
+              <figure>
+                <div class="image-cont">
+                  <amp-img
+                    alt="{{ image.alt }}"
+                    width="1.33"
+                    height="1"
+                    layout="responsive"
+                    src="{{ image_webp_800 }}"
+                    srcset="{{ image_webp_800 }} 400w, {{ image_webp_800 }} 800w"
+                  >
+                    <amp-img
+                      alt="{{ image.alt }}"
+                      fallback
+                      width="1.33"
+                      height="1"
+                      layout="responsive"
+                      src="{{ image_jpeg_800 }}"
+                      srcset="{{ image_jpeg_800 }} 400w, {{ image_jpeg_800 }} 800w"
+                    >
+                    </amp-img>
+                  </amp-img>
+                  <span class="authorship">{{ image.source }}</span>
+                </div>
+                <figcaption>{{ image.title }}</figcaption>
+              </figure>
+              {% endwith %}
+            {% endif %}
+            <div class="content">
+              {{ content|safe }}
+            </div>
+            <div class="article__tags">
+              {% for tag in tags %}
+              <a href="{{ url_for('tag', slug=tag.slug) }}"> {{tag.tag_name}} </a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="footer__wrap">
+        <div class="footer__logo">
+          <a href="{{ url_for('index') }}">
+              <svg width="158" height="26" viewBox="0 0 158 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.408 25V3.624H9.752C11.3093 3.624 12.696 3.784 13.912 4.104C15.128 4.40266 16.088 4.95733 16.792 5.768C17.5173 6.55733 17.88 7.69867 17.88 9.192C17.88 10.1733 17.656 11.0373 17.208 11.784C16.7813 12.5307 16.1627 13.1493 15.352 13.64C16.3547 13.9813 17.1653 14.536 17.784 15.304C18.424 16.072 18.744 17.1067 18.744 18.408C18.744 20.008 18.3813 21.288 17.656 22.248C16.952 23.208 15.9493 23.912 14.648 24.36C13.3467 24.7867 11.832 25 10.104 25H0.408ZM5.464 12.072H9.912C10.7653 12.072 11.4267 11.88 11.896 11.496C12.3867 11.0907 12.632 10.5573 12.632 9.896C12.632 9.21333 12.3867 8.69067 11.896 8.328C11.4267 7.944 10.7653 7.752 9.912 7.752H5.464V12.072ZM5.464 20.808H10.136C11.224 20.808 12.0347 20.5947 12.568 20.168C13.1227 19.72 13.4 19.1227 13.4 18.376C13.4 17.6293 13.1227 17.0427 12.568 16.616C12.0347 16.1893 11.224 15.976 10.136 15.976H5.464V20.808ZM20.8455 25V3.624H37.2935V8.072H25.9015V11.784H32.8455V16.232H25.9015V20.552H37.2935V25H20.8455ZM48.048 25.384C45.7227 25.384 43.76 24.9147 42.16 23.976C40.5813 23.016 39.4613 21.6827 38.8 19.976L43.408 18.312C43.7067 19.336 44.2613 20.0933 45.072 20.584C45.904 21.0747 46.9067 21.32 48.08 21.32C48.6987 21.32 49.296 21.256 49.872 21.128C50.448 20.9787 50.928 20.744 51.312 20.424C51.696 20.0827 51.888 19.6347 51.888 19.08C51.888 18.3333 51.5253 17.7573 50.8 17.352C50.0747 16.9253 49.136 16.6053 47.984 16.392L45.392 15.88C44.24 15.6453 43.1627 15.2933 42.16 14.824C41.1787 14.3333 40.3893 13.6933 39.792 12.904C39.1947 12.0933 38.896 11.08 38.896 9.864C38.896 8.712 39.1627 7.72 39.696 6.888C40.2293 6.056 40.9333 5.37333 41.808 4.84C42.704 4.30667 43.6853 3.912 44.752 3.656C45.8187 3.37867 46.8853 3.24 47.952 3.24C49.104 3.24 50.2133 3.4 51.28 3.72C52.368 4.04 53.3387 4.54133 54.192 5.224C55.0453 5.88533 55.696 6.77067 56.144 7.88L51.568 9.544C51.2907 8.81867 50.7893 8.264 50.064 7.88C49.36 7.496 48.5067 7.304 47.504 7.304C46.5227 7.304 45.7013 7.48533 45.04 7.848C44.4 8.18933 44.08 8.69067 44.08 9.352C44.08 9.88533 44.304 10.344 44.752 10.728C45.2 11.112 45.7867 11.3787 46.512 11.528L49.392 12.104C50.2667 12.2747 51.152 12.4987 52.048 12.776C52.944 13.032 53.7653 13.384 54.512 13.832C55.28 14.2587 55.8987 14.8347 56.368 15.56C56.8373 16.2853 57.072 17.2027 57.072 18.312C57.072 19.4427 56.8053 20.456 56.272 21.352C55.76 22.2267 55.0667 22.9627 54.192 23.56C53.3387 24.1573 52.3787 24.616 51.312 24.936C50.2453 25.2347 49.1573 25.384 48.048 25.384ZM61.7165 25.384C60.8632 25.384 60.1272 25.0747 59.5085 24.456C58.8898 23.8373 58.5805 23.1013 58.5805 22.248C58.5805 21.3733 58.8898 20.6373 59.5085 20.04C60.1272 19.4427 60.8632 19.144 61.7165 19.144C62.5698 19.144 63.2952 19.4427 63.8925 20.04C64.5112 20.6373 64.8205 21.3733 64.8205 22.248C64.8205 23.1013 64.5112 23.8373 63.8925 24.456C63.2952 25.0747 62.5698 25.384 61.7165 25.384ZM67.1938 25V9.128H71.4498L72.0578 11.24C72.4204 10.6427 73.0178 10.0667 73.8498 9.512C74.6818 8.95733 75.6844 8.68 76.8578 8.68C78.1164 8.68 79.1191 8.904 79.8658 9.352C80.6338 9.8 81.1991 10.4613 81.5618 11.336C82.1804 10.4613 82.9591 9.8 83.8978 9.352C84.8578 8.904 85.8924 8.68 87.0018 8.68C89.0284 8.68 90.4258 9.256 91.1938 10.408C91.9618 11.5387 92.3458 13.1813 92.3458 15.336V25H87.4818V16.552C87.4818 15.8053 87.4391 15.1227 87.3538 14.504C87.2684 13.8853 87.0551 13.3947 86.7138 13.032C86.3724 12.648 85.8071 12.456 85.0178 12.456C84.0364 12.456 83.3218 12.808 82.8738 13.512C82.4258 14.1947 82.2018 15.2293 82.2018 16.616V25H77.3058V16.552C77.3058 15.8053 77.2631 15.1227 77.1778 14.504C77.1138 13.8853 76.9111 13.3947 76.5698 13.032C76.2498 12.648 75.7058 12.456 74.9378 12.456C73.9351 12.456 73.1991 12.8187 72.7298 13.544C72.2818 14.2693 72.0578 15.3253 72.0578 16.712V25H67.1938ZM103.16 25.384C101.453 25.384 99.9382 25.0533 98.6155 24.392C97.3142 23.7093 96.2902 22.7387 95.5435 21.48C94.8182 20.2213 94.4555 18.7173 94.4555 16.968C94.4555 15.2827 94.8395 13.8213 95.6075 12.584C96.3968 11.3467 97.4315 10.3867 98.7115 9.704C100.013 9.02133 101.432 8.68 102.968 8.68C104.717 8.68 106.21 9.096 107.448 9.928C108.706 10.7387 109.656 11.8693 110.296 13.32C110.936 14.7493 111.202 16.4027 111.096 18.28H99.3515C99.4368 19.3893 99.8422 20.2213 100.568 20.776C101.314 21.3307 102.136 21.608 103.032 21.608C103.778 21.608 104.418 21.5013 104.952 21.288C105.506 21.0533 105.933 20.7653 106.232 20.424L110.104 21.832C109.272 23.048 108.226 23.944 106.968 24.52C105.73 25.096 104.461 25.384 103.16 25.384ZM99.3515 15.4H106.584C106.562 14.376 106.21 13.608 105.528 13.096C104.845 12.5627 104.034 12.296 103.095 12.296C102.178 12.296 101.357 12.5413 100.632 13.032C99.9275 13.5227 99.5008 14.312 99.3515 15.4ZM119.589 25.384C118.223 25.384 117.007 25.0427 115.941 24.36C114.895 23.6773 114.074 22.7067 113.477 21.448C112.879 20.168 112.581 18.664 112.581 16.936C112.581 15.208 112.879 13.736 113.477 12.52C114.074 11.2827 114.895 10.3333 115.941 9.672C117.007 9.01067 118.223 8.68 119.589 8.68C120.463 8.68 121.359 8.904 122.277 9.352C123.194 9.77867 123.909 10.4293 124.421 11.304V3.624H129.285V18.792C129.285 19.5813 129.317 20.52 129.381 21.608C129.466 22.696 129.615 23.8267 129.829 25H125.189L124.549 22.856C123.887 23.7733 123.109 24.424 122.213 24.808C121.338 25.192 120.463 25.384 119.589 25.384ZM121.157 21.608C122.095 21.608 122.906 21.256 123.589 20.552C124.293 19.848 124.645 18.6747 124.645 17.032C124.645 15.4107 124.293 14.248 123.589 13.544C122.906 12.8187 122.095 12.456 121.157 12.456C120.197 12.456 119.365 12.84 118.661 13.608C117.978 14.376 117.637 15.4853 117.637 16.936C117.637 18.408 117.978 19.56 118.661 20.392C119.365 21.2027 120.197 21.608 121.157 21.608ZM137.115 6.504C136.326 6.504 135.643 6.22667 135.067 5.672C134.512 5.096 134.235 4.41333 134.235 3.624C134.235 2.81333 134.512 2.13067 135.067 1.576C135.643 1.02133 136.326 0.743999 137.115 0.743999C137.926 0.743999 138.608 1.02133 139.163 1.576C139.718 2.13067 139.995 2.81333 139.995 3.624C139.995 4.41333 139.718 5.096 139.163 5.672C138.608 6.22667 137.926 6.504 137.115 6.504ZM134.651 25V12.84H131.643V9.128H139.547V25H134.651ZM147.209 25.384C146.206 25.384 145.289 25.192 144.457 24.808C143.625 24.424 142.963 23.8907 142.473 23.208C141.982 22.504 141.737 21.672 141.737 20.712C141.737 19.4107 142.185 18.376 143.081 17.608C143.998 16.84 145.246 16.264 146.825 15.88C148.403 15.496 150.217 15.2293 152.265 15.08C152.265 13.9493 152.083 13.1493 151.721 12.68C151.358 12.2107 150.654 11.976 149.609 11.976C148.947 11.976 148.361 12.136 147.849 12.456C147.358 12.7547 147.027 13.224 146.857 13.864L142.761 12.392C143.294 11.3253 144.179 10.44 145.417 9.736C146.675 9.032 148.211 8.68 150.025 8.68C152.286 8.68 154.025 9.18133 155.241 10.184C156.457 11.1867 157.065 12.8933 157.065 15.304V18.792C157.065 19.4747 157.086 20.2107 157.129 21C157.171 21.7893 157.235 22.536 157.321 23.24C157.406 23.944 157.502 24.5307 157.609 25H153.097L152.521 23.08C151.923 23.912 151.166 24.5093 150.249 24.872C149.353 25.2133 148.339 25.384 147.209 25.384ZM149.001 22.056C149.961 22.056 150.761 21.8 151.401 21.288C152.041 20.776 152.361 19.7947 152.361 18.344V17.96C150.675 18.1093 149.321 18.344 148.297 18.664C147.273 18.9627 146.761 19.528 146.761 20.36C146.761 20.872 146.974 21.288 147.401 21.608C147.827 21.9067 148.361 22.056 149.001 22.056Z" fill="#0058D3"></path>
+              </svg>
+          </a>
+        </div>
+        <div class="footer__info">
+          <a href="{{ url_for('category', slug='press-relizy') }}"> Пресс-релизы </a>
+          <a href="{{ url_for('about') }}"> Что такое BES.media </a>
+          <a href="{{ url_for('data') }}"> Выходные данные </a>
+          <a href="{{ url_for('contacts') }}"> Контакты </a>
+          <a href="{{ url_for('advertising') }}"> Реклама </a>
+          <a href="{{ url_for('privacy_policy') }}"> Политика конфиденциальности </a>
+          <a href="{{ url_for('material_use_policy') }}"> Правила использования материалов </a>
+        </div>
+        <div class="copyright">
+          <p>© 2025 Сетевое издание BES.media</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

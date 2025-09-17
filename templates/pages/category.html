@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% block meta_data %}
+            <title>{% if category.seo_title %}{{ category.seo_title }} {% else %}Рубрика новостей {{ category.title }}| bes.media{% endif %}</title>
+            <link rel="canonical" href="https://bes.media/category/{{ category.slug }}/"/>
+            <meta name="description" content="{% if category.description %}{{ category.description }}{% else %}Материалы рубрики {{ category.title }} Официально на Bes.media{% endif %}" />
+            <meta name="keywords" content="категории {{category.title}}"/>
+            <meta name="author" content="Редакция bes.media" />
+            <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "CollectionPage",
+              "name": "{{ category.title }}",
+              "description": "{{ (category.description|striptags|e or ('Материалы рубрики ' ~ category.title ~ ' на bes.media')) }}",
+              "url": "https://bes.media/category/{{ category.slug }}/",
+              "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                  {% for article in page.items %}
+                  {
+                    "@type": "ListItem",
+                    "position": {{ loop.index }},
+                    "url": "https://bes.media/news/{{ article.alias }}/",
+                    "name": "{{ article.title|striptags|e }}"
+                  }{% if not loop.last %},{% endif %}
+                  {% endfor %}
+                ]
+              }
+            }
+            </script>
+
+            {# — JSON-LD: BreadcrumbList — #}
+            <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Главная",
+                  "item": "https://bes.media/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "{{ category.title|e }}",
+                  "item": "https://bes.media/category/{{ category.slug }}/"
+                }
+              ]
+            }
+            </script>
+
+        {% endblock meta_data %}
+        {% block content %}
+    {% include 'header.html' %}
+    <main>
+        <section class="adSection adDesctop">
+        <div class="ad-container">
+          <div class="ad-wrapper-desctop">
+            <div id="ad-placeholder" class="ad-placeholder">BES.media</div>
+            <div id="adfox_170955537553561307" class="ad-block"></div>
+            <script>
+              window.yaContextCb.push(() => {
+                Ya.adfoxCode.createAdaptive(
+                  {
+                    ownerId: 264109,
+                    containerId: "adfox_170955537553561307",
+                    params: {
+                      p1: "dbhtm",
+                      p2: "iwpg",
+                    },
+                  },
+                  ["desktop", "tablet"],
+                  {
+                    tabletWidth: 830,
+                    phoneWidth: 480,
+                    isAutoReloads: false,
+                  }
+                );
+
+                const placeholder = document.getElementById("ad-placeholder");
+                const adBlock = document.getElementById(
+                  "adfox_170955537553561307"
+                );
+
+                const observer = new MutationObserver(() => {
+                  if (adBlock.children.length > 0) {
+                    placeholder?.remove();
+                    observer.disconnect();
+                  }
+                });
+
+                observer.observe(adBlock, { childList: true });
+              });
+            </script>
+          </div>
+        </div>
+        </section>
+        <section class="categoryPage sectionDesctopMargin">
+          <div class="container">
+            <div class="categoryPage__wrapper">
+              <div class="categoryPage__body">
+                <h1 class="page__title">{{ category.title }}</h1>
+
+                <div class="categoryPage__list">
+                  {% for article in page.items %}
+                    {% with
+                      image_webp_800 = article.image.image_webp_800 | default(article.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+                      image_jpeg_800 = article.image.image_jpeg_800 | default(article.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+                    %}
+                    <div class="card page">
+                      <a href="https://bes.media/news/{{ article.alias }}/">
+                        <picture>
+                          <source media="(max-width: 699px)" type="image/webp" srcset="{{ image_webp_800 }}" />
+                          <source media="(min-width: 700px)" type="image/webp" srcset="{{ image_webp_800 }}" />
+                          <img src="{{ image_jpeg_800 }}" alt="{{ article.title }}" />
+                        </picture>
+                        <div class="card__content">
+                          <div class="card__title">
+                            {{ article.title }}
+                          </div>
+                          <div class="card__info">
+                            <div class="card__category">
+                              {{ article.categories[0].title if article.categories }}
+                            </div>
+                            <div class="card__time" data-published="{{ article.published_date.strftime('%Y-%m-%dT%H:%M:%S') }}">
+                              {{ article.published_date.strftime('%d.%m.%Y, %H:%M') }}
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    {% endwith %}
+                  {% endfor %}
+                </div>
+
+                {% if page.pages > 1 %}
+                  {% include 'pagination.html' %}
+                {% endif %}
+              </div>
+
+              <div class="categoryPage__aside">
+                <div class="ad-wrapper-desctop-aside">
+                  <div id="ad-placeholder" class="ad-placeholder">
+                    BES.media
+                  </div>
+                  <div id="adfox_170955552941919482"></div>
+                  <script>
+                    window.yaContextCb.push(() => {
+                      Ya.adfoxCode.createAdaptive(
+                        {
+                          ownerId: 264109,
+                          containerId: "adfox_170955552941919482",
+                          params: {
+                            p1: "dbhto",
+                            p2: "iwpl",
+                          },
+                        },
+                        ["desktop", "tablet"],
+                        {
+                          tabletWidth: 830,
+                          phoneWidth: 480,
+                          isAutoReloads: false,
+                        }
+                      );
+                    });
+                  </script>
+                </div>
+                <div class="ad-wrapper-mobile-big adMobile">
+                  <div id="ad-placeholder" class="ad-placeholder">
+                    BES.media
+                  </div>
+                  <div id="adfox_17095555565288808"></div>
+                  <script>
+                    window.yaContextCb.push(() => {
+                      Ya.adfoxCode.createAdaptive(
+                        {
+                          ownerId: 264109,
+                          containerId: "adfox_17095555565288808",
+                          params: {
+                            p1: "dbhtj",
+                            p2: "iwpn",
+                          },
+                        },
+                        ["phone"],
+                        {
+                          tabletWidth: 830,
+                          phoneWidth: 480,
+                          isAutoReloads: false,
+                        }
+                      );
+                    });
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </main>
+    {% include 'footer.html' %}
+    {% include 'drawer.html' %}
+{% endblock content %}
+    {% block scripts %}
+ <script src="/static/js/index.bundle.js?v=1.36" defer></script>
+{% endblock scripts %}

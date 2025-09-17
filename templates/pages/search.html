@@ -1,0 +1,75 @@
+{% extends "base-noindex.html" %}
+{% block meta_data %}
+{% endblock meta_data %}
+{% block content %}
+    {% include 'header.html' %}
+    <main>
+      <section class="categoryPage sectionDesctopMargin">
+          <div class="container">
+            <div class="categoryPage__wrapper">
+              <div class="categoryPage__body">
+                <h1 class="page__title">Поиск</h1>
+                <form action="/search" class="page__search mb">
+                    <input type="text" name="q" placeholder="Поиск" value="{{ q | default('') }}">
+                    <button class="page__search-icon" type="submit">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                        <path d="M9.16699 2.16666C13.307 2.16666 16.667 5.52666 16.667 9.66666C16.667 13.8067 13.307 17.1667 9.16699 17.1667C5.02699 17.1667 1.66699 13.8067 1.66699 9.66666C1.66699 5.52666 5.02699 2.16666 9.16699 2.16666ZM9.16699 15.5C12.3899 15.5 15.0003 12.8896 15.0003 9.66666C15.0003 6.44374 12.3899 3.83332 9.16699 3.83332C5.94408 3.83332 3.33366 6.44374 3.33366 9.66666C3.33366 12.8896 5.94408 15.5 9.16699 15.5ZM16.2381 15.5592L18.5951 17.9162L17.4166 19.0947L15.0596 16.7377L16.2381 15.5592Z" fill="#2D2D2D"></path>
+                      </svg>
+                    </button>
+                </form>
+                {% if not page.items %}
+                  <div class="page__placeholder">По вашему запросу нет записей.</div>
+                {% endif %}
+                <div class="categoryPage__list">
+                  {% for article in page.items %}
+                    <div class="card page">
+                    <a href="{{ url_for('article_detail', slug=article.alias) }}">
+                      <picture>
+                        <source
+                          media="(max-width: 699px)"
+                          srcset="{{ article.image.image_800_webp or '/static/img/plug.jpg' }}"
+                        />
+                        <source
+                          media="(min-width: 700px)"
+                          srcset="{{ article.image.image_800_webp or '/static/img/plug.jpg' }}"
+                        />
+                        <img
+                          src="{{ article.image or '/static/img/plug.jpg' }}"
+                          alt="{{ article.title }}"
+                        />
+                      </picture>
+                      <div class="card__content">
+                        <div class="card__title">
+                          {{ article.title }}
+                        </div>
+                        <div class="card__info">
+                          <div class="card__category">
+                            {{ article.categories[0].title if article.categories }}
+                          </div>
+                          <div class="card__time">
+                            {{ article.published_date.strftime('%d.%m.%Y, %H:%M') }}
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  {% endfor %}
+                </div>
+                {% if page.pages > 1 %}
+                  {% include 'pagination.html' %}
+                {% endif %}
+              </div>
+
+              <div class="categoryPage__aside">
+                <!-- Дополнительный контент -->
+              </div>
+            </div>
+          </div>
+        </section>
+    </main>
+    {% include 'footer.html' %}
+    {% include 'drawer.html' %}
+{% endblock content %}
+{% block scripts %}
+    <script src="/static/js/index.bundle.js?v=1.31"></script>
+{% endblock scripts %}

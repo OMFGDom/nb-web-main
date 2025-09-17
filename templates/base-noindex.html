@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      {% block meta_data %}
+        <title>BES.media ᐈ Новости Казахстана на сегодня</title>
+      {% endblock meta_data %}
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/favicon/favicon180x180.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/favicon32x32.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/favicon16x16.svg" />
+    <link rel="shortcut icon" href="/static/img/favicon/favicon64x64.png">
+    <link rel="preload" href="/static/css/main.css?v=1.40" as="style">
+    <link rel="stylesheet" href="/static/css/main.css?v=1.40" />
+    <link rel="preload" href="/static/fonts/pt-serif-v18-cyrillic_cyrillic-ext_latin-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/static/fonts/pt-serif-v18-cyrillic_cyrillic-ext_latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <script>
+        try {
+
+            //отложеная загрузка медленного внешнего JS
+            let isDeferredScriptsInitialized = false;
+            window.deferredScripts = window.deferredScripts || [];
+
+            function addDeferredScript(callback){
+                //если инициализация уже прошла, то просто выполняем
+                if (isDeferredScriptsInitialized) {
+                    callback();
+                    return;
+                }
+
+                window.deferredScripts = window.deferredScripts || [];
+                window.deferredScripts.push(callback);
+            }
+
+            function initDeferredScript() {
+                if (isDeferredScriptsInitialized === false) {
+                    isDeferredScriptsInitialized = true;
+                    window.deferredScripts.forEach(callback => callback());
+
+                    setTimeout(() => {
+                        window.removeEventListener('scroll', initDeferredScript, false);
+                        window.removeEventListener('click', initDeferredScript, false);
+                        window.removeEventListener('mousemove', initDeferredScript, false);
+                        window.removeEventListener('touchstart', initDeferredScript, false);
+                        window.removeEventListener('keydown', initDeferredScript, false);
+                    }, 100);
+                }
+            }
+
+            window.addEventListener('scroll', initDeferredScript, {passive: true});
+            window.addEventListener('click', initDeferredScript, {passive: true});
+            window.addEventListener('mousemove', initDeferredScript, {passive: true});
+            window.addEventListener('touchstart', initDeferredScript, {passive: true});
+            window.addEventListener('keydown', initDeferredScript, {passive: true});
+
+            setTimeout(initDeferredScript, 7000);
+        } catch {}
+    </script>
+    <script>window.yaContextCb = window.yaContextCb || []</script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    <script src="https://cdn.tds.bid/bid.js" type="text/javascript"></script>
+  </head>
+<body>
+{% block content %}
+{% endblock %}
+{% block scripts %}
+
+{% endblock scripts %}
+
+  </body>
+</html>

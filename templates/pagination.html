@@ -1,0 +1,66 @@
+{% set base_url = '?' %}
+{% if q %}
+    {% set base_url = base_url + 'q=' + q + '&' %}
+{% endif %}
+{% if s %}
+    {% set base_url = base_url + 's=' + s + '&' %}
+{% endif %}
+<ul class="pagination">
+                            {% if page.page > 1 %}
+    <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ page.page-1 }}">‹</a></li>
+{% else %}
+    <li class="page-item disabled">
+        <a aria-label="#" href="#" class="page-link page-link__vector-style vector-style_theme_prev">
+            ‹
+        </a>
+    </li>
+{% endif %}
+
+{% if page.pages <= 5 %}
+    {% for i in range(1, page.pages + 1) %}
+        {% if page.page == i %}
+            <li class="current active"><a href="#" class="current">{{ i }}</a></li>
+        {% else %}
+            <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    {% if page.page <= 3 %}
+        {% for i in range(1, 6) %}
+            {% if page.page == i %}
+                <li class="current active"><a href="#" class="current">{{ i }}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+    {% elif page.page >= page.pages - 2 %}
+        {% for i in range(page.pages - 4, page.pages + 1) %}
+            {% if page.page == i %}
+                <li class="current active"><a href="#" class="current">{{ i }}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for i in range(page.page - 2, page.page + 3) %}
+            {% if page.page == i %}
+                <li class="current active"><a href="#" class="current">{{ i }}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endif %}
+
+{% if page.page < page.pages %}
+    <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ page.page+1 }}">›</a></li>
+{% else %}
+    <li class="page-item disabled">
+        <a aria-label="#" class="page-link page-link__vector-style" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10.9763 10.0006L6.85156 5.87577L8.03007 4.69727L13.3334 10.0006L8.03007 15.3038L6.85156 14.1253L10.9763 10.0006Z" fill="#A0A0A0" />
+            </svg>
+        </a>
+    </li>
+{% endif %}
+                        </ul>
