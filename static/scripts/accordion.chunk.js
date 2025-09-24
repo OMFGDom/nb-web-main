@@ -1,0 +1,1 @@
+function t(){document.querySelectorAll(".accordion-nav-element").forEach(t=>{const e=t.querySelector(".head button");e&&e.addEventListener("click",()=>{const e="true"===t.getAttribute("data-open");t.setAttribute("data-open",(!e).toString())})})}export{t as initiateNavAccordion};

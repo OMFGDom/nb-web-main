@@ -46,6 +46,7 @@ class Article(UUIDMixin, CreatedUpdatedMixin, Base):
     title = sa.Column(sa.String, nullable=False, index=True)
     alias = sa.Column(sa.String, nullable=False, unique=True, index=True)
     description = sa.Column(sa.Text)
+    quote = sa.Column(sa.Text)
     content = sa.Column(sa.Text)
     published_date = sa.Column(sa.DateTime, index=True)
 

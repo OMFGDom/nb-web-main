@@ -6,13 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% block meta_data %}
-        <title>BES.media ᐈ Новости Казахстана на сегодня</title>
+        <title>NB ᐈ Новости Казахстана на сегодня</title>
       {% endblock meta_data %}
-    <meta name="robots" content="index, follow" />
-    <link rel="preconnect" href="https://mc.yandex.ru/metrika/">
-    <link rel="preconnect" href="https://www.googletagmanager.com/">
-    <link rel="preload" href="/static/fonts/pt-serif-v18-cyrillic_cyrillic-ext_latin-700.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/static/fonts/pt-serif-v18-cyrillic_cyrillic-ext_latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <meta name="robots" content="noindex, nofollow" />
     <script>
         try {
 
@@ -55,60 +51,16 @@
             setTimeout(initDeferredScript, 7000);
         } catch {}
     </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4SLJPX6F47"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-4SLJPX6F47');
-    </script>
-
-    <script>window.yaContextCb = window.yaContextCb || []</script>
-    <script src="https://yandex.ru/ads/system/context.js" async></script>
-    <script src="https://cdn.tds.bid/bid.js" type="text/javascript"></script>
-
-          <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N9THM23Z');</script>
-    <!-- End Google Tag Manager -->
-
-          <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9THM23Z"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <link rel="preload" href="/static/css/main.css?v=1.40" as="style">
-    <link rel="stylesheet" href="/static/css/main.css?v=1.40" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/favicon/favicon180x180.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/favicon32x32.svg" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/favicon16x16.svg" />
-    <link rel="shortcut icon" href="/static/img/favicon/favicon64x64.png">
+    <link rel="preload" href="/static/css/main.css?v=1.3" as="style">
+    <link rel="stylesheet" href="/static/css/main.css?v=1.3" />
+    <link rel="preload" href="/static/css/fonts.css?v=1.3" as="style">
+    <link rel="stylesheet" href="/static/css/fonts.css?v=1.3">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./static/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./static/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/static/webmanifest.json">
     </head>
 <body>
-<div id="sticky-id">
-    <script>
-        if (window.defineRecWidget){
-            window.defineRecWidget({
-                containerId: "sticky-id",
-                plId: "5184",
-                prId: "5184-233",
-                product: "st",
-            })
-        }else{
-            window.recWait = window.recWait || [];
-            window.recWait.push({
-                containerId: "sticky-id",
-                plId: "5184",
-                prId: "5184-233",
-                product: "st",
-            })
-        }
-    </script>
-</div>
 {% block content %}
 {% endblock %}
 {% block scripts %}

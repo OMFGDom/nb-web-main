@@ -1,387 +1,196 @@
 {% extends "base.html" %}
 {% block meta_data %}
-            <title>Автор {{author.firstName}} {{author.lastName}}| bes.media</title>
-            <link rel="canonical" href="https://bes.media/authors/{{author.id}}/"/>
-            <meta name="description"
-              content="{{ author.description or ('Автор ' ~ author.firstName ~ ' ' ~ author.lastName ~ ' на bes.media') }}" />
-            <meta name="keywords" content="Автор {{author.firstName}} {{author.lastName}}"/>
-            <meta name="author" content="Редакция bes.media" />
-            <meta property="og:type"        content="profile" />
-            <meta property="og:title"       content="{{ author.firstName }} {{ author.lastName }} | bes.media" />
-            <meta property="og:description"
-              content="{{ author.description or ('Читайте материалы автора ' ~ author.firstName ~ ' ' ~ author.lastName ~ ' на bes.media') }}" />
-            <meta property="og:url"         content="https://bes.media/authors/{{ author.id }}/" />
-            <meta property="og:image"
-                  content="{{ author.image.image_jpeg_800|default('/static/img/plug.jpg') }}" />
-            <script type="application/ld+json">
-                {
-                  "@context": "https://schema.org",
-                  "@type": "ProfilePage",
-                    {% set has_image = author.image.image_jpeg_800 or author.image.Image_800_jpeg %}
-                    {% set has_sameAs = author.socialNetworks %}
-                    "mainEntity": {
-                        "@type": "Person",
-                        "name": "{{ author.firstName }} {{ author.lastName }}",
-                        "identifier": "{{ author.id }}",
-                        {% if author.description %}
-                        "description": "{{ author.description }}",
-                        {% endif %}
-                        "url": "https://bes.media/authors/{{ author.id }}/"
-                        {% if has_image %},
-                            "image": "{% if author.image.image_jpeg_800 %}{{ author.image.image_jpeg_800 }}{% else %}{{ author.image.Image_800_jpeg }}{% endif %}"
-                        {% endif %}
-                        {% if has_sameAs %},
-                            "sameAs": [
-                                {%- for name, url in author.socialNetworks.items() if url -%}
-                                    "{{ url }}"{% if not loop.last %},{% endif %}
-                                {%- endfor -%}
-                            ]
-                        {% endif %}
-                    }
-                }
-            </script>
-        {% endblock meta_data %}
+{% set base_url = SITE_URL or 'https://nationalbusiness.kz' %}
+
+<title>Автор {{ author.firstName }} {{ author.lastName }} | nationalbusiness.kz</title>
+<link rel="canonical" href="{{ base_url }}/authors/{{ author.id }}/"/>
+<meta name="description"
+  content="{{ author.description or ('Автор ' ~ author.firstName ~ ' ' ~ author.lastName ~ ' на nationalbusiness.kz') }}" />
+<meta name="keywords" content="Автор {{ author.firstName }} {{ author.lastName }}"/>
+<meta name="author" content="Редакция nationalbusiness.kz" />
+
+<meta property="og:type"        content="profile" />
+<meta property="og:title"       content="{{ author.firstName }} {{ author.lastName }} | nationalbusiness.kz" />
+<meta property="og:description"
+  content="{{ author.description or ('Читайте материалы автора ' ~ author.firstName ~ ' ' ~ author.lastName ~ ' на nationalbusiness.kz') }}" />
+<meta property="og:url"         content="{{ base_url }}/authors/{{ author.id }}/" />
+<meta property="og:image"
+      content="{{ author.image.image_jpeg_800|default('/static/img/plug.jpg') }}" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  {% set has_image = author.image.image_jpeg_800 or author.image.Image_800_jpeg %}
+  {% set has_sameAs = author.socialNetworks %}
+  "mainEntity": {
+      "@type": "Person",
+      "name": "{{ author.firstName }} {{ author.lastName }}",
+      "identifier": "{{ author.id }}",
+      {% if author.description %}
+      "description": "{{ author.description }}",
+      {% endif %}
+      "url": "{{ base_url }}/authors/{{ author.id }}/"
+      {% if has_image %},
+          "image": "{% if author.image.image_jpeg_800 %}{{ author.image.image_jpeg_800 }}{% else %}{{ author.image.Image_800_jpeg }}{% endif %}"
+      {% endif %}
+      {% if has_sameAs %},
+          "sameAs": [
+              {%- for name, url in author.socialNetworks.items() if url -%}
+                  "{{ url }}"{% if not loop.last %},{% endif %}
+              {%- endfor -%}
+          ]
+      {% endif %}
+  }
+}
+</script>
+{% endblock meta_data %}
+
 {% block content %}
-    {% include 'header.html' %}
-    <main>
-      <section class="adSection adDesctop">
-        <div class="ad-container">
-          <div class="ad-wrapper-desctop">
-            <div id="ad-placeholder" class="ad-placeholder">BES.media</div>
-            <div id="adfox_170955537553561307" class="ad-block"></div>
-            <script>
-              window.yaContextCb.push(() => {
-                Ya.adfoxCode.createAdaptive(
-                  {
-                    ownerId: 264109,
-                    containerId: "adfox_170955537553561307",
-                    params: {
-                      p1: "dbhtm",
-                      p2: "iwpg",
-                    },
-                  },
-                  ["desktop", "tablet"],
-                  {
-                    tabletWidth: 830,
-                    phoneWidth: 480,
-                    isAutoReloads: false,
-                  }
-                );
+    {% include 'header_small.html' %}
+{# templates/author.html #}
+{# templates/author.html - полная версия под новую вёрстку #}
+<main class="author-page-layout" id="main" tabindex="-1" aria-labelledby="author-page-title">
+  <h1 id="author-page-title" class="visually-hidden">Страница автора</h1>
 
-                const placeholder = document.getElementById("ad-placeholder");
-                const adBlock = document.getElementById(
-                  "adfox_170955537553561307"
-                );
+  {# ======================= HERO ======================= #}
+  <section class="author-hero" aria-labelledby="author-name">
+    <div class="author-hero__container">
+      <div class="author-information">
+        {# Аватар #}
+        {% set image_webp_800 = author.image.image_webp_800
+            | default(author.image.image_800_webp, true)
+            | default('/static/img/plug.jpg', true) %}
+        {% set image_jpeg_800 = author.image.image_jpeg_800
+            | default(author.image.image_800_jpeg, true)
+            | default('/static/img/plug.jpg', true) %}
+        {% set author_alt = author.image.alt
+            | default((author.firstName ~ ' ' ~ author.lastName) if (author.firstName or author.lastName) else 'Автор', true) %}
 
-                const observer = new MutationObserver(() => {
-                  if (adBlock.children.length > 0) {
-                    placeholder?.remove();
-                    observer.disconnect();
-                  }
-                });
-
-                observer.observe(adBlock, { childList: true });
-              });
-            </script>
-          </div>
+        <div class="author-hero__avatar" role="img" aria-label="Фото автора: {{ author.firstName }} {{ author.lastName }}">
+          <picture>
+            <source media="(max-width: 699px)" type="image/webp" srcset="{{ image_webp_800 }}">
+            <source media="(min-width: 700px)" type="image/webp" srcset="{{ image_webp_800 }}">
+            <img src="{{ image_jpeg_800 }}"
+                 alt="{{ author_alt }}"
+                 title="{{ author_alt }}"
+                 loading="lazy"
+                 class="lazy">
+          </picture>
         </div>
-        </section>
-      <section class="authorPage">
-        <div class="container">
-            <div class="authorPage__wrapper">
-                <div class="authorPage__body">
-                  <div class="authorPage__head">
-                    {% with
-                      image_webp_800 = author.image.image_webp_800 | default(author.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
-                      image_jpeg_800 = author.image.image_jpeg_800 | default(author.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
-                    %}
-                    <picture>
-                      <source media="(max-width: 699px)" type="image/webp" srcset="{{ image_webp_800 }}" />
-                      <source media="(min-width: 700px)" type="image/webp" srcset="{{ image_webp_800 }}" />
-                      <img src="{{ image_jpeg_800 }}" alt="{{ author.image.alt or 'Автор' }}" />
-                    </picture>
-                    {% endwith %}
-                    <div class="authorPage__content">
-                      <h1>{{author.firstName}} {{author.lastName}}</h1>
-                      <div class="authorPage__role">{{author.position or ''  }}</div>
-                      {% if author.socialNetworks %}
-                      <ul class="authorPage__social">
-                        {% if author.socialNetworks.facebook %}
-                        <li>
-                          <a target="_blank" href="{{author.socialNetworks.facebook}}">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                            >
-                              <g clip-path="url(#clip0_2920_5001)">
-                                <path
-                                  d="M12 0C18.6274 0 24 5.37258 24 12C24 17.9895 19.6118 22.954 13.875 23.8542V15.4688H16.6711L17.2031 12H13.875V9.74897C13.875 9.49416 13.9085 9.24109 13.9864 9.00718C14.1623 8.47884 14.5647 8.04831 15.3186 7.9166C15.4739 7.88945 15.6442 7.875 15.8306 7.875H17.3438V4.92188C17.3438 4.92188 15.9705 4.6875 14.6576 4.6875C11.9165 4.6875 10.125 6.34875 10.125 9.35625V12H7.07812V15.4688H10.125V23.8542C4.38825 22.954 0 17.9895 0 12C0 5.37258 5.37258 0 12 0Z"
-                                  fill="#303030"
-                                  fill-opacity="0.5"
-                                ></path>
-                              </g>
-                              <defs>
-                                <clipPath id="clip0_2920_5001">
-                                  <rect width="24" height="24" fill="white"></rect>
-                                </clipPath>
-                              </defs>
-                            </svg>
-                          </a>
-                        </li>
-                        {% endif %}
-                        {% if author.socialNetworks.instagram %}
-                        <li>
-                          <a target="_blank" href="{{author.socialNetworks.instagram}}">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                            >
-                              <g clip-path="url(#clip0_2920_5003)">
-                                <path
-                                  d="M9.33335 12C9.33335 13.4727 10.5273 14.6666 12 14.6666C13.4728 14.6666 14.6667 13.4727 14.6667 12C14.6667 10.5272 13.4728 9.3333 12 9.3333C10.5273 9.3333 9.33335 10.5272 9.33335 12Z"
-                                  fill="#303030"
-                                  fill-opacity="0.5"
-                                ></path>
-                                <path
-                                  fill-rule="evenodd"
-                                  clip-rule="evenodd"
-                                  d="M15.2326 5.48809C14.3891 5.44959 14.136 5.44147 12 5.44147C9.86389 5.44147 9.61086 5.44959 8.76727 5.48809C7.9873 5.52368 7.56371 5.654 7.28181 5.76353C6.9084 5.90865 6.6419 6.08203 6.36193 6.36196C6.082 6.6419 5.90862 6.90843 5.76353 7.28181C5.65397 7.56371 5.52365 7.9873 5.48806 8.76727C5.44956 9.61086 5.44143 9.86389 5.44143 12C5.44143 14.136 5.44956 14.3891 5.48806 15.2326C5.52365 16.0126 5.65397 16.4362 5.76353 16.7181C5.90862 17.0915 6.082 17.358 6.36193 17.6379C6.6419 17.9179 6.9084 18.0913 7.28181 18.2364C7.56371 18.3459 7.9873 18.4763 8.76727 18.5118C9.61077 18.5503 9.86371 18.5585 12 18.5585C14.1362 18.5585 14.3892 18.5503 15.2326 18.5118C16.0126 18.4763 16.4362 18.3459 16.7181 18.2364C17.0915 18.0913 17.358 17.9179 17.6379 17.6379C17.9179 17.358 18.0913 17.0915 18.2364 16.7181C18.3459 16.4362 18.4763 16.0126 18.5118 15.2326C18.5503 14.3891 18.5585 14.136 18.5585 12C18.5585 9.86389 18.5503 9.61086 18.5118 8.76727C18.4763 7.9873 18.3459 7.56371 18.2364 7.28181C18.0913 6.90843 17.9179 6.6419 17.6379 6.36196C17.358 6.08203 17.0915 5.90865 16.7181 5.76353C16.4362 5.654 16.0126 5.52368 15.2326 5.48809ZM7.89192 12C7.89192 9.73112 9.73116 7.89187 12 7.89187C14.2688 7.89187 16.1081 9.73112 16.1081 12C16.1081 14.2688 14.2688 16.108 12 16.108C9.73116 16.108 7.89192 14.2688 7.89192 12ZM17.2304 7.72955C17.2304 8.25977 16.8005 8.68955 16.2704 8.68955C15.7402 8.68955 15.3104 8.25977 15.3104 7.72955C15.3104 7.19937 15.7402 6.76959 16.2704 6.76959C16.8005 6.76959 17.2304 7.19937 17.2304 7.72955Z"
-                                  fill="#303030"
-                                  fill-opacity="0.5"
-                                ></path>
-                                <path
-                                  fill-rule="evenodd"
-                                  clip-rule="evenodd"
-                                  d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM8.70158 4.04816C9.55486 4.00922 9.8273 4 12 4C14.1726 4 14.445 4.00922 15.2983 4.04816C16.1498 4.087 16.7314 4.22222 17.2402 4.42C17.7663 4.62444 18.2124 4.898 18.6572 5.34275C19.1019 5.78747 19.3755 6.23362 19.5799 6.75968C19.7777 7.26852 19.9129 7.85009 19.9518 8.70158C19.9907 9.55486 19.9999 9.8273 19.9999 12C19.9999 14.1726 19.9907 14.445 19.9518 15.2983C19.9129 16.1498 19.7777 16.7314 19.5799 17.2402C19.3755 17.7663 19.1019 18.2124 18.6572 18.6572C18.2124 19.1019 17.7663 19.3755 17.2402 19.5799C16.7314 19.7777 16.1498 19.9129 15.2983 19.9518C14.445 19.9907 14.1726 19.9999 12 19.9999C9.8273 19.9999 9.55486 19.9907 8.70158 19.9518C7.85009 19.9129 7.26852 19.7777 6.75965 19.5799C6.23359 19.3755 5.78743 19.1019 5.34272 18.6572C4.89797 18.2124 4.6244 17.7663 4.41997 17.2402C4.22219 16.7314 4.08697 16.1498 4.04812 15.2983C4.00919 14.445 4 14.1726 4 12C4 9.8273 4.00919 9.55486 4.04812 8.70158C4.08697 7.85009 4.22219 7.26852 4.41997 6.75968C4.6244 6.23362 4.89797 5.78747 5.34272 5.34275C5.78743 4.898 6.23359 4.62444 6.75965 4.42C7.26852 4.22222 7.85009 4.087 8.70158 4.04816Z"
-                                  fill="#303030"
-                                  fill-opacity="0.5"
-                                ></path>
-                              </g>
-                              <defs>
-                                <clipPath id="clip0_2920_5003">
-                                  <rect width="24" height="24" fill="white"></rect>
-                                </clipPath>
-                              </defs>
-                            </svg>
-                          </a>
-                        </li>
-                        {% endif %}
-                        {% if author.socialNetworks.tiktok %}
-                        <li>
-                          <a href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <g clip-path="url(#clip0_2669_2634)">
-                                <path d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z" fill="#303030" fill-opacity="0.5"/>
-                                <path d="M12.3005 4.01333C13.1738 4 14.0405 4.00667 14.9071 4C14.9605 5.01999 15.3271 6.05997 16.0738 6.77997C16.8205 7.51996 17.8738 7.85995 18.9004 7.97328V10.6599C17.9404 10.6266 16.9738 10.4266 16.1005 10.0133C15.7205 9.83993 15.3671 9.61993 15.0205 9.39327C15.0138 11.3399 15.0271 13.2865 15.0071 15.2265C14.9538 16.1598 14.6471 17.0865 14.1072 17.8532C13.2338 19.1331 11.7205 19.9665 10.1672 19.9931C9.21388 20.0465 8.26056 19.7865 7.44724 19.3065C6.10059 18.5131 5.15393 17.0598 5.01393 15.4999C5.0006 15.1665 4.99393 14.8332 5.00727 14.5065C5.12727 13.2399 5.75393 12.0266 6.72725 11.1999C7.8339 10.2399 9.38055 9.77993 10.8272 10.0533C10.8405 11.0399 10.8005 12.0266 10.8005 13.0132C10.1405 12.7999 9.36721 12.8599 8.78722 13.2599C8.36723 13.5332 8.04723 13.9532 7.88056 14.4265C7.74057 14.7665 7.78057 15.1399 7.78723 15.4999C7.94723 16.5932 9.00055 17.5132 10.1205 17.4132C10.8672 17.4065 11.5805 16.9732 11.9672 16.3398C12.0938 16.1198 12.2338 15.8932 12.2405 15.6332C12.3072 14.4399 12.2805 13.2532 12.2872 12.0599C12.2938 9.37327 12.2805 6.6933 12.3005 4.01333Z" fill="white"/>
-                                </g>
-                                <defs>
-                                <clipPath id="clip0_2669_2634">
-                                <rect width="24" height="24" fill="white"/>
-                                </clipPath>
-                                </defs>
-                            </svg>
-                          </a>
-                        </li>
-                        {% endif %}
-                        {% if author.socialNetworks.telegram %}
-                        <li>
-                          <a target="_blank" href="{{author.socialNetworks.telegram}}">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                            >
-                              <g clip-path="url(#clip0_2920_5007)">
-                                <path
-                                  fill-rule="evenodd"
-                                  clip-rule="evenodd"
-                                  d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM12.4301 8.85893C11.263 9.3444 8.93026 10.3492 5.43201 11.8733C4.86395 12.0992 4.56638 12.3202 4.53929 12.5363C4.49351 12.9015 4.95083 13.0453 5.57359 13.2411C5.6583 13.2678 5.74608 13.2954 5.83606 13.3246C6.44876 13.5238 7.27295 13.7568 7.70141 13.766C8.09007 13.7744 8.52385 13.6142 9.00276 13.2853C12.2713 11.079 13.9585 9.96381 14.0644 9.93977C14.1392 9.92281 14.2427 9.90148 14.3129 9.96385C14.3831 10.0262 14.3762 10.1443 14.3687 10.176C14.3234 10.3691 12.5282 12.0381 11.5992 12.9018C11.3096 13.171 11.1042 13.362 11.0622 13.4056C10.9681 13.5033 10.8722 13.5958 10.7801 13.6846C10.2109 14.2333 9.78403 14.6448 10.8037 15.3168C11.2938 15.6397 11.6859 15.9067 12.0771 16.1731C12.5043 16.4641 12.9304 16.7543 13.4817 17.1157C13.6222 17.2077 13.7564 17.3034 13.887 17.3965C14.3842 17.751 14.8309 18.0694 15.3827 18.0186C15.7034 17.9891 16.0346 17.6876 16.2028 16.7884C16.6003 14.6631 17.3817 10.0585 17.5623 8.16097C17.5782 7.99473 17.5583 7.78197 17.5423 7.68857C17.5263 7.59518 17.4929 7.46211 17.3715 7.3636C17.2277 7.24694 17.0058 7.22234 16.9065 7.22408C16.4551 7.23203 15.7627 7.47282 12.4301 8.85893Z"
-                                  fill="#303030"
-                                  fill-opacity="0.5"
-                                ></path>
-                              </g>
-                              <defs>
-                                <clipPath id="clip0_2920_5007">
-                                  <rect width="24" height="24" fill="white"></rect>
-                                </clipPath>
-                              </defs>
-                            </svg>
-                          </a>
-                        </li>
-                        {% endif %}
-                        {% if author.socialNetworks.youtube %}
-                        <li>
-                          <a target="_blank" href="{{author.socialNetworks.youtube}}">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                            >
-                              <g clip-path="url(#clip0_2920_5009)">
-                                <path
-                                  d="M10.1592 9.66444L14.8637 12.3409L10.1592 15.0174V9.66444Z"
-                                  fill="#303030"
-                                  fill-opacity="0.5"
-                                ></path>
-                                <path
-                                  fill-rule="evenodd"
-                                  clip-rule="evenodd"
-                                  d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM20.6236 7.98C20.5219 7.59706 20.3213 7.24757 20.042 6.96649C19.7628 6.68542 19.4146 6.48263 19.0323 6.37841C17.625 6 12 6 12 6C12 6 6.375 6 4.96773 6.37841C4.58545 6.48263 4.23724 6.68542 3.95797 6.96649C3.67869 7.24757 3.47813 7.59706 3.37636 7.98C3 9.39341 3 12.3409 3 12.3409C3 12.3409 3 15.2884 3.37636 16.7018C3.47813 17.0848 3.67869 17.4343 3.95797 17.7153C4.23724 17.9964 4.58545 18.1992 4.96773 18.3034C6.375 18.6818 12 18.6818 12 18.6818C12 18.6818 17.625 18.6818 19.0323 18.3034C19.4146 18.1992 19.7628 17.9964 20.042 17.7153C20.3213 17.4343 20.5219 17.0848 20.6236 16.7018C21 15.2884 21 12.3409 21 12.3409C21 12.3409 21 9.39341 20.6236 7.98Z"
-                                  fill="#303030"
-                                  fill-opacity="0.5"
-                                ></path>
-                              </g>
-                              <defs>
-                                <clipPath id="clip0_2920_5009">
-                                  <rect width="24" height="24" fill="white"></rect>
-                                </clipPath>
-                              </defs></svg
-                          ></a>
-                        </li>
-                        {% endif %}
-    {#                    {% if author.socialNetworks.twitter %}#}
-    {#                    <li>#}
-    {#                      <a href="#">#}
-    {#                        <svg#}
-    {#                          xmlns="http://www.w3.org/2000/svg"#}
-    {#                          width="24"#}
-    {#                          height="24"#}
-    {#                          viewBox="0 0 24 24"#}
-    {#                          fill="none"#}
-    {#                        >#}
-    {#                          <path#}
-    {#                            d="M0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12Z"#}
-    {#                            fill="#303030"#}
-    {#                            fill-opacity="0.5"#}
-    {#                          ></path>#}
-    {#                          <path#}
-    {#                            d="M15.894 11.4157C15.8239 11.3827 15.7527 11.3509 15.6806 11.3204C15.555 9.04485 14.2904 7.74208 12.167 7.72875C12.1573 7.72869 12.1478 7.72869 12.1381 7.72869C10.8681 7.72869 9.81175 8.26174 9.16159 9.23173L10.3294 10.0194C10.8151 9.29486 11.5773 9.1404 12.1387 9.1404C12.1452 9.1404 12.1517 9.1404 12.1581 9.14046C12.8573 9.14484 13.3849 9.34472 13.7264 9.7345C13.9749 10.0183 14.1411 10.4104 14.2234 10.9053C13.6035 10.8017 12.9331 10.7699 12.2164 10.8103C10.1975 10.9246 8.89962 12.0823 8.98679 13.691C9.03103 14.507 9.44447 15.209 10.1509 15.6676C10.7482 16.0553 11.5175 16.2448 12.317 16.2019C13.3728 16.145 14.2011 15.7489 14.779 15.0247C15.2179 14.4747 15.4954 13.7619 15.618 12.8638C16.1212 13.1624 16.4941 13.5553 16.7 14.0277C17.0502 14.8306 17.0707 16.15 15.9757 17.2257C15.0164 18.168 13.8632 18.5757 12.1205 18.5883C10.1873 18.5742 8.72526 17.9646 7.77468 16.7764C6.88455 15.6638 6.42452 14.0568 6.40736 12C6.42452 9.94315 6.88455 8.33613 7.77468 7.22356C8.72526 6.03541 10.1873 5.42583 12.1205 5.41171C14.0677 5.42594 15.5552 6.03845 16.5421 7.23233C17.0261 7.8178 17.3909 8.55407 17.6315 9.41253L19 9.05352C18.7084 7.99685 18.2497 7.08631 17.6254 6.33117C16.3601 4.80056 14.5096 4.01626 12.1252 4H12.1157C9.73619 4.01621 7.90639 4.80348 6.67714 6.33994C5.58327 7.7072 5.01902 9.60964 5.00006 11.9944L5 12L5.00006 12.0056C5.01902 14.3903 5.58327 16.2928 6.67714 17.6601C7.90639 19.1965 9.73619 19.9838 12.1157 20H12.1252C14.2407 19.9856 15.7319 19.441 16.9603 18.2343C18.5675 16.6555 18.5191 14.6766 17.9894 13.4618C17.6094 12.5906 16.8848 11.883 15.894 11.4157ZM12.2414 14.7923C11.3566 14.8413 10.4373 14.4508 10.392 13.6143C10.3584 12.9942 10.8409 12.3022 12.2957 12.2197C12.4623 12.2103 12.6258 12.2057 12.7864 12.2057C13.3149 12.2057 13.8092 12.2561 14.2587 12.3528C14.091 14.4113 13.1077 14.7455 12.2414 14.7923Z"#}
-    {#                            fill="white"#}
-    {#                          ></path>#}
-    {#                        </svg>#}
-    {#                      </a>#}
-    {#                    </li>#}
-    {#                    {% endif %}#}
-                      </ul>
-                      {% endif %}
-                      <div class="authorPage__description">
-                          {{author.description| safe or 'Описание отсутствует'}}
-                      </div>
 
-{#                      <a href="mailto:{{ author.email }}" class="authorPage__mail"#}
-{#                        >{{ author.email }}#}
-{#                      </a>#}
-                    </div>
-                  </div>
-                    <div class="authorPage__news">
-                      <h2 class="page__title">Материалы автора</h2>
-                      <div class="authorPage__list">
-                        {% for article in page.items %}
-                          {% with
-                            image_webp_800 = article.image.image_webp_800 | default(article.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
-                            image_jpeg_800 = article.image.image_jpeg_800 | default(article.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
-                          %}
-                          <div class="card page">
-                            <a href="https://bes.media/news/{{ article.alias }}/">
-                              <picture>
-                                <source media="(max-width: 699px)" type="image/webp" srcset="{{ image_webp_800 }}" />
-                                <source media="(min-width: 700px)" type="image/webp" srcset="{{ image_webp_800 }}" />
-                                <img src="{{ image_jpeg_800 }}" alt="{{ article.title }}" />
-                              </picture>
-                              <div class="card__content">
-                                <div class="card__title">
-                                  {{ article.title }}
-                                </div>
-                                <div class="card__info">
-                                  <div class="card__category">
-                                    {{ article.categories[0].title if article.categories }}
-                                  </div>
-                                  <div class="card__time" data-published="{{ article.published_date.strftime('%Y-%m-%dT%H:%M:%S') }}">
-                                    {{ article.published_date.strftime('%d.%m.%Y, %H:%M') }}
-                                  </div>
-                                </div>
-                              </div>
-                            </a>
-                          </div>
-                          {% endwith %}
-                        {% endfor %}
-                      </div>
-                      {% if page.pages > 1 %}
-                        {% include 'pagination.html' %}
-                      {% endif %}
-                    </div>
-                </div>
-                <div class="authorPage__aside">
-                 <div class="ad-wrapper-desctop-aside">
-                  <div id="ad-placeholder" class="ad-placeholder">
-                    BES.media
-                  </div>
-                  <div id="adfox_170955552941919482"></div>
-                  <script>
-                    window.yaContextCb.push(() => {
-                      Ya.adfoxCode.createAdaptive(
-                        {
-                          ownerId: 264109,
-                          containerId: "adfox_170955552941919482",
-                          params: {
-                            p1: "dbhto",
-                            p2: "iwpl",
-                          },
-                        },
-                        ["desktop", "tablet"],
-                        {
-                          tabletWidth: 830,
-                          phoneWidth: 480,
-                          isAutoReloads: false,
-                        }
-                      );
-                    });
-                  </script>
-                </div>
-                  <div class="ad-wrapper-mobile-big adMobile">
-                  <div id="ad-placeholder" class="ad-placeholder">
-                    BES.media
-                  </div>
-                  <div id="adfox_17095555565288808"></div>
-                  <script>
-                    window.yaContextCb.push(() => {
-                      Ya.adfoxCode.createAdaptive(
-                        {
-                          ownerId: 264109,
-                          containerId: "adfox_17095555565288808",
-                          params: {
-                            p1: "dbhtj",
-                            p2: "iwpn",
-                          },
-                        },
-                        ["phone"],
-                        {
-                          tabletWidth: 830,
-                          phoneWidth: 480,
-                          isAutoReloads: false,
-                        }
-                      );
-                    });
-                  </script>
-                </div>
-                </div>
+        <div class="author-information-text">
+          <h2 id="author-name" class="author-hero__name">
+            {{ author.firstName }} {{ author.lastName }}
+          </h2>
+
+          {# В bio — только position, если нет — "редакция National Business" #}
+          <p class="author-hero__bio">
+            {{ author.position if author.position else 'редакция National Business' }}
+          </p>
+        </div>
+      </div>
+
+      {# ======================= TABS ======================= #}
+      <nav class="author-tabs" aria-label="Навигация по странице автора">
+        <ul class="author-tabs__list" role="tablist">
+          <li role="presentation">
+            <button class="author-tabs__item author-tabs__item--active" role="tab" aria-selected="true" type="button">
+              Об авторе
+            </button>
+          </li>
+          <li role="presentation">
+            <button class="author-tabs__item" role="tab" aria-selected="false" type="button">
+              Работы
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  {# ======================= ABOUT (описание) ======================= #}
+  <section class="author-about" aria-labelledby="author-about-title">
+    <div class="author-about__container">
+      <h2 id="author-about-title" class="visually-hidden">Об авторе</h2>
+
+      {% if author.description %}
+        <p class="author-about__text">{{ author.description | safe }}</p>
+      {% else %}
+        <p class="author-about__text">Нет дополнительной информации.</p>
+      {% endif %}
+    </div>
+  </section>
+
+  {# ======================= WORKS ======================= #}
+  <section class="author-works" aria-labelledby="author-works-title">
+    <div class="author-works__header">
+      <hr class="author-works__divider" aria-hidden="true" />
+      <h2 id="author-works-title" class="author-works__title">работы</h2>
+    </div>
+
+    <ul class="author-works__list">
+      {% for article in page.items %}
+        {% set a_webp_800 = article.image.image_webp_800
+            | default(article.image.image_800_webp, true)
+            | default('/static/img/plug.jpg', true) %}
+        {% set a_jpeg_800 = article.image.image_jpeg_800
+            | default(article.image.image_800_jpeg, true)
+            | default('/static/img/plug.jpg', true) %}
+        <li>
+          <article class="author-work" aria-labelledby="work-{{ loop.index }}-title">
+            <div class="author-work__content">
+              {% if article.published_date %}
+                <time class="author-work__date"
+                      datetime="{{ article.published_date.strftime('%Y-%m-%d') }}">
+                  {{ article.published_date.strftime('%d.%m.%Y, %H:%M') }}
+                </time>
+              {% endif %}
+
+              <h3 id="work-{{ loop.index }}-title" class="author-work__title">
+                <a href="https://bes.media/news/{{ article.alias }}/">
+                  {{ article.title }}
+                </a>
+              </h3>
+
+              {% if article.excerpt %}
+                <p class="author-work__excerpt">{{ article.excerpt }}</p>
+              {% elif article.lead %}
+                <p class="author-work__excerpt">{{ article.lead }}</p>
+              {% endif %}
+
+              <a class="author-work__read"
+                 href="https://bes.media/news/{{ article.alias }}/"
+                 aria-label="Читать статью: {{ article.title }}">
+                Читать статью
+              </a>
             </div>
-        </div>
-      </section>
-    </main>
+
+            <div class="author-work__thumb"
+                 aria-label="Обложка статьи: {{ article.title }}">
+              <picture>
+                <source media="(max-width: 699px)" type="image/webp" srcset="{{ a_webp_800 }}">
+                <source media="(min-width: 700px)" type="image/webp" srcset="{{ a_webp_800 }}">
+                <img src="{{ a_jpeg_800 }}"
+                     alt="Обложка: {{ article.title }}"
+                     title="{{ article.title }}"
+                     loading="lazy">
+              </picture>
+            </div>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+
+  {% if page.pages > 1 %}
+    {% include 'pagination.html' %}
+  {% endif %}
+  </section>
+</main>
+
+
     {% include 'footer.html' %}
-    {% include 'drawer.html' %}
 {% endblock content %}
 {% block scripts %}
-    <script src="/static/js/index.bundle.js?v=1.6" defer></script>
+<script type="module" crossorigin src="/static/scripts/main.js"></script>
 {% endblock scripts %}

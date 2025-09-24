@@ -1,174 +1,217 @@
-{% extends "base.html" %} {% block meta_data %}
-        <title>Что такое BES.media | bes.media</title>
-    <link rel="canonical" href="https://bes.media/about/"/>
+{% extends "base.html" %}
+{% block meta_data %}
+{% set base_url = SITE_URL or 'https://nationalbusiness.kz' %}
 
-    {# — Описание и ключевые слова — #}
-    <meta name="description"
-          content="Наша цель — донести до людей важную информацию простыми словами. BES.media — медиа, созданное журналистами." />
-    <meta name="keywords" content="BES.media, о нас, миссия, СМИ" />
-    <meta name="author" content="Редакция bes.media" />
+<title>Что такое nationalbusiness.kz | nationalbusiness.kz</title>
+<link rel="canonical" href="{{ base_url }}/about/"/>
 
-    {# — Open Graph — #}
-    <meta property="og:type"        content="website" />
-    <meta property="og:title"       content="Что такое BES.media | bes.media" />
-    <meta property="og:description" content="Наша цель — донести до людей важную информацию простыми словами. BES.media — медиа, созданное журналистами." />
-    <meta property="og:url"         content="https://bes.media/about/" />
-    <meta property="og:image"       content="https://bes.media/static/img/plug.jpg" />
+{# — Описание и ключевые слова — #}
+<meta name="description"
+      content="Наша цель — донести до людей важную информацию простыми словами. nationalbusiness.kz — медиа, созданное журналистами." />
+<meta name="keywords" content="nationalbusiness.kz, о нас, миссия, СМИ" />
+<meta name="author" content="Редакция nationalbusiness.kz" />
 
-    {# — JSON-LD: AboutPage — #}
-    <script type="application/ld+json">
+{# — Open Graph — #}
+<meta property="og:type"        content="website" />
+<meta property="og:title"       content="Что такое nationalbusiness.kz | nationalbusiness.kz" />
+<meta property="og:description" content="Наша цель — донести до людей важную информацию простыми словами. nationalbusiness.kz — медиа, созданное журналистами." />
+<meta property="og:url"         content="{{ base_url }}/about/" />
+<meta property="og:image"       content="{{ base_url }}/static/img/plug.jpg" />
+
+{# — JSON-LD: AboutPage — #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Что такое nationalbusiness.kz",
+  "description": "Наша цель — донести до людей важную информацию простыми словами. nationalbusiness.kz — медиа, созданное журналистами.",
+  "url": "{{ base_url }}/about/"
+}
+</script>
+
+{# — JSON-LD: BreadcrumbList — #}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
     {
-      "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "name": "Что такое BES.media",
-      "description": "Наша цель — донести до людей важную информацию простыми словами. BES.media — медиа, созданное журналистами.",
-      "url": "https://bes.media/about/"
-    }
-    </script>
-
-    {# — JSON-LD: BreadcrumbList — #}
-    <script type="application/ld+json">
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "{{ base_url }}/"
+    },
     {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Главная",
-          "item": "https://bes.media/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "О нас",
-          "item": "https://bes.media/about/"
-        }
-      ]
+      "@type": "ListItem",
+      "position": 2,
+      "name": "О нас",
+      "item": "{{ base_url }}/about/"
     }
-    </script>
-{% endblock meta_data %} {%
-block content %} {% include 'header.html' %}
-<main>
-      <section class="adSection adDesctop">
-        <div class="ad-container">
-          <div class="ad-wrapper-desctop">
-            <div id="ad-placeholder" class="ad-placeholder">BES.media</div>
-            <div id="adfox_170955537553561307" class="ad-block"></div>
-            <script>
-              window.yaContextCb.push(() => {
-                Ya.adfoxCode.createAdaptive(
-                  {
-                    ownerId: 264109,
-                    containerId: "adfox_170955537553561307",
-                    params: {
-                      p1: "dbhtm",
-                      p2: "iwpg",
-                    },
-                  },
-                  ["desktop", "tablet"],
-                  {
-                    tabletWidth: 830,
-                    phoneWidth: 480,
-                    isAutoReloads: false,
-                  }
-                );
-
-                const placeholder = document.getElementById("ad-placeholder");
-                const adBlock = document.getElementById(
-                  "adfox_170955537553561307"
-                );
-
-                const observer = new MutationObserver(() => {
-                  if (adBlock.children.length > 0) {
-                    placeholder?.remove();
-                    observer.disconnect();
-                  }
-                });
-
-                observer.observe(adBlock, { childList: true });
-              });
-            </script>
-          </div>
+  ]
+}
+</script>
+{% endblock meta_data %}
+{% block content %} {% include 'special_header.html' %}
+  <main class="about-page-layout" id="main" tabindex="-1">
+    <section class="hero-section">
+        <div class="content">
+            <hr style="min-height: 2px;min-width:100%;background:white;" />
+            <h1>О нас</h1>
+            <span class="credits">Center, Frazer Harrison/Getty Images; Gabriela Bhaskar</span>
         </div>
+    </section>
+    <!--! About intro text section recreated from Figma selection -->
+    <section class="about-intro" aria-labelledby="about-intro-title">
+      <div class="about-intro__container">
+        <h2 id="about-intro-title" class="visually-hidden">О проекте National Business</h2>
+        <p class="about-intro__text">
+          <strong>National Business</strong> — это независимая новостной сайт для Казахстана и Узбекистана.
+        </p>
+      </div>
+      </section>
+    <div class="top-section">
+      <div class="first-column">
+        <!--! About description paragraph from Figma selection -->
+        <section class="about-description" aria-labelledby="about-description-title">
+          <div class="about-description__container">
+            <h2 id="about-description-title" class="visually-hidden">Чем мы занимаемся</h2>
+            <p class="about-description__text">
+              Мы публикуем новости, аналитику и репортажи о главных событиях в регионе и мире, уделяя особое внимание
+              экономике, финансам, технологиям и развитию предпринимательства. Наша редакция стремится к объективности,
+              глубине анализа и ясности подачи.
+            </p>
+          </div>
         </section>
-      <section class="outPage" class="sectionDesctopMargin">
-        <div class="container">
-          <div class="outPage__wrapper">
-            <div class="outPage__body">
-              <h1 class="page__title">Что такое BES.media</h1>
-              <div class="content">
-                <p>
-                    Наша цель – донести до людей важную информацию простыми словами. Мы убеждены, что казахстанцы должны знать обо всех решениях, которые принимаются государственным аппаратом, а также куда и на какие цели расходуются бюджетные тенге. Чиновники, в свою очередь, тоже должны знать, что волнует людей и какие у них есть проблемы, каким люди хотят видеть своё будущее в стране. Мы, журналисты, стараемся обеспечивать двухстороннюю связь.
-                </p>
-                <p><b>BES.media</b> – медиа, созданное самими журналистами. Мы пишем о тех событиях, которые считаем важными для всех граждан Казахстана.</p>
-                <h2>Как получать новости BES.media?</h2>
-                <p>Мы публикуемся в Telegram, поэтому предлагаем подписаться на наш канал в <a href="https://t.me/bessimptomno_bot">Telegram</a> и чаще заходить на наш сайт.</p>
-                <h2>Как с нами связаться?</h2>
-                <p>Если у вас есть чем поделиться или вы стали очевидцем событий, пишите, присылайте фото, аудио и видео, документы, в наш анонимный бот <a href="https://t.me/bessimptomno_bot">@‌bessimptomno_bot</a>.</p>
-                <p>Контакты редакции BES.media <a href="https://bes.media/contacts/" itemprop="url">тут</a></p>
-                <h2>Кто делает новости?</h2>
-                <p>С командой BES.media познакомиться можно <a href="https://bes.media/authors/" itemprop="url">тут</a></p>
-              </div>
-            </div>
-            <div class="outPage__aside">
-               <div class="ad-wrapper-desctop-aside">
-                  <div id="ad-placeholder" class="ad-placeholder">
-                    BES.media
-                  </div>
-                  <div id="adfox_170955552941919482"></div>
-                  <script>
-                    window.yaContextCb.push(() => {
-                      Ya.adfoxCode.createAdaptive(
-                        {
-                          ownerId: 264109,
-                          containerId: "adfox_170955552941919482",
-                          params: {
-                            p1: "dbhto",
-                            p2: "iwpl",
-                          },
-                        },
-                        ["desktop", "tablet"],
-                        {
-                          tabletWidth: 830,
-                          phoneWidth: 480,
-                          isAutoReloads: false,
-                        }
-                      );
-                    });
-                  </script>
-                </div>
-                <div class="ad-wrapper-mobile-big adMobile">
-                  <div id="ad-placeholder" class="ad-placeholder">
-                    BES.media
-                  </div>
-                  <div id="adfox_17095555565288808"></div>
-                  <script>
-                    window.yaContextCb.push(() => {
-                      Ya.adfoxCode.createAdaptive(
-                        {
-                          ownerId: 264109,
-                          containerId: "adfox_17095555565288808",
-                          params: {
-                            p1: "dbhtj",
-                            p2: "iwpn",
-                          },
-                        },
-                        ["phone"],
-                        {
-                          tabletWidth: 830,
-                          phoneWidth: 480,
-                          isAutoReloads: false,
-                        }
-                      );
-                    });
-                  </script>
-                </div>
+      <!--! About principles paragraph from Figma selection -->
+      <section class="about-principles" aria-labelledby="about-principles-title">
+          <h2 id="about-principles-title" class="visually-hidden">Наши принципы</h2>
+          <p class="about-principles__text">
+              Мы верим, что доступ к проверенной информации — основа для ответственных решений. Поэтому в центре нашего
+              внимания — прозрачность, точность и доверие со стороны читателей.
+          </p>
+      </section>
+      </div>
+      <!--! About audience section from Figma selection -->
+      <section class="about-audience" aria-labelledby="about-audience-title">
+        <div class="about-audience__container">
+          <div class="about-audience__media">
+            <div class="image-wrapper">
+              <!-- FIXME: Replace Image -->
+              <img
+                src="/static/images/audience.png"
+                alt="Фотография, иллюстрирующая аудиторию издания National Business"
+                title="Наша аудитория — National Business"
+              />
             </div>
           </div>
+
+          <h2 id="about-audience-title" class="visually-hidden">Наша аудитория</h2>
+          <p class="about-audience__text">
+            <span>National Business работает для широкой аудитории: предпринимателей, экспертов, государственных деятелей и всех.</span>
+            <br />
+            <span class="is-muted">Кто интересуется экономикой Центральной Азии.</span>
+          </p>
         </div>
       </section>
-</main>
+    </div>
+    <!--! More about National Business section from Figma selection -->
+    <section class="about-more" aria-labelledby="about-more-title">
+      <div class="about-more__container">
+        <header class="about-more__header">
+          <hr class="about-more__divider" aria-hidden="true" />
+          <h2 id="about-more-title" class="about-more__title">Больше о National Business</h2>
+        </header>
+
+        <div class="about-more__grid" role="list" aria-label="Разделы: История, Награды и узнаваемость, Офис, Карьера">
+          <article class="about-more-card" role="listitem" aria-labelledby="about-more-history-title">
+            <a href="#" class="about-more-card__link" aria-label="Подробнее: История">
+              <div class="about-more-card__media image-wrapper">
+                <!-- FIXME: Replace Image -->
+                <img src="/static/images/article.png" alt="История — иллюстрация" />
+              </div>
+              <h3 id="about-more-history-title" class="about-more-card__title">История</h3>
+            </a>
+          </article>
+
+          <article class="about-more-card" role="listitem" aria-labelledby="about-more-awards-title">
+            <a href="#" class="about-more-card__link" aria-label="Подробнее: Награды и узнаваемость">
+              <div class="about-more-card__media image-wrapper">
+                <!-- FIXME: Replace Image -->
+                <img src="/static/images/article.png" alt="Награды и узнаваемость — иллюстрация" />
+              </div>
+              <h3 id="about-more-awards-title" class="about-more-card__title">Награды и узнаваемость</h3>
+            </a>
+          </article>
+
+          <article class="about-more-card" role="listitem" aria-labelledby="about-more-office-title">
+            <a href="#" class="about-more-card__link" aria-label="Подробнее: Офис">
+              <div class="about-more-card__media image-wrapper">
+                <!-- FIXME: Replace Image -->
+                <img src="/static/images/article.png" alt="Офис — иллюстрация" />
+              </div>
+              <h3 id="about-more-office-title" class="about-more-card__title">Офис</h3>
+            </a>
+          </article>
+
+          <article class="about-more-card" role="listitem" aria-labelledby="about-more-career-title">
+            <a href="#" class="about-more-card__link" aria-label="Подробнее: Карьера">
+              <div class="about-more-card__media image-wrapper">
+                <!-- FIXME: Replace Image -->
+                <img src="/static/images/article.png" alt="Карьера — иллюстрация" />
+              </div>
+              <h3 id="about-more-career-title" class="about-more-card__title">Карьера</h3>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!--! About culture section from Figma selection -->
+    <section class="about-culture" aria-labelledby="about-culture-title">
+      <div class="about-culture__container">
+        <header class="about-culture__header">
+          <hr class="about-culture__divider" aria-hidden="true" />
+          <h2 id="about-culture-title" class="about-culture__title">Наша культура</h2>
+        </header>
+
+        <div class="information">
+          <div class="text">
+            <p class="about-culture__text">
+              Мы строим культуру открытости и уважения. Для нас важны честная журналистика, ясность и доверие. Мы работаем
+              как
+              команда, где ценят идеи и ответственность, и постоянно развиваемся, чтобы вместе с читателями лучше понимать
+              изменения в нашем регионе и мире.
+            </p>
+
+            <div class="about-culture__more" aria-labelledby="about-culture-more-title">
+              <h3 id="about-culture-more-title" class="about-culture__more-title">Узнать больше</h3>
+              <ul class="about-culture__list" role="list">
+                <li class="about-culture__item" role="listitem">
+                  <a href="#" class="about-culture__link" aria-label="Перейти: Наша культура">Наша культура</a>
+                </li>
+                <li class="about-culture__item" role="listitem">
+                  <a href="#" class="about-culture__link" aria-label="Перейти: Наши сотрудничества">Наши сотрудничества</a>
+                </li>
+                <li class="about-culture__item" role="listitem">
+                  <a href="#" class="about-culture__link" aria-label="Перейти: Карьерные возможности">Карьерные
+                    возможности</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="about-culture-img">
+            <div class="about-culture__media">
+              <div class="image-wrapper">
+                <!-- FIXME: Replace Image -->
+                <img data-src="/static/images/article.png" class="lazy" alt="Команда и культура National Business — иллюстрация" />
+              </div>
+            </div>
+            <p class="about-culture__caption">National Business работает для широкой аудитории</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 {% include 'footer.html' %} {% endblock content %} {% block scripts %}
-<script src="/static/js/index.bundle.js?v=1.7" defer></script>
+<script type="module" crossorigin src="/static/scripts/main.js"></script>
 {% endblock scripts %}

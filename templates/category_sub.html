@@ -1,0 +1,32 @@
+{# category_sub.html #}
+<main class="default-layout desktop-margin-wide subcategory-page">
+  <div class="content">
+    <h1 class="subcategory-page-title">{{ category.title }}</h1>
+
+    {% set items = page.items | default([], true) %}
+    <div class="subcategory-page-news-list" style="margin-bottom: 40px">
+      {% for art in items %}
+        {% with
+          image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+          image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+        %}
+        <article class="article-related__card" role="listitem">
+          <figure class="article-related__figure">
+            <picture>
+              <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
+              <img data-src="{{ image_jpeg_800 }}" alt="{{ art.image.alt or art.title }}" class="lazy">
+            </picture>
+          </figure>
+          <h4 class="article-related__card-title">
+            <a href="/news/{{ art.alias }}/">{{ art.title }}</a>
+          </h4>
+        </article>
+        {% endwith %}
+      {% endfor %}
+    </div>
+
+    {% if page.pages > 1 %}
+      {% include 'pagination.html' %}
+    {% endif %}
+  </div>
+</main>

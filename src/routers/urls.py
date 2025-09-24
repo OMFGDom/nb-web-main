@@ -10,10 +10,11 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from src.models.article import Article
 from src.services.article import TZ_SHIFT
 from src.services.error import get_articles_404
-from src.services.index import get_index, load_more
+from src.services.index import get_index
 from src.services.category import get_category
 from src.services.tag import get_tag
 from src.services import article as article_service
+from src.services import podcast as podcast_service
 from src.services.base import get_base
 from src.services.author import get_authors, author_detail, api_author
 from src.services.search import search_results
@@ -37,7 +38,9 @@ templates.env.filters['pretty_date'] = pretty_date.pretty_date
 templates.env.filters['announce_date'] = pretty_date.announce_date
 templates.env.filters['article_pretty_date'] = pretty_date.article_pretty_date
 templates.env.filters['format_number'] = format_number.format_number
-
+templates.env.filters['duration_mmss'] = pretty_date.duration_mmss
+templates.env.filters['duration_hhmm'] = pretty_date.duration_hhmm
+templates.env.filters['duration_minutes_only'] = pretty_date.duration_minutes_only
 
 # @router.get('/search')
 # async def search(
@@ -135,11 +138,6 @@ async def index(request: Request, db: DBSessionDep):
     return templates.TemplateResponse(request=request, name="pages/index.html", context=context)
 
 
-# @router.get('/api/load-more')
-# async def loadmore(db: DBSessionDep, page: int = 1):
-#     return await load_more(db=db, page=page)
-
-
 @router.get('/news/{slug}/', name="article_detail")
 async def articles(request: Request, db: DBSessionDep, slug: str, response: Response, curr_redis=Depends(get_redis)):
     context = await article_service.article_detail(db=db, slug=slug, curr_redis=curr_redis)
@@ -159,23 +157,23 @@ async def allnews(request: Request, db: DBSessionDep, page: int = 1):
                                       name="pages/allnews.html",
                                       context=context)
 
-@router.get('/amp/{slug}/')
-async def amp_article(
-    request: Request,
-    db: DBSessionDep,
-    slug: str,
-    curr_redis = Depends(get_redis),   # ← добавили
-):
-    context = await article_service.article_amp(
-        db=db,
-        slug=slug,
-        curr_redis=curr_redis,         # ← передаём
-    )
-    return templates.TemplateResponse(
-        request=request,
-        name="pages/amp_article.html",
-        context=context
-    )
+# @router.get('/amp/{slug}/')
+# async def amp_article(
+#     request: Request,
+#     db: DBSessionDep,
+#     slug: str,
+#     curr_redis = Depends(get_redis),   # ← добавили
+# ):
+#     context = await article_service.article_amp(
+#         db=db,
+#         slug=slug,
+#         curr_redis=curr_redis,         # ← передаём
+#     )
+#     return templates.TemplateResponse(
+#         request=request,
+#         name="pages/amp_article.html",
+#         context=context
+#     )
 
 
 @router.get('/category/{slug}/')
@@ -212,17 +210,22 @@ async def author(request: Request, db: DBSessionDep, slug: str, page: int = Quer
 async def contacts(request: Request):
     return templates.TemplateResponse(request=request, name="pages/contacts.html", context={})
 
-@router.get('/data/')
-async def data(request: Request):
-    return templates.TemplateResponse(request=request, name="pages/data.html", context={})
+@router.get('/podcast/{slug}/', name="podcast_detail")
+async def podcast_page(request: Request, db: DBSessionDep, slug: str, curr_redis=Depends(get_redis)):
+    context = await podcast_service.podcast_detail(db=db, slug=slug, curr_redis=curr_redis)
+    return templates.TemplateResponse(request=request, name="pages/podcast.html", context=context)
 
-@router.get('/advertising/')
-async def advertising(request: Request):
-    return templates.TemplateResponse(request=request, name="pages/advertising.html", context={})
-
-@router.get('/material-use-policy/')
-async def material_use_policy(request: Request):
-    return templates.TemplateResponse(request=request, name="pages/material-use-policy.html", context={})
+# @router.get('/data/')
+# async def data(request: Request):
+#     return templates.TemplateResponse(request=request, name="pages/data.html", context={})
+#
+# @router.get('/advertising/')
+# async def advertising(request: Request):
+#     return templates.TemplateResponse(request=request, name="pages/advertising.html", context={})
+#
+# @router.get('/material-use-policy/')
+# async def material_use_policy(request: Request):
+#     return templates.TemplateResponse(request=request, name="pages/material-use-policy.html", context={})
 
 @router.get('/about/')
 async def about(request: Request):

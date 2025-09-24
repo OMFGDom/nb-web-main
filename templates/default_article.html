@@ -1,0 +1,335 @@
+    <!--! Article Page — Alternate Hero Variant (kicker + title + deck + image with caption) -->
+    <section class="article-hero-alt" aria-labelledby="article-hero-alt-title">
+      <div class="article-hero-alt__container">
+        <header class="article-hero-alt__header">
+          {% set last_category = article.categories[-1] if article.categories | length > 0 else None %}
+        <p class="article-hero-alt__kicker" aria-label="Рубрика">
+          {% if last_category %}
+            {{ last_category.title }}
+          {% else %}
+            Новости
+          {% endif %}
+        </p>
+          <h1 id="article-hero-alt-title" class="article-hero-alt__title">
+            {{ article.title }}
+          </h1>
+          <p class="article-hero-alt__deck">
+            {{ article.description | safe }}
+          </p>
+        </header>
+
+        {% with
+          image_webp_1200 = article.image.image_1200_webp | default(article.image.image_webp_1200, true),
+          image_webp_800  = article.image.image_800_webp  | default(article.image.image_800_webp,  true),
+          image_webp_200  = article.image.image_200_webp  | default(article.image.image_200_webp,  true),
+          image_jpeg_1200 = article.image.image_1200_jpeg | default(article.image.image_jpeg_1200, true),
+          image_jpeg_800  = article.image.image_800_jpeg  | default(article.image.image_800_jpeg,  true),
+          image_jpeg_200  = article.image.image_200_jpeg  | default(article.image.image_200_jpeg,  true),
+
+          fallback_img    = image_jpeg_800 or image_webp_800 or image_jpeg_200 or image_webp_200 or '/static/img/plug.jpg',
+          alt_text        = article.image.alt   | default(article.title, true),
+          title_text      = article.image.title | default(article.title, true),
+
+          caption_text    = article.image.caption | default(article.image.title, true) | default('', true),
+          credit_text     = article.image.source  | default('', true)
+        %}
+        <figure class="article-figure" aria-label="Article image with caption">
+          <picture>
+            {# WEBP srcset (lazy) #}
+            <source
+              type="image/webp"
+              data-srcset="
+                {% if image_webp_1200 %}{{ image_webp_1200 }} 1200w,{% endif %}
+                {% if image_webp_800  %}{{ image_webp_800  }} 800w,{% endif %}
+                {% if image_webp_200  %}{{ image_webp_200  }} 400w{% endif %}"
+              sizes="(max-width: 500px) 400px, (max-width: 900px) 800px, 1200px"
+            >
+            {# JPEG srcset (lazy) #}
+            <source
+              type="image/jpeg"
+              data-srcset="
+                {% if image_jpeg_1200 %}{{ image_jpeg_1200 }} 1200w,{% endif %}
+                {% if image_jpeg_800  %}{{ image_jpeg_800  }} 800w,{% endif %}
+                {% if image_jpeg_200  %}{{ image_jpeg_200  }} 400w{% endif %}"
+              sizes="(max-width: 500px) 400px, (max-width: 900px) 800px, 1200px"
+            >
+            {# Fallback img; используем data-src для ленивой загрузки, класс как в новой вёрстке #}
+            <img
+              class="lazy article-figure__image"
+              data-src="{{ fallback_img }}"
+              alt="{{ alt_text }}"
+              title="{{ title_text }}"
+              decoding="async"
+              loading="lazy"
+            >
+          </picture>
+
+          {# Подпись и кредит #}
+          {% if caption_text or credit_text %}
+            <figcaption class="article-figure__caption">
+              {{ caption_text }}
+              {% if credit_text %}
+                <span class="article-figure__credit">{{ credit_text }}</span>
+              {% endif %}
+            </figcaption>
+          {% endif %}
+        </figure>
+
+        {# НОСКРИПТ-фолбэк для SEO/без JS #}
+        <noscript>
+          <figure class="article-figure" aria-label="Article image with caption">
+            <picture>
+              <source
+                type="image/webp"
+                srcset="
+                  {% if image_webp_1200 %}{{ image_webp_1200 }} 1200w,{% endif %}
+                  {% if image_webp_800  %}{{ image_webp_800  }} 800w,{% endif %}
+                  {% if image_webp_200  %}{{ image_webp_200  }} 400w{% endif %}"
+                sizes="(max-width: 500px) 400px, (max-width: 900px) 800px, 1200px"
+              >
+              <source
+                type="image/jpeg"
+                srcset="
+                  {% if image_jpeg_1200 %}{{ image_jpeg_1200 }} 1200w,{% endif %}
+                  {% if image_jpeg_800  %}{{ image_jpeg_800  }} 800w,{% endif %}
+                  {% if image_jpeg_200  %}{{ image_jpeg_200  }} 400w{% endif %}"
+                sizes="(max-width: 500px) 400px, (max-width: 900px) 800px, 1200px"
+              >
+              <img
+                src="{{ fallback_img }}"
+                alt="{{ alt_text }}"
+                title="{{ title_text }}"
+                decoding="async"
+                loading="eager"
+              >
+            </picture>
+            {% if caption_text or credit_text %}
+              <figcaption class="article-figure__caption">
+                {{ caption_text }}{% if credit_text %} <span class="article-figure__credit">{{ credit_text }}</span>{% endif %}
+              </figcaption>
+            {% endif %}
+          </figure>
+        </noscript>
+        {% endwith %}
+      </div>
+    </section>    <!--! Article Metadata Section -->
+    <div class="article-meta" aria-label="Article information">
+        <div class="article-meta__author-info">
+            {% if authors %}
+              {% set first_author = authors[0] %}
+              <p class="article-meta__author">
+                <span class="article-meta__author-label">Автор: </span>
+                <span class="article-meta__author-name">
+                  {{ first_author.firstName }} {{ first_author.lastName }}
+                </span>
+              </p>
+            {% endif %}
+            <p class="article-meta__date" data-published="{{ article.published_date.strftime('%Y-%m-%dT%H:%M:%S') }}">
+                {{ article.published_date | article_pretty_date }}
+            </p>
+        </div>
+
+        <div class="article-meta__divider">
+            <!-- FIXME: Replace Image -->
+            <span class="line"></span>
+            <i style="min-width:33px;min-height: 20px;" class="small-nb-logo"></i>
+            <span class="line"></span>
+        </div>
+    </div>
+    <!--! Article Content -->
+    <div class="global-tinymce-content">
+        {{ article.content | safe }}
+    </div>    <!--! Author Information Section -->
+{#    <section class="article-author-info" aria-label="Информация об авторе">#}
+{#      <p class="article-author-info__credit">Оператор по видео: Аарон Каттер</p>#}
+{#      <p class="article-author-info__bio">#}
+{#        <span class="article-author-info__name">Арман Карманов</span>#}
+{#        является писателем и соведущим программы "Интервью", регулярной серии с участием влиятельных людей в сфере культуры, политики, бизнеса, спорта и не только.#}
+{#      </p>#}
+{#    </section>#}
+    <div class="article-meta__divider" id="divider-bottom" aria-hidden="true" style="padding-inline: 20px;">
+      <span class="line"></span>
+      <i style="min-width:33px;min-height: 20px;" class="small-nb-logo"></i>
+      <span class="line"></span>
+    </div>
+{# Подготовка данных для шеринга #}
+{# Канонический URL статьи без url_for #}
+{% set share_url   = 'https://bes.media/news/' ~ article.alias ~ '/' %}
+{% set encoded_url = share_url | urlencode %}
+{% set encoded_txt = article.title | urlencode %}
+
+<div class="article-social-section">
+  <div class="social-icons">
+    <a class="social-icon"
+       href="https://www.facebook.com/sharer/sharer.php?u={{ encoded_url }}"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Поделиться в Facebook">
+      <i class="social-article-facebook" style="min-width:26px;min-height:26px;"></i>
+    </a>
+
+    <a class="social-icon"
+       href="https://twitter.com/intent/tweet?url={{ encoded_url }}&text={{ encoded_txt }}"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Поделиться в Twitter">
+      <i class="social-article-twitter" style="min-width:26px;min-height:26px;"></i>
+    </a>
+
+    <a class="social-icon"
+       href="https://www.linkedin.com/shareArticle?mini=true&url={{ encoded_url }}&title={{ encoded_txt }}"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Поделиться в LinkedIn">
+      <i class="social-article-linkedin" style="min-width:26px;min-height:26px;"></i>
+    </a>
+
+    <a class="social-icon"
+       href="https://t.me/share/url?url={{ encoded_url }}&text={{ encoded_txt }}"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Поделиться в Telegram">
+      <i class="social-article-telegram" style="min-width:26px;min-height:26px;"></i>
+    </a>
+
+    <a class="social-icon"
+       href="https://api.whatsapp.com/send?text={{ encoded_txt }}%20{{ encoded_url }}"
+       target="_blank" rel="noopener noreferrer"
+       aria-label="Поделиться в WhatsApp">
+      <i class="social-article-whatsapp" style="min-width:26px;min-height:26px;"></i>
+    </a>
+
+    <a class="social-icon"
+       href="mailto:?subject={{ encoded_txt }}&body={{ encoded_url }}"
+       aria-label="Поделиться по email">
+      <i class="social-article-mail" style="min-width:26px;min-height:26px;"></i>
+    </a>
+
+    <a class="social-icon"
+       href="#"
+       onclick="navigator.clipboard.writeText('{{ share_url }}'); event.preventDefault();"
+       aria-label="Скопировать ссылку">
+      <i class="social-article-link" style="min-width:26px;min-height:26px;"></i>
+    </a>
+  </div>
+</div>
+
+
+    <!--! Related Sections: Podcasts, More on NB, Popular Articles -->
+{#    <section class="article-related" aria-labelledby="article-related-title">#}
+{#      <div class="wrapper">#}
+{#        <!-- Podcasts -->#}
+{#        <div class="first-column">#}
+{#          <section class="article-related__block article-related__block--podcasts" aria-labelledby="article-podcasts-title">#}
+{#            <div class="article-related__top-border" aria-hidden="true"></div>#}
+{#            <h3 id="article-podcasts-title" class="article-related__title">Подкасты</h3>#}
+{#            <ul class="article-related__list" role="list">#}
+{#              <li class="article-related__item">#}
+{#                <picture>#}
+{#                  <source media="(max-width: 699px)" type="image/webp" data-srcset="/images/podcast.png">#}
+{#                  <img data-src="/images/podcast.png" alt="Екатерина Лобачева" class="lazy">#}
+{#                </picture>#}
+{#                <a class="article-related__link" href="#">Екатерина Лобачева: “Люди стали меньше тратить на покупки”</a>#}
+{#              </li>#}
+{#              <li class="article-related__item">#}
+{#                <picture>#}
+{#                  <source media="(max-width: 699px)" type="image/webp" data-srcset="/images/podcast.png">#}
+{#                  <img data-src="/images/podcast.png" alt="Стриминги в Казахстане" class="lazy">#}
+{#                </picture>#}
+{#                <a class="article-related__link" href="#">Аналитики назвали лидеров по выручке стриминги в Казахстане</a>#}
+{#              </li>#}
+{#              <li class="article-related__item">#}
+{#                <picture>#}
+{#                  <source media="(max-width: 699px)" type="image/webp" data-srcset="/images/podcast.png">#}
+{#                  <img data-src="/images/podcast.png" alt="Бил Гейтц" class="lazy">#}
+{#                </picture>#}
+{#                <a class="article-related__link" href="#">Бил Гейтц: «Люди стали меньше тратить на покупки»</a>#}
+{#              </li>#}
+{#            </ul>#}
+{#          </section>#}
+{#    #}
+{#          <!-- More on NB -->#}
+{#          <section class="article-related__block article-related__block--more" aria-labelledby="article-more-title">#}
+{#            <div class="article-related__top-border" aria-hidden="true"></div>#}
+{#            <h3 id="article-more-title" class="article-related__title">Больше на National Business</h3>#}
+{#            <div class="article-related__grid" role="list">#}
+{#              <article class="article-related__card" role="listitem">#}
+{#                <figure class="article-related__figure">#}
+{#                  <picture>#}
+{#                    <source media="(max-width: 699px)" type="image/webp" data-srcset="/images/article.png">#}
+{#                    <img data-src="/images/article.png" alt="Аварийный дом с повреждениями на первом этаже" class="lazy">#}
+{#                  </picture>#}
+{#                </figure>#}
+{#                <h4 class="article-related__card-title">#}
+{#                  <a href="#">Льготная ипотека под 5% доступна некоторым казахстанцам прямо сейчас</a>#}
+{#                </h4>#}
+{#              </article>#}
+{#              <span style="background: var(--Divider-Light, #E6DCCE);min-height: 300px;min-width:1px;"></span>#}
+{#              <article class="article-related__card" role="listitem">#}
+{#                <figure class="article-related__figure">#}
+{#                  <picture>#}
+{#                    <source media="(max-width: 699px)" type="image/webp" data-srcset="/images/article.png">#}
+{#                    <img data-src="/images/article.png" alt="После отъезда из Нью-Йорка Фей Сандовал" class="lazy">#}
+{#                  </picture>#}
+{#                </figure>#}
+{#                <h4 class="article-related__card-title">#}
+{#                  <a href="#">Япония ускоряет темпы сделок</a>#}
+{#                </h4>#}
+{#              </article>#}
+{#              <span style="background: var(--Divider-Light, #E6DCCE);min-height: 300px;min-width:1px;"></span>#}
+{#              <article class="article-related__card" role="listitem">#}
+{#                <figure class="article-related__figure">#}
+{#                  <picture>#}
+{#                    <source media="(max-width: 699px)" type="image/webp" data-srcset="/images/article.png">#}
+{#                    <img data-src="/images/article.png" alt="Mag-Hodgman-1" class="lazy">#}
+{#                  </picture>#}
+{#                </figure>#}
+{#                <h4 class="article-related__card-title">#}
+{#                  <a href="#">Картошка с прицелом: Айгазы Кусаинов создаёт нового игрока в агросекторе</a>#}
+{#                </h4>#}
+{#              </article>#}
+{#              <span style="background: var(--Divider-Light, #E6DCCE);min-height: 300px;min-width:1px;"></span>#}
+{#              <article class="article-related__card" role="listitem">#}
+{#                <figure class="article-related__figure">#}
+{#                  <picture>#}
+{#                    <source media="(max-width: 699px)" type="image/webp" data-srcset="/images/article.png">#}
+{#                    <img data-src="/images/article.png" alt="Городской вид" class="lazy">#}
+{#                  </picture>#}
+{#                </figure>#}
+{#                <h4 class="article-related__card-title">#}
+{#                  <a href="#">Льготная ипотека под 5% доступна некоторым казахстанцам прямо сейчас</a>#}
+{#                </h4>#}
+{#              </article>#}
+{#            </div>#}
+{#          </section>#}
+{#        </div>#}
+{#    #}
+{#        <!-- Popular Articles -->#}
+{#        <section class="article-related__block article-related__block--popular" aria-labelledby="article-popular-title">#}
+{#          <div class="article-related__top-border" aria-hidden="true"></div>#}
+{#          <h3 id="article-popular-title" class="article-related__title">Последние новости</h3>#}
+{#          <ul class="article-related__popular-list" role="list">#}
+{#            <li class="article-related__popular-item">#}
+{#              <a href="#">КМГ и CNPC согласовали поставки сырого газа на завод в Актобе</a>#}
+{#            </li>#}
+{#            <li class="article-related__popular-item">#}
+{#              <a href="#">Казахстан вошёл в топ-3 стран — экспортёров нефти в Евросоюз</a>#}
+{#            </li>#}
+{#            <li class="article-related__popular-item">#}
+{#              <a href="#">Собственный капитал банков Казахстана приблизился к 10 трлн тенге</a>#}
+{#            </li>#}
+{#            <li class="article-related__popular-item">#}
+{#              <a href="#">Виза в США под залог $15 тысяч: коснётся ли это казахстанцев</a>#}
+{#            </li>#}
+{#            <li class="article-related__popular-item">#}
+{#              <a href="#">Nvidia и AMD будут выплачивать США 15% с продаж чипов в Китае</a>#}
+{#            </li>#}
+{#            <li class="article-related__popular-item">#}
+{#              <a href="#">ВВП Казахстана за пять месяцев 2025 года вырос на 6%</a>#}
+{#            </li>#}
+{#            <li class="article-related__popular-item">#}
+{#              <a href="#">Виза в США под залог $15 тысяч: коснётся ли это казахстанцев</a>#}
+{#            </li>#}
+{#            <li class="article-related__popular-item">#}
+{#              <a href="#">Собственный капитал банков Казахстана приблизился к 10 трлн тенге</a>#}
+{#            </li>#}
+{#          </ul>#}
+{#        </section>#}
+{#      </div>#}
+{#    </section>#}

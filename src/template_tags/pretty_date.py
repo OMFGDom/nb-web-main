@@ -23,6 +23,29 @@ def announce_date(date):
     ]
     return f"{MONTH_NAMES_RU[date.month - 1]}‘{date.year % 100:02d}"
 
+def duration_mmss(ms: int | None) -> str:
+    if not ms or ms <= 0:
+        return "--:--"
+    s = ms // 1000
+    m, s = divmod(s, 60)
+    return f"{int(m):02d}:{int(s):02d}"
+
+def duration_hhmm(ms: int | None) -> str:
+    if not ms or ms <= 0:
+        return ""
+    s = ms // 1000
+    m, _ = divmod(s, 60)
+    h, m = divmod(m, 60)
+    if h:
+        return f"{int(h)}:{int(m):02d}"
+    return f"{int(m)}"
+
+def duration_minutes_only(ms: int | None) -> str:
+    """Показывает только минуты: '3 мин', '114 мин'"""
+    if not ms or ms <= 0:
+        return ""
+    total_min = ms // 60000
+    return f"{total_min} мин"
 
 # from datetime import datetime, timedelta, timezone
 #

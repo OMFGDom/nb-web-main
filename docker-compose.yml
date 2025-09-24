@@ -1,14 +1,14 @@
 version: '3'
 
 services:
-  besmedia-web-1:
+  nb-web-1:
     build:
       context: .
       dockerfile: Dockerfile
     env_file:
       - .env
     networks:
-      - besmedia-network
+      - nb-network
     expose:
       - "8081"
     command: ["uvicorn", "main:app", "--host=0.0.0.0", "--port=8081", "--forwarded-allow-ips=*"]
@@ -17,14 +17,14 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-  besmedia-web-2:
+  nb-web-2:
     build:
       context: .
       dockerfile: Dockerfile
     env_file:
       - .env
     networks:
-      - besmedia-network
+      - nb-network
     expose:
       - "8082"
     command: ["uvicorn", "main:app", "--host=0.0.0.0", "--port=8082", "--forwarded-allow-ips=*"]
@@ -33,14 +33,14 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-  besmedia-web-3:
+  nb-web-3:
     build:
       context: .
       dockerfile: Dockerfile
     env_file:
       - .env
     networks:
-      - besmedia-network
+      - nb-network
     expose:
       - "8083"
     command: ["uvicorn", "main:app", "--host=0.0.0.0", "--port=8083", "--forwarded-allow-ips=*"]
@@ -49,14 +49,14 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-  besmedia-web-4:
+  nb-web-4:
     build:
       context: .
       dockerfile: Dockerfile
     env_file:
       - .env
     networks:
-      - besmedia-network
+      - nb-network
     expose:
       - "8084"
     command: ["uvicorn", "main:app", "--host=0.0.0.0", "--port=8084", "--forwarded-allow-ips=*"]
@@ -67,44 +67,13 @@ services:
 
   redis_web:
     image: redis:latest
-    command: ["redis-server", "--port", "6383", "--requirepass", "GeOLxsy7ytpiPKM50gI5EJZvdANxnnFeCNQyzWyV+1o="]
+    command: ["redis-server", "--port", "6383", "--requirepass", "test123"]
     ports:
       - "6383:6383"
     networks:
-      - besmedia-network
+      - nb-network
 
 networks:
-  besmedia-network:
+  nb-network:
     external: true
 
-
-
-#version: '3'
-#services:
-#  web:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    env_file:
-#      - .env
-#    networks:
-#      - forbes-network
-#    ports:
-#      - "8081:8081"
-#    command: ["uvicorn", "main:app", "--host=0.0.0.0", "--port=8081", "--reload"]
-#    extra_hosts:
-#      - "host.docker.internal:host-gateway"
-#    depends_on:
-#      - redis_web
-#
-#  redis_web:
-#    image: redis:latest
-#    ports:
-#      - "6383:6383"
-#    command: ["redis-server", "--port", "6383"]
-#    networks:
-#      - forbes-network
-#
-#networks:
-#  forbes-network:
-#    external: true

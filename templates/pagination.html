@@ -1,66 +1,82 @@
+{# базовый URL с сохранением q/s #}
 {% set base_url = '?' %}
-{% if q %}
-    {% set base_url = base_url + 'q=' + q + '&' %}
-{% endif %}
-{% if s %}
-    {% set base_url = base_url + 's=' + s + '&' %}
-{% endif %}
-<ul class="pagination">
-                            {% if page.page > 1 %}
-    <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ page.page-1 }}">‹</a></li>
-{% else %}
-    <li class="page-item disabled">
-        <a aria-label="#" href="#" class="page-link page-link__vector-style vector-style_theme_prev">
-            ‹
-        </a>
-    </li>
-{% endif %}
+{% if q is defined and q %}{% set base_url = base_url + 'q=' + (q|urlencode if q is string else q)|string + '&' %}{% endif %}
+{% if s is defined and s %}{% set base_url = base_url + 's=' + (s|urlencode if s is string else s)|string + '&' %}{% endif %}
 
-{% if page.pages <= 5 %}
-    {% for i in range(1, page.pages + 1) %}
-        {% if page.page == i %}
-            <li class="current active"><a href="#" class="current">{{ i }}</a></li>
-        {% else %}
-            <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ i }}">{{ i }}</a></li>
-        {% endif %}
-    {% endfor %}
-{% else %}
-    {% if page.page <= 3 %}
-        {% for i in range(1, 6) %}
-            {% if page.page == i %}
-                <li class="current active"><a href="#" class="current">{{ i }}</a></li>
-            {% else %}
-                <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ i }}">{{ i }}</a></li>
-            {% endif %}
-        {% endfor %}
-    {% elif page.page >= page.pages - 2 %}
-        {% for i in range(page.pages - 4, page.pages + 1) %}
-            {% if page.page == i %}
-                <li class="current active"><a href="#" class="current">{{ i }}</a></li>
-            {% else %}
-                <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ i }}">{{ i }}</a></li>
-            {% endif %}
-        {% endfor %}
+{# служебные переменные #}
+{% set total = (page.pages or 0)|int %}
+{% set current = (page.page or 1)|int %}
+{% if total > 1 %}
+  {% set window = 2 %}
+  {% set start = current - window %}
+  {% if start < 1 %}{% set start = 1 %}{% endif %}
+  {% set end = current + window %}
+  {% if end > total %}{% set end = total %}{% endif %}
+
+  <ul class="global-pagination" role="navigation" aria-label="Пагинация">
+
+    {# PREV #}
+    {% if current > 1 %}
+      <li class="button-navigation">
+        <a href="{{ base_url }}page={{ current - 1 }}" aria-label="Предыдущая страница">
+          <i class="pagination-arrow-prev"></i>
+        </a>
+      </li>
     {% else %}
-        {% for i in range(page.page - 2, page.page + 3) %}
-            {% if page.page == i %}
-                <li class="current active"><a href="#" class="current">{{ i }}</a></li>
-            {% else %}
-                <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ i }}">{{ i }}</a></li>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-{% endif %}
-
-{% if page.page < page.pages %}
-    <li class="page-item"><a class="page-link" href="{{ base_url }}page={{ page.page+1 }}">›</a></li>
-{% else %}
-    <li class="page-item disabled">
-        <a aria-label="#" class="page-link page-link__vector-style" href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M10.9763 10.0006L6.85156 5.87577L8.03007 4.69727L13.3334 10.0006L8.03007 15.3038L6.85156 14.1253L10.9763 10.0006Z" fill="#A0A0A0" />
-            </svg>
+      <li class="button-navigation disabled">
+        <a href="#" aria-label="Предыдущая страница">
+          <i class="pagination-arrow-prev"></i>
         </a>
-    </li>
+      </li>
+    {% endif %}
+
+    {# первая страница и ведущие многоточия #}
+    {% if start > 1 %}
+      <li>
+        <a href="{{ base_url }}page=1" aria-label="Страница 1">1</a>
+      </li>
+      {% if start > 2 %}
+        <li aria-hidden="true">…</li>
+      {% endif %}
+    {% endif %}
+
+    {# центральное окно страниц #}
+    {% for i in range(start, end + 1) %}
+      {% if i == current %}
+        <li class="is-current">
+          <a href="#" aria-current="page" aria-label="Страница {{ i }}">{{ i }}</a>
+        </li>
+      {% else %}
+        <li>
+          <a href="{{ base_url }}page={{ i }}" aria-label="Страница {{ i }}">{{ i }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    {# завершающие многоточия и последняя страница #}
+    {% if end < total %}
+      {% if end < total - 1 %}
+        <li aria-hidden="true">…</li>
+      {% endif %}
+      <li>
+        <a href="{{ base_url }}page={{ total }}" aria-label="Страница {{ total }}">{{ total }}</a>
+      </li>
+    {% endif %}
+
+    {# NEXT #}
+    {% if current < total %}
+      <li class="button-navigation">
+        <a href="{{ base_url }}page={{ current + 1 }}" aria-label="Следующая страница">
+          <i class="pagination-arrow-next"></i>
+        </a>
+      </li>
+    {% else %}
+      <li class="button-navigation disabled">
+        <a href="#" aria-label="Следующая страница">
+          <i class="pagination-arrow-next"></i>
+        </a>
+      </li>
+    {% endif %}
+
+  </ul>
 {% endif %}
-                        </ul>

@@ -1,0 +1,154 @@
+{# templates/category_parent.html #}
+<main class="default-layout desktop-margin-wide category-page">
+  <section class="category-header" aria-labelledby="category-title">
+    <div class="category-header__container">
+      <h1 id="category-title" class="category-header__title">{{ category.title }}</h1>
+      <div class="category-header__divider"></div>
+
+      {% if subcategories and subcategories|length > 0 %}
+      <nav class="category-header__nav" aria-label="Подкатегории">
+        <ul class="category-header__tags">
+          {% for sc in subcategories %}
+            <li class="category-header__tag">
+              <a href="/category/{{ sc.slug }}/" class="category-header__tag-link">{{ sc.title }}</a>
+            </li>
+            {% if not loop.last %}<span class="divider"></span>{% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+      {% endif %}
+
+      <div class="category-header__bottom-divider"></div>
+    </div>
+  </section>
+
+  {# БЛОК 1: featured_top + 9 новостей #}
+  <section class="category-news" aria-labelledby="category-news-title-1">
+    <h2 id="category-news-title-1" class="visually-hidden">Новости категории</h2>
+    <div class="category-news__container">
+
+      {% if featured_top %}
+        {% set f = featured_top %}
+        {% with
+          image_webp_800 = f.image.image_webp_800 | default(f.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+          image_jpeg_800 = f.image.image_jpeg_800 | default(f.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+        %}
+        <div class="category-news__featured" aria-labelledby="featured-article-title">
+          <a class="category-news__featured-content" href="/news/{{ f.alias }}/">
+            <div class="category-news__featured-image-wrapper">
+              <picture>
+                <source media="(max-width: 699px)" type="image/webp" srcset="{{ image_webp_800 }}">
+                <img class="category-news__featured-image lazy" data-src="{{ image_jpeg_800 }}" alt="{{ f.image.alt or f.title }}" />
+              </picture>
+              {% if f.image.alt %}<p class="category-news__image-credit">{{ f.image.alt }}</p>{% endif %}
+            </div>
+            <div class="category-news__featured-text">
+              <h3 id="featured-article-title" class="category-news__featured-title">{{ f.title }}</h3>
+              {% if f.description %}<p class="category-news__featured-excerpt">{{ f.description }}</p>{% endif %}
+              {% if f.published_date %}
+                <time class="category-news__featured-time" datetime="{{ f.published_date.isoformat() }}">{{ f.published_date.strftime('%d.%m.%Y %H:%M') }}</time>
+              {% endif %}
+            </div>
+          </a>
+        </div>
+        {% endwith %}
+      {% endif %}
+
+      <div class="category-news__list">
+        {% for art in first_list %}
+          <article class="category-news__item">
+            {% if art.badge_category %}<span class="category-news__badge">{{ art.badge_category }}</span>{% endif %}
+            <h3 class="category-news__item-title">
+              <a href="/news/{{ art.alias }}/" class="category-news__item-link">{{ art.title }}</a>
+            </h3>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {# БЛОК 2: 4 карточки #}
+  {% if cards_list and cards_list|length > 0 %}
+  <section class="category-articles" aria-labelledby="category-articles-title">
+    <h2 id="category-articles-title" class="visually-hidden">Статьи</h2>
+    <div class="category-articles__container">
+      {% for art in cards_list %}
+        {% with
+          image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+          image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+        %}
+        <article class="category-articles__card{% if loop.last %} category-articles__card--last{% endif %}">
+          <div class="category-articles__content">
+            <div class="category-articles__text">
+              {% if art.badge_category %}<div class="category-articles__category">{{ art.badge_category }}</div>{% endif %}
+              <h3 class="category-articles__title"><a href="/news/{{ art.alias }}/" class="category-articles__title-link">{{ art.title }}</a></h3>
+              {% if art.description %}<p class="category-articles__excerpt">{{ art.description }}</p>{% endif %}
+              {% if art.published_date %}
+                <time class="category-articles__time" datetime="{{ art.published_date.isoformat() }}">{{ art.published_date.strftime('%d.%m.%Y %H:%M') }}</time>
+              {% endif %}
+            </div>
+            <div class="category-articles__image-wrapper">
+              <picture>
+                <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
+                <img class="category-articles__image lazy" data-src="{{ image_jpeg_800 }}" alt="{{ art.image.alt or art.title }}" />
+              </picture>
+            </div>
+          </div>
+        </article>
+        {% endwith %}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {# БЛОК 3: featured_bottom + 9 новостей #}
+  {% if featured_bottom or (last_list and last_list|length > 0) %}
+  <section class="category-news" aria-labelledby="category-news-title-2">
+    <h2 id="category-news-title-2" class="visually-hidden">Ещё новости</h2>
+    <div class="category-news__container">
+
+      {% if featured_bottom %}
+        {% set f2 = featured_bottom %}
+        {% with
+          image_webp_800 = f2.image.image_webp_800 | default(f2.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+          image_jpeg_800 = f2.image.image_jpeg_800 | default(f2.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+        %}
+        <div class="category-news__featured" aria-labelledby="featured-article-title-2">
+          <a class="category-news__featured-content" href="/news/{{ f2.alias }}/">
+            <div class="category-news__featured-image-wrapper">
+              <picture>
+                <source media="(max-width: 699px)" type="image/webp" srcset="{{ image_webp_800 }}">
+                <img class="category-news__featured-image lazy" data-src="{{ image_jpeg_800 }}" alt="{{ f2.image.alt or f2.title }}" />
+              </picture>
+              {% if f2.image.alt %}<p class="category-news__image-credit">{{ f2.image.alt }}</p>{% endif %}
+            </div>
+            <div class="category-news__featured-text">
+              <h3 id="featured-article-title-2" class="category-news__featured-title">{{ f2.title }}</h3>
+              {% if f2.description %}<p class="category-news__featured-excerpt">{{ f2.description }}</p>{% endif %}
+              {% if f2.published_date %}
+                <time class="category-news__featured-time" datetime="{{ f2.published_date.isoformat() }}">{{ f2.published_date.strftime('%d.%m.%Y %H:%M') }}</time>
+              {% endif %}
+            </div>
+          </a>
+        </div>
+        {% endwith %}
+      {% endif %}
+
+      <div class="category-news__list">
+        {% for art in last_list %}
+          <article class="category-news__item">
+            {% if art.badge_category %}<span class="category-news__badge">{{ art.badge_category }}</span>{% endif %}
+            <h3 class="category-news__item-title">
+              <a href="/news/{{ art.alias }}/" class="category-news__item-link">{{ art.title }}</a>
+            </h3>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {% if page.pages > 1 %}
+    {% include 'pagination.html' %}
+  {% endif %}
+</main>

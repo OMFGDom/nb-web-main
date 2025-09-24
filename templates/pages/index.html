@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 {% block meta_data %}
-    <title>BES.media ᐈ Новости Казахстана на сегодня</title>
+    <title>nationalbusiness.kz ᐈ Новости Казахстана на сегодня</title>
     <meta name="description"
-          content="BES.media — ваш источник актуальных и надёжных новостей Казахстана на сегодня. От политики и экономики до культуры и спорта, мы предлагаем всесторонний анализ событий и эксклюзивные репортажи." />
+          content="nationalbusiness.kz — ваш источник актуальных и надёжных новостей Казахстана на сегодня. От политики и экономики до культуры и спорта, мы предлагаем всесторонний анализ событий и эксклюзивные репортажи." />
     <meta name="keywords"
-          content="Картина дня, Финансы, Истории, Налоговая реформа в Казахстане, Судебный репортаж, Поймём, что к чему, Вопросы к чиновникам, Поговорим с…, Секрет успеха, новости Казахстана, аналитика, политика, экономика, культура, Bes.media" />
-    <meta name="author" content="Редакция bes.media" />
-    <link rel="canonical" href="https://bes.media/" />
+          content="Картина дня, Финансы, Истории, Налоговая реформа в Казахстане, Судебный репортаж, Поймём, что к чему, Вопросы к чиновникам, Поговорим с…, Секрет успеха, новости Казахстана, аналитика, политика, экономика, культура, nationalbusiness.kz" />
+    <meta name="author" content="Редакция nationalbusiness.kz" />
+    <link rel="canonical" href="https://nationalbusiness.kz/" />
 
     {# — Open Graph — #}
     <meta property="og:type"        content="website" />
-    <meta property="og:site_name"   content="BES.media" />
-    <meta property="og:url"         content="https://bes.media/" />
-    <meta property="og:title"       content="BES.media ᐈ Новости Казахстана на сегодня" />
-    <meta property="og:description" content="BES.media — ваш источник актуальных и надёжных новостей Казахстана на сегодня. Подписывайтесь, чтобы быть в курсе всех событий." />
-    <meta property="og:image"       content="https://bes.media/static/img/plug.jpg" />
+    <meta property="og:site_name"   content="nationalbusiness.kz" />
+    <meta property="og:url"         content="https://nationalbusiness.kz/" />
+    <meta property="og:title"       content="nationalbusiness.kz ᐈ Новости Казахстана на сегодня" />
+    <meta property="og:description" content="nationalbusiness.kz — ваш источник актуальных и надёжных новостей Казахстана на сегодня. Подписывайтесь, чтобы быть в курсе всех событий." />
+    <meta property="og:image"       content="https://nationalbusiness.kz/static/img/plug.jpg" />
     <meta property="og:locale"      content="ru_RU" />
 
     {# — Twitter Card — #}
     <meta name="twitter:card"        content="summary_large_image" />
-    <meta name="twitter:title"       content="BES.media ᐈ Новости Казахстана на сегодня" />
-    <meta name="twitter:description" content="BES.media — ваш источник актуальных и надёжных новостей Казахстана на сегодня." />
-    <meta name="twitter:image:src"   content="https://bes.media/static/img/plug.jpg" />
-    <meta name="twitter:site"        content="@besmedia" />
+    <meta name="twitter:title"       content="nationalbusiness.kz ᐈ Новости Казахстана на сегодня" />
+    <meta name="twitter:description" content="nationalbusiness.kz — ваш источник актуальных и надёжных новостей Казахстана на сегодня." />
+    <meta name="twitter:image:src"   content="https://nationalbusiness.kz/static/img/plug.jpg" />
+    <meta name="twitter:site"        content="@nationalbusiness" />
 
     {# — JSON-LD: организация и сайт — #}
     <script type="application/ld+json">
@@ -31,21 +31,21 @@
       "@graph": [
         {
           "@type": "Organization",
-          "name": "BES.media",
-          "url": "https://bes.media/",
-          "logo": "https://bes.media/static/img/plug.jpg",
+          "name": "nationalbusiness.kz",
+          "url": "https://nationalbusiness.kz/",
+          "logo": "https://nationalbusiness.kz/static/img/plug.jpg",
           "sameAs": [
-            "https://t.me/bessimptomno_bot"
+            "https://t.me/nationalbusiness"
           ]
         },
         {
           "@type": "WebSite",
-          "url": "https://bes.media/",
-          "name": "BES.media",
-          "description": "BES.media — ваш источник актуальных и надёжных новостей Казахстана на сегодня.",
+          "url": "https://nationalbusiness.kz/",
+          "name": "nationalbusiness.kz",
+          "description": "nationalbusiness.kz — ваш источник актуальных и надёжных новостей Казахстана на сегодня.",
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://bes.media/search/?q={search_term_string}",
+            "target": "https://nationalbusiness.kz/search/?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
         }
@@ -57,887 +57,600 @@
 {% endblock meta_data %}
 {% block content %}
     {% include 'header.html' %}
-    <main class="main__page">
-      <section class="adSection adDesctop">
-        <div class="ad-container">
-          <div class="ad-wrapper-desctop">
-            <div id="ad-placeholder" class="ad-placeholder">BES.media</div>
-            <div id="adfox_170955537553561307" class="ad-block"></div>
-            <script>
-              window.yaContextCb.push(() => {
-                Ya.adfoxCode.createAdaptive(
-                  {
-                    ownerId: 264109,
-                    containerId: "adfox_170955537553561307",
-                    params: {
-                      p1: "dbhtm",
-                      p2: "iwpg",
-                    },
-                  },
-                  ["desktop", "tablet"],
-                  {
-                    tabletWidth: 830,
-                    phoneWidth: 480,
-                    isAutoReloads: false,
-                  }
-                );
+  <main class="default-layout desktop-margin-wide main-page">
+    <section class="featured main-news-section">
 
-                const placeholder = document.getElementById("ad-placeholder");
-                const adBlock = document.getElementById(
-                  "adfox_170955537553561307"
-                );
+      <div class="news">
+        <div class="a003">
+          <div class="a002">
+            {% if main_article %}
+              {% with
+                image_webp_1200 = main_article.image.image_webp_1200
+                                  | default(main_article.image.image_1200_webp, true)
+                                  | default('/static/img/plug.jpg', true),
+                image_jpeg_1200 = main_article.image.image_jpeg_1200
+                                  | default(main_article.image.image_1200_jpeg, true)
+                                  | default('/static/img/plug.jpg', true),
+                category = main_article.categories[-1].title if main_article.categories|length > 0 else "Новости"
+              %}
+                <a class="news-card news-card-1" href="/news/{{ main_article.alias }}/">
+                  <div class="news-card__content">
+                    <div class="news-card__badge">{{ category }}</div>
+                    <h2 class="news-card__title">{{ main_article.title }}</h2>
+                    {% if main_article.description %}
+                      <p class="news-card__excerpt">{{ main_article.description | striptags }}</p>
+                    {% endif %}
+                    <time class="news-card__time" data-published="{{ main_article.published_date.isoformat() }}">
+                      {{ main_article.published_date | pretty_date }}
+                    </time>
+                  </div>
+                  <figure class="news-card__media">
+                    <picture style="width: 100%;">
+                      <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_1200 }}">
+                      <img class="news-card__image lazy" data-src="{{ image_jpeg_1200 }}" alt="{{ main_article.title|e }}">
+                    </picture>
+                    {% if main_article.image.source %}
+                      <figcaption class="news-card__caption">{{ main_article.image.source }}</figcaption>
+                    {% endif %}
+                  </figure>
+                </a>
+              {% endwith %}
+            {% endif %}
+            <i class="divider"></i>
+            <h2>top news</h2>
+            {# ─── 2. Secondary Articles (2–3) ──────────────────────────────────── #}
+            {% if secondary_articles %}
+              <div class="desktop-top-news">
+                {% for art in secondary_articles[:2] %}
+                  {% with
+                    image_webp_800 = art.image.image_webp_800
+                                    | default(art.image.image_800_webp, true),
+                    image_jpeg_800 = art.image.image_jpeg_800
+                                    | default(art.image.image_800_jpeg, true),
+                    category = art.categories[-1].title if art.categories|length > 0 else "Новости"
+                  %}
+                    <a class="news-card-text-image" href="/news/{{ art.alias }}/">
+                      <div class="news-card-text-image__content">
+                        <div class="news-card-text-image__badge">{{ category }}</div>
+                        <h3 class="news-card-text-image__title">{{ art.title }}</h3>
+                        <time class="news-card-text-image__time" data-published="{{ art.published_date.isoformat() }}">
+                          {{ art.published_date | pretty_date }}
+                        </time>
+                      </div>
+                      {% if loop.first %}
+                        <figure class="news-card-text-image__media" aria-hidden="true">
+                          <picture>
+                            <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
+                            <img class="news-card-text-image__image lazy"
+                                 data-src="{{ image_jpeg_800 }}"
+                                 alt="{{ art.title|e }}">
+                          </picture>
+                        </figure>
+                      {% endif %}
+                    </a>
+                    {% if not loop.last %}<span class="divider"></span>{% endif %}
+                  {% endwith %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+            {% if third_articles %}
+              <div class="news-scroll">
+                {% for art in third_articles %}
+                  <a class="news-card-text-image" href="/news/{{ art.alias }}/">
+                    <div class="news-card-text-image__content">
+                      <div class="news-card-text-image__badge">{{ art.badge_category }}</div>
+                      <h3 class="news-card-text-image__title">{{ art.title }}</h3>
+                      <time class="news-card-text-image__time" data-published="{{ art.published_date.isoformat() }}">
+                        {{ art.published_date | pretty_date }}
+                      </time>
+                    </div>
+                  </a>
+                {% endfor %}
+              </div>
+            {% endif %}
 
-                const observer = new MutationObserver(() => {
-                  if (adBlock.children.length > 0) {
-                    placeholder?.remove();
-                    observer.disconnect();
-                  }
-                });
 
-                observer.observe(adBlock, { childList: true });
-              });
-            </script>
+        </div>
+        <div class="desktop-column">
+  <i class="divider" style="margin-bottom: 30px;"></i>
+
+  {# ───── ФОКУС РЕДАКТОРА: 1-я из latest_articles ───── #}
+  <div class="mini-section-1">
+    <h2>Фокус редактора</h2>
+    {% if editor_focus_article %}
+      {% set a = editor_focus_article %}
+      {% with
+        image_webp_800 = a.image.image_webp_800 | default(a.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+        image_jpeg_800 = a.image.image_jpeg_800 | default(a.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+      %}
+      <a class="news-card-wide" href="/news/{{ a.alias }}/">
+        <figure class="news-card-wide__media" aria-hidden="true">
+          <picture>
+            <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
+            <img class="news-card-wide__image lazy"
+                 data-src="{{ image_jpeg_800 }}"
+                 alt="{{ a.image.alt or a.title }}"
+                 loading="lazy" decoding="async" />
+          </picture>
+        </figure>
+        <div class="news-card-wide__content">
+          <div class="news-card-wide__badge">фокус редактора</div>
+          <h3 class="news-card-wide__title">{{ a.title }}</h3>
+        </div>
+      </a>
+      {% endwith %}
+    {% endif %}
+  </div>
+
+  <span class="divider"></span>
+
+  {# ───── МНЕНИЕ: 1 статья из категории mnenie ───── #}
+  <div class="mini-section-1">
+    <h2>МНЕНИЕ</h2>
+    {% if opinion_article %}
+      {% set m = opinion_article %}
+      <a class="news-card-quote" href="/news/{{ m.alias }}/">
+        <div class="news-card-quote__content">
+          <div class="news-card-quote__header">
+            <i class="quote-symbol" data-size="26"></i>
+            <span class="news-card-quote__title">{{ m.quote | default(m.title, true) }}</span>
+          </div>
+
+          {% if m.first_author %}
+            {% set au = m.first_author %}
+            {% set av = au.image.image_200_webp or au.image.image_webp_200 or '/static/img/plug.jpg' %}
+            <div class="news-card-quote__author">
+              <picture>
+                <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ av }}">
+                <img class="news-card-quote__avatar lazy"
+                     loading="lazy" data-src="{{ av }}"
+                     alt="{{ au.image.alt or (au.firstName ~ ' ' ~ au.lastName) }}"
+                     width="46" height="46" />
+              </picture>
+              <span class="news-card-quote__name">{{ au.firstName }} {{ au.lastName }}</span>
+            </div>
+          {% endif %}
+        </div>
+      </a>
+    {% endif %}
+  </div>
+
+  <span class="divider"></span>
+
+  {# ───── ИНТЕРВЬЮ: 1 из interview_articles ───── #}
+  <div class="mini-section-1">
+    <h2>интервью</h2>
+    {% if interview_article %}
+      {% set iv = interview_article %}
+      {% with
+        image_webp_800 = iv.image.image_webp_800 | default(iv.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+        image_jpeg_800 = iv.image.image_jpeg_800 | default(iv.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+      %}
+      <a class="video-card-1" href="/news/{{ iv.alias }}/">
+        <div class="video-card-1__content">
+          <h3 class="video-card-1__title">{{ iv.quote | default(iv.title, true) }}</h3>
+          <div class="video-card-1__meta">
+            {% if iv.published_date %}
+              <span class="video-card-1__duration">
+                {{ iv.published_date.strftime('%d.%m.%Y %H:%M') }}
+              </span>
+            {% endif %}
           </div>
         </div>
-        </section>
-        <section class="mainSection">
-            <div class="container">
-              <div class="mainNews">
 
-                {# ─────────────── левая колонка ──────────────── #}
-                <div class="mainNews__left">
+        <figure class="video-card-1__thumb" aria-hidden="true">
+          <picture>
+            <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
+            <img class="video-card-1__image lazy"
+                 data-src="{{ image_jpeg_800 }}"
+                 alt="{{ iv.image.alt or iv.title }}"
+                 width="120" height="120"
+                 loading="lazy" decoding="async" />
+          </picture>
+          <button class="video-card-1__play" type="button" aria-label="Смотреть видео">
+            <span class="video-card-1__play-icon" aria-hidden="true"></span>
+          </button>
+        </figure>
+      </a>
+      {% endwith %}
+    {% endif %}
+  </div>
+</div>
 
-                  {# 1. Большая карточка #}
-                    {% if main_article %}
-                      {% with
-                        image_webp_1200 = main_article.image.image_webp_1200
-                                          | default(main_article.image.image_1200_webp, true)
-                                          | default('/static/img/plug.jpg', true),
-                        image_jpeg_1200 = main_article.image.image_jpeg_1200
-                                          | default(main_article.image.image_1200_jpeg, true)
-                                          | default('/static/img/plug.jpg', true)
-                      %}
-                        <div class="mainBigCard {{ main_article.public_type_class }}">
-                          <a href="https://bes.media/news/{{ main_article.alias }}/">
-                            <picture>
-                              <source media="(max-width: 699px)" type="image/webp" srcset="{{ image_webp_1200 }}" />
-                              <source media="(min-width: 700px)" type="image/webp" srcset="{{ image_webp_1200 }}" />
-                              <img src="{{ image_jpeg_1200 }}" alt="{{ main_article.title | e }}" />
-                            </picture>
-                            <div class="mainBigCard__content">
-                              <div class="mainBigCard__title">{{ main_article.title }}</div>
-{#                              {% if main_article.description %}#}
-{#                                <div class="mainBigCard__desc">#}
-{#                                  {{ main_article.description | striptags | safe }}#}
-{#                                </div>#}
-{#                              {% endif %}#}
-                              <div class="mainBigCard__time" data-published="{{ main_article.published_date.strftime('%Y-%m-%dT%H:%M:%S') }}">{{ main_article.published_date | pretty_date }}</div>
-                            </div>
-                          </a>
-                        </div>
-                      {% endwith %}
-                    {% endif %}
-                  <a href="https://projects.bes.media/kaztemirjoly" class="banner_img" target="_blank">
-                    <img src="/static/img/web.png" alt="Рельсы конкуренции" />
-                  </a>
-                  <a href="https://projects.bes.media/kaztemirjoly" class="banner_imgMobile" target="_blank">
-                    <img src="/static/img/mobile.png" alt="Рельсы конкуренции" />
-                  </a>
-                  {# 2. Три под-карточки #}
-                  <div class="mainNews__list">
-                    {% for art in secondary_articles %}
-                      {% with
-                        image_webp_1200 = art.image.image_webp_1200
-                                          | default(art.image.image_1200_webp, true)
-                                          | default('/static/img/plug.jpg', true),
-                        image_jpeg_1200 = art.image.image_jpeg_1200
-                                          | default(art.image.image_1200_jpeg, true)
-                                          | default('/static/img/plug.jpg', true)
-                      %}
-                        <div class="card main {{ art.public_type_class }}">
-                          <a href="https://bes.media/news/{{ art.alias }}/">
-                            <picture>
-                              <source media="(max-width: 699px)" type="image/webp" srcset="{{ image_webp_1200 }}" />
-                              <source media="(min-width: 700px)" type="image/webp" srcset="{{ image_webp_1200 }}" />
-                              <img src="{{ image_jpeg_1200 }}" alt="{{ art.title | e }}" />
-                            </picture>
-                            <div class="card__content">
-                              <div class="card__title">{{ art.title }}</div>
-                              <div class="card__info">
-                                <div class="card__time" data-published="{{ art.published_date.strftime('%Y-%m-%dT%H:%M:%S') }}">{{ art.published_date | pretty_date }}</div>
-                              </div>
-                            </div>
-                          </a>
-                        </div>
-                      {% endwith %}
-                    {% endfor %}
-                  </div>
-                </div>
+      </div>
+    </section>
+    <section class="featured top-stories">
+      <i class="divider"></i>
+      <h2>top stories</h2>
+{% if latest_articles %}
+<div class="news-scroll">
+  {% for art in latest_articles[:4] %}
+    {% with
+      image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+      image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true),
+      badge_title    = (art.categories[-1].title if art.categories else 'Новости')
+    %}
+    <a class="news-card-2 {{ art.public_type_class }}" href="/news/{{ art.alias }}/">
+      <figure class="news-card-2__media">
+        <picture>
+          <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
+          <img class="news-card-2__image lazy"
+               data-src="{{ image_jpeg_800 }}"
+               alt="{{ art.image.alt or art.title }}">
+        </picture>
+      </figure>
+      <div class="news-card-2__content">
+        <div class="news-card-2__badge">{{ badge_title }}</div>
+        <h3 class="news-card-2__title">{{ art.title }}</h3>
+      </div>
+    </a>
+    {% endwith %}
+  {% endfor %}
+</div>
+{% endif %}
 
-                {# ─────────────── правая колонка ──────────────── #}
-                <div class="mainNews__right">
-                  <div class="lastNews">
-                    <div class="lastNews__title">Картина дня</div>
-                        <div class="lastNews__list">
-                          {% for art in latest_articles %}
-                            <div class="card wtImg {{ art.public_type_class }}">
-                              <a href="https://bes.media/news/{{ art.alias }}/">
-                                  <div class="card__content">
-                                    <div class="card__title">{{ art.title }}</div>
-                                    <div class="card__info">
-                                        {#<div class="card__category">
-                                            {{ art.categories[0].title if art.categories else 'Статьи' }}
-                                        </div> #}
-                                          <div class="card__time" data-published="{{ art.published_date.strftime('%Y-%m-%dT%H:%M:%S') }}">
-                                            {{ art.published_date | pretty_date }}
-                                          </div>
-                                    </div>
-                                  </div>
-                              </a>
-                            </div>
-                          {% endfor %}
-                        </div>
-                    <a href="{{ url_for('allnews') }}" class="showMore">
-                      <div class="showMore__content">
-                        <span>Все новости</span>
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                             width="20" height="20" viewBox="0 0 20 20" fill="none">
-                          <path d="M10.976 10l-4.125-4.125 1.178-1.178 5.303 5.303-5.303 5.303-1.178-1.178z"
-                                fill="#161616"/>
-                        </svg>
-                      </div>
-                    </a>
-                  </div>
-                </div>
 
+
+    </section>
+{% if interview_articles %}
+<section class="default" style="padding-block: 0px;">
+  {% set item = interview_articles[0] %}
+  {% with
+    image_webp_800 = item.image.image_webp_800 | default(item.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+    image_jpeg_800 = item.image.image_jpeg_800 | default(item.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+  %}
+  <a class="interview-card-1" href="/news/{{ item.alias }}/">
+    <div class="interview-card-1__content">
+      <figure class="interview-card-1__media">
+        <picture>
+          <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
+          <img class="interview-card-1__image lazy"
+               data-src="{{ image_jpeg_800 }}"
+               alt="{{ item.image.alt or item.title }}">
+        </picture>
+      </figure>
+      <div class="interview-card-1__text">
+        <div class="interview-card-1__badge">Интервью</div>
+        <h3 class="interview-card-1__title">{{ item.title }}</h3>
+
+        <div class="interview-card-1__quote-section">
+          <div class="interview-card-1__quote">
+            <div class="interview-card-1__quote-mark">
+              <i class="quote-symbol" data-size="26"></i>
+            </div>
+            {# пока поле для цитаты пустое #}
+            {% set quote_text = item.quote | default("", true) | trim %}
+            <p class="interview-card-1__quote-text">
+              {{ quote_text if quote_text else "Цитата отсутствует" }}
+            </p>
+          </div>
+
+        {% if item.first_author %}
+          {% set author = item.first_author %}
+          {% set image_src = (author.image.image_200_webp or author.image.image_webp_200 or '/static/img/plug.jpg') %}
+          <div class="interview-card-1__author">
+            <img class="interview-card-1__avatar lazy"
+                 data-src="{{ image_src }}"
+                 alt="{{ author.image.alt or (author.firstName ~ ' ' ~ author.lastName) }}" />
+            <span class="interview-card-1__author-name">
+              {{ author.firstName }} {{ author.lastName }}
+            </span>
+          </div>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </a>
+  {% endwith %}
+</section>
+{% endif %}
+    {% if economy_featured or economy_articles %}
+    <header class="featured-article__header" style="margin-top:40px;">
+      <hr class="featured-article__divider">
+      <div class="featured-article__category">
+        <span class="featured-article__category-text">
+          {{ (economy_parent.title if economy_parent else 'экономика') | lower }}
+        </span>
+        <svg class="featured-article__category-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+          <path d="M6 7.38462L0 1.29231L1.29231 0L6 4.8L10.7077 0L12 1.29231L6 7.38462Z" fill="black" />
+        </svg>
+      </div>
+    </header>
+
+    <section class="default featured-section">
+
+      {% if economy_featured %}
+        {% set f = economy_featured %}
+        {% with
+          image_webp_800 = f.image.image_webp_800 | default(f.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+          image_jpeg_800 = f.image.image_jpeg_800 | default(f.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+        %}
+        <a class="featured-article" href="/news/{{ f.alias }}/">
+          <div class="featured-article__content">
+            <div class="featured-article__text">
+              <h2 class="featured-article__title">{{ f.title }}</h2>
+              <div class="featured-article__meta">
+                {% if f.description %}
+                  <p class="featured-article__excerpt">{{ f.description }}</p>
+                {% endif %}
+                {% if f.published_date %}
+                  <time class="featured-article__time"
+                        datetime="{{ f.published_date.isoformat() }}">
+                    {{ f.published_date.strftime('%d.%m.%Y %H:%M') }}
+                  </time>
+                {% endif %}
               </div>
             </div>
-        </section>
-        <section class="adSection adMobile">
-            <div class="container">
-              <div class="ad-wrapper-mobile">
-                <div id="ad-placeholder" class="ad-placeholder">BES.media</div>
-                <div id="adfox_17095555514471434"></div>
-                <script>
-                  window.yaContextCb.push(() => {
-                    Ya.adfoxCode.createAdaptive(
-                      {
-                        ownerId: 264109,
-                        containerId: "adfox_17095555514471434",
-                        params: {
-                          p1: "dbhth",
-                          p2: "iwpk",
-                        },
-                      },
-                      ["phone"],
-                      {
-                        tabletWidth: 830,
-                        phoneWidth: 480,
-                        isAutoReloads: false,
-                      }
-                    );
-                  });
-                </script>
-              </div>
-            </div>
-        </section>
-        {# ───────────────────────────── ФИНАНСЫ ────────────────────────────── #}
-        <section>
-          <div class="container">
-            <div class="categoryGrid">
-              <h2 class="cat__title">Финансы</h2>
 
-              {% if finance_articles %}
-              <div class="categoryGrid__wrap">
-
-                {# Левая — «большая» карточка #}
-                <div class="categoryGrid__left">
-                  {% set item = finance_articles[0] %}
-                  {% with
-                    image_webp_800 = item.image.image_webp_800 | default(item.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
-                    image_jpeg_800 = item.image.image_jpeg_800 | default(item.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
-                  %}
-                  <div class="card categoryBig">
-                    <a href="https://bes.media/news/{{ item.alias }}/">
-                      <picture>
-                        <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <img data-src="{{ image_jpeg_800 }}" alt="{{ item.image.alt or item.title }}" class="lazy" />
-                      </picture>
-
-                      <div class="card__content">
-                        <div class="card__title">{{ item.title }}</div>
-                        {% if item.description %}
-                        <div class="card__desc">{{ item.description | striptags | safe }}</div>
-                        {% endif %}
-                        <div class="card__time">{{ item.published_date | pretty_date }}</div>
-                      </div>
-                    </a>
-                  </div>
-                  {% endwith %}
-                </div>
-
-                {# Правая колонка — ещё ≤ 3 статьи #}
-                <div class="categoryGrid__right">
-                  {% for art in finance_articles[1:4] %}
-                    {% with
-                      image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
-                      image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
-                    %}
-                    <div class="card categoryGrid">
-                      <a href="https://bes.media/news/{{ art.alias }}/">
-                        <picture>
-                          <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                          <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                          <img data-src="{{ image_jpeg_800 }}" alt="{{ art.image.alt or art.title }}" class="lazy" />
-                        </picture>
-
-                        <div class="card__content">
-                          <div class="card__title">{{ art.title }}</div>
-                          <div class="card__time">{{ art.published_date | pretty_date }}</div>
-                        </div>
-                      </a>
-                    </div>
-                    {% endwith %}
-                  {% endfor %}
-                </div>
-
-              </div>
+            <figure class="featured-article__media">
+              <picture>
+                <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
+                <img class="featured-article__image lazy"
+                     loading="lazy"
+                     data-src="{{ image_jpeg_800 }}"
+                     alt="{{ f.image.alt or f.title }}" />
+              </picture>
+              {% if f.image.alt %}
+                <figcaption class="featured-article__caption">{{ f.image.alt }}</figcaption>
               {% endif %}
+            </figure>
+          </div>
+        </a>
+        {% endwith %}
+      {% endif %}
 
-              <a href="https://bes.media/category/finansy/" class="showMore noFullWidth">
-                <div class="showMore__content">
-                  <span>Смотреть больше</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10.976 10L6.851 5.876 8.03 4.697 13.333 10 8.03 15.304 6.851 14.125 10.976 10Z" fill="#161616"/>
+      {% if economy_articles %}
+      <section class="article-list">
+        {% for art in economy_articles %}
+          <a class="article-list__item" href="/news/{{ art.alias }}/">
+            <span class="article-list__category">{{ art.badge_category or 'Экономика' }}</span>
+            <h3 class="article-list__title">{{ art.title }}</h3>
+          </a>
+        {% endfor %}
+      </section>
+      {% endif %}
+
+      <div class="main-page-economics-desktop-links">
+        <h3>{{ economy_parent.title if economy_parent else 'Экономика' }}</h3>
+        <div class="links">
+          {% for cat in economy_subcategories %}
+            <a href="https://nationalbusiness.kz/category/{{ cat.slug }}/">{{ cat.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+    </section>
+    {% endif %}
+    <section class="podcast-section">
+      <header class="podcast-section__header">
+        <h2 class="podcast-section__title">Подкасты</h2>
+      </header>
+
+      <div class="podcast-section__content">
+        {% for p in latest_podcasts %}
+          <a class="podcast-card" href="/podcast/{{ p.alias }}/">
+            <div class="podcast-card__media">
+              <picture>
+                {% if p.image.image_webp_200 %}
+                  <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ p.image.image_webp_200 }}">
+                {% endif %}
+                <img
+                  class="podcast-card__image lazy"
+                  data-src="{{ p.image.image_jpeg_200 or p.image.image_webp_200 }}"
+                  alt="{{ p.image.alt or p.title }}"
+                />
+              </picture>
+            </div>
+            <div class="podcast-card__content">
+              <h3 class="podcast-card__title">{{ p.title }}</h3>
+              <div class="podcast-card__meta">
+                <button class="podcast-card__play" aria-label="Play podcast">
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+                    <circle cx="15" cy="15" r="14.4286" stroke="#B4B4B4" stroke-width="0.857143"/>
+                    <path d="M21.5625 14.9997L11.7188 20.683V9.31641L21.5625 14.9997Z" fill="#B4B4B4"/>
                   </svg>
-                </div>
-              </a>
+                </button>
+                {% if p.podcast and p.podcast.duration_ms %}
+                  <span class="podcast-card__duration">{{ p.podcast.duration_ms | duration_minutes_only }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
 
+    <!-- Reusing featured-article pattern -->
+{% if geopolitics_featured or geopolitics_articles %}
+<header class="featured-article__header" style="margin-top: 60px;">
+  <hr class="featured-article__divider">
+  <div class="featured-article__category">
+    <span class="featured-article__category-text">{{ geopolitics_parent.title if geopolitics_parent else 'Геополитика' }}</span>
+    <svg class="featured-article__category-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+      <path d="M6 7.38462L0 1.29231L1.29231 0L6 4.8L10.7077 0L12 1.29231L6 7.38462Z" fill="black" />
+    </svg>
+  </div>
+</header>
+
+<section class="geopolitics-section" style="margin-top: 20px;">
+  <div class="desktop-geopolitics-section-top">
+    {% if geopolitics_featured %}
+      {% set f = geopolitics_featured %}
+      {% with
+        image_webp_800 = f.image.image_webp_800 | default(f.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+        image_jpeg_800 = f.image.image_jpeg_800 | default(f.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+      %}
+      <a class="featured-article featured-article--geopolitics" href="/news/{{ f.alias }}/">
+        <div class="featured-article__content">
+          <div class="featured-article__text">
+            <h2 class="featured-article__title">{{ f.title }}</h2>
+            <div class="featured-article__meta">
+              {% if f.description %}
+                <p class="featured-article__excerpt">{{ f.description }}</p>
+              {% endif %}
+              {% if f.published_date %}
+                <time class="featured-article__time" datetime="{{ f.published_date.isoformat() }}">
+                  {{ f.published_date.strftime('%d.%m.%Y %H:%M') }}
+                </time>
+              {% endif %}
             </div>
           </div>
-        </section>
+          <figure class="featured-article__media">
+            <picture>
+              <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
+              <img class="featured-article__image lazy" loading="lazy" data-src="{{ image_jpeg_800 }}" alt="{{ f.image.alt or f.title }}" />
+            </picture>
+            {% if f.image.alt %}<figcaption class="featured-article__caption">{{ f.image.alt }}</figcaption>{% endif %}
+          </figure>
+        </div>
+      </a>
+      {% endwith %}
+    {% endif %}
 
-        <section>
-            <div class="container">
-              <a href="https://www.instagram.com/bes.media_/" class="social__block" target="_blank">
-                <div class="social__content">
-                  <div class="social__title">Узнавайте главное первым</div>
-                  <div class="social__desc">
-                    Подпишитесь и узнавайте о свежих новостях Казахстана, фото,
-                    видео и других эксклюзивах.
-                  </div>
-                </div>
-                <div class="social__icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="56"
-                    height="56"
-                    viewBox="0 0 56 56"
-                    fill="none"
-                  >
-                    <g clip-path="url(#clip0_2982_6921)">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M28.0002 13.6216C20.0591 13.6216 13.6217 20.0589 13.6217 28C13.6217 35.9408 20.0591 42.3782 28.0002 42.3782C35.941 42.3782 42.3784 35.9408 42.3784 28C42.3784 20.0589 35.941 13.6216 28.0002 13.6216ZM28.0002 37.3332C22.8454 37.3332 18.6668 33.1545 18.6668 28C18.6668 22.8453 22.8454 18.6666 28.0002 18.6666C33.1547 18.6666 37.3334 22.8453 37.3334 28C37.3334 33.1545 33.1547 37.3332 28.0002 37.3332Z"
-                        fill="url(#paint0_linear_2982_6921)"
-                      />
-                      <path
-                        d="M42.9463 16.4135C44.802 16.4135 46.3063 14.9092 46.3063 13.0535C46.3063 11.1978 44.802 9.69357 42.9463 9.69357C41.0907 9.69357 39.5863 11.1978 39.5863 13.0535C39.5863 14.9092 41.0907 16.4135 42.9463 16.4135Z"
-                        fill="url(#paint1_linear_2982_6921)"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M28 0C20.3956 0 19.4421 0.0322656 16.4556 0.168547C13.4753 0.3045 11.4399 0.777765 9.6588 1.47C7.81758 2.18553 6.25603 3.143 4.69951 4.69962C3.14289 6.25614 2.18542 7.81769 1.46989 9.6589C0.777656 11.4399 0.304391 13.4753 0.168437 16.4556C0.0321562 19.4421 0 20.3956 0 28C0 35.6042 0.0321562 36.5577 0.168437 39.5442C0.304391 42.5244 0.777656 44.5599 1.46989 46.3409C2.18542 48.1821 3.14289 49.7436 4.69951 51.3004C6.25603 52.8569 7.81758 53.8144 9.6588 54.5299C11.4399 55.222 13.4753 55.6954 16.4556 55.8313C19.4421 55.9675 20.3956 55.9998 28 55.9998C35.6042 55.9998 36.5577 55.9675 39.5442 55.8313C42.5244 55.6954 44.5599 55.222 46.3409 54.5299C48.1821 53.8144 49.7436 52.8569 51.3004 51.3004C52.8569 49.7436 53.8144 48.1821 54.5299 46.3409C55.222 44.5599 55.6954 42.5244 55.8313 39.5442C55.9675 36.5577 55.9998 35.6042 55.9998 28C55.9998 20.3956 55.9675 19.4421 55.8313 16.4556C55.6954 13.4753 55.222 11.4399 54.5299 9.6589C53.8144 7.81769 52.8569 6.25614 51.3004 4.69962C49.7436 3.143 48.1821 2.18553 46.3409 1.47C44.5599 0.777765 42.5244 0.3045 39.5442 0.168547C36.5577 0.0322656 35.6042 0 28 0ZM28 5.04514C35.4762 5.04514 36.3618 5.07358 39.3143 5.20833C42.0442 5.33291 43.5268 5.789 44.5134 6.17236C45.8204 6.6803 46.7531 7.28711 47.7329 8.26689C48.7128 9.24667 49.3195 10.1795 49.8274 11.4863C50.2109 12.473 50.667 13.9556 50.7916 16.6855C50.9262 19.6381 50.9547 20.5237 50.9547 28C50.9547 35.4762 50.9262 36.3618 50.7916 39.3143C50.667 42.0442 50.2109 43.5268 49.8274 44.5134C49.3195 45.8204 48.7128 46.7531 47.7329 47.7329C46.7531 48.7128 45.8204 49.3195 44.5134 49.8274C43.5268 50.2109 42.0442 50.667 39.3143 50.7914C36.3623 50.9262 35.4768 50.9547 28 50.9547C20.523 50.9547 19.6377 50.9262 16.6855 50.7914C13.9556 50.667 12.473 50.2109 11.4863 49.8274C10.1794 49.3195 9.24667 48.7128 8.26678 47.7329C7.287 46.7531 6.68019 45.8204 6.17236 44.5134C5.78889 43.5268 5.3328 42.0442 5.20822 39.3143C5.07347 36.3618 5.04503 35.4762 5.04503 28C5.04503 20.5237 5.07347 19.6381 5.20822 16.6855C5.3328 13.9556 5.78889 12.473 6.17236 11.4863C6.68019 10.1795 7.287 9.24667 8.26678 8.26689C9.24667 7.28711 10.1794 6.6803 11.4863 6.17236C12.473 5.789 13.9556 5.33291 16.6855 5.20833C19.6381 5.07358 20.5237 5.04514 28 5.04514Z"
-                        fill="url(#paint2_linear_2982_6921)"
-                      />
-                    </g>
-                    <defs>
-                      <linearGradient
-                        id="paint0_linear_2982_6921"
-                        x1="0"
-                        y1="0"
-                        x2="36.012"
-                        y2="-10.7789"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stop-color="#C913B9" />
-                        <stop offset="0.500947" stop-color="#F9373F" />
-                        <stop offset="1" stop-color="#FECD00" />
-                      </linearGradient>
-                      <linearGradient
-                        id="paint1_linear_2982_6921"
-                        x1="0"
-                        y1="0"
-                        x2="36.012"
-                        y2="-10.7789"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stop-color="#C913B9" />
-                        <stop offset="0.500947" stop-color="#F9373F" />
-                        <stop offset="1" stop-color="#FECD00" />
-                      </linearGradient>
-                      <linearGradient
-                        id="paint2_linear_2982_6921"
-                        x1="0"
-                        y1="0"
-                        x2="36.012"
-                        y2="-10.7789"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stop-color="#C913B9" />
-                        <stop offset="0.500947" stop-color="#F9373F" />
-                        <stop offset="1" stop-color="#FECD00" />
-                      </linearGradient>
-                      <clipPath id="clip0_2982_6921">
-                        <rect width="56" height="56" fill="white" />
-                      </clipPath>
-                    </defs>
-                  </svg>
-                </div>
-              </a>
-            </div>
-        </section>
+    <div class="main-page-economics-desktop-links">
+      <h3>{{ geopolitics_parent.title if geopolitics_parent else 'Геополитика' }}</h3>
+      <div class="links">
+        {% for cat in geopolitics_subcategories %}
+          <a href="https://nationalbusiness.kz/category/{{ cat.slug }}/">{{ cat.title }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 
-        {# ───────────────────────────── ИСТОРИИ ────────────────────────────── #}
-        <section>
-          <div class="container">
-            <div class="historyNews">
-              <h2 class="cat__title">Истории</h2>
+  <div class="geopolitics-news__grid">
+    {% for art in geopolitics_articles[:4] %}
+      <a class="geopolitics-news__item {% if loop.index0 == 0 %}geopolitics-news__item--wide{% endif %}" href="/news/{{ art.alias }}/">
+        <div class="geopolitics-news__badge">{{ art.badge_category or 'Геополитика' }}</div>
+        <h3 class="geopolitics-news__title">{{ art.title }}</h3>
+        {% if art.published_date %}
+          <time class="geopolitics-news__time" datetime="{{ art.published_date.isoformat() }}">
+            {{ art.published_date.strftime('%d.%m.%Y %H:%M') }}
+          </time>
+        {% endif %}
+      </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
 
-              <div class="historyNews__wrap">
-                {% for art in history_articles %}
-                  {% with
-                    image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
-                    image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
-                  %}
-                  <div class="historyCard">
-                    <a href="https://bes.media/news/{{ art.alias }}/">
-                      <picture>
-                        <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <img data-src="{{ image_jpeg_800 }}" alt="{{ art.image.alt or art.title }}" class="lazy" />
-                      </picture>
+{% if research_featured or research_articles %}
+<header class="featured-article__header" style="margin-top:40px;width:100%;">
+  <hr class="featured-article__divider">
+  <div class="featured-article__category">
+    <span class="featured-article__category-text">{{ research_parent.title if research_parent else 'Исследования' }}</span>
+    <svg class="featured-article__category-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+      <path d="M6 7.38462L0 1.29231L1.29231 0L6 4.8L10.7077 0L12 1.29231L6 7.38462Z" fill="black" />
+    </svg>
+  </div>
+</header>
 
-                      <div class="historyCard__content">
-                        <div class="historyCard__text">
-                          <div class="historyCard__title">{{ art.title }}</div>
-                          <div class="historyCard__time">{{ art.published_date | pretty_date }}</div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  {% endwith %}
-                {% endfor %}
-              </div>
-
-              <a href="https://bes.media/category/istorii/" class="showMore noFullWidth">
-                <div class="showMore__content">
-                  <span>Смотреть больше</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10.976 10L6.851 5.876 8.03 4.697 13.333 10 8.03 15.304 6.851 14.125 10.976 10Z" fill="#161616"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
+<section class="default featured-section">
+  {% if research_featured %}
+    {% set f = research_featured %}
+    {% with
+      image_webp_800 = f.image.image_webp_800 | default(f.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+      image_jpeg_800 = f.image.image_jpeg_800 | default(f.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+    %}
+    <a class="featured-article" href="/news/{{ f.alias }}/">
+      <div class="featured-article__content">
+        <div class="featured-article__text">
+          <h2 class="featured-article__title">{{ f.title }}</h2>
+          <div class="featured-article__meta">
+            {% if f.description %}
+              <p class="featured-article__excerpt">{{ f.description }}</p>
+            {% endif %}
+            {% if f.published_date %}
+              <time class="featured-article__time" datetime="{{ f.published_date.isoformat() }}">
+                {{ f.published_date.strftime('%d.%m.%Y %H:%M') }}
+              </time>
+            {% endif %}
           </div>
-        </section>
+        </div>
+        <figure class="featured-article__media">
+          <picture>
+            <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
+            <img class="featured-article__image lazy" loading="lazy" data-src="{{ image_jpeg_800 }}" alt="{{ f.image.alt or f.title }}" />
+          </picture>
+          {% if f.image.alt %}<figcaption class="featured-article__caption">{{ f.image.alt }}</figcaption>{% endif %}
+        </figure>
+      </div>
+    </a>
+    {% endwith %}
+  {% endif %}
+
+  {% if research_articles %}
+  <section class="article-list">
+    {% for art in research_articles %}
+      <a class="article-list__item" href="/news/{{ art.alias }}/">
+        <span class="article-list__category">{{ art.badge_category or 'Исследования' }}</span>
+        <h3 class="article-list__title">{{ art.title }}</h3>
+      </a>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  <div class="main-page-economics-desktop-links">
+    <h3>{{ research_parent.title if research_parent else 'Исследования' }}</h3>
+    <div class="links">
+      {% for cat in research_subcategories %}
+        <a href="https://nationalbusiness.kz/category/{{ cat.slug }}/">{{ cat.title }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% set lifestyle_list = lifestyle_articles | default([], true) %}
+
+{% if lifestyle_list|length > 0 %}
+<section class="lifestyle-section">
+  <header class="lifestyle-section__header">
+    <hr class="lifestyle-section__divider">
+    <div class="lifestyle-section__category">
+      <span class="lifestyle-section__category-text">{{ lifestyle_parent.title if lifestyle_parent else 'Life style' }}</span>
+      <svg class="lifestyle-section__category-arrow" width="8" height="5" viewBox="0 0 8 5" fill="none">
+        <path d="M3.99903 4.92188L0 0.861329L0.861329 0L3.99903 3.19922L7.13673 0L7.99805 0.861329L3.99903 4.92188Z" fill="black" />
+      </svg>
+    </div>
+  </header>
+
+  <div class="lifestyle-section__grid">
+    {% for art in lifestyle_list[:4] %}
+      {% with
+        image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
+        image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
+      %}
+      <a class="news-card-2 news-card-2--lifestyle" href="/news/{{ art.alias }}/">
+        <figure class="news-card-2__media">
+          <picture>
+            <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
+            <img class="news-card-2__image lazy" loading="lazy" data-src="{{ image_jpeg_800 }}" alt="{{ art.image.alt or art.title }}" />
+          </picture>
+        </figure>
+        <div class="news-card-2__content">
+          <div class="news-card-2__badge">{{ art.badge_category or (lifestyle_parent.title if lifestyle_parent else 'Life style') }}</div>
+          <h3 class="news-card-2__title">{{ art.title }}</h3>
+          {% if art.published_date %}
+            <time class="news-card-2__time" datetime="{{ art.published_date.isoformat() }}">
+              {{ art.published_date.strftime('%d.%m.%Y %H:%M') }}
+            </time>
+          {% endif %}
+        </div>
+      </a>
+      {% endwith %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
 
 
 
-        {# ───────────── НАЛОГОВАЯ РЕФОРМА В КАЗАХСТАНЕ ────────────── #}
-        <section>
-          <div class="container">
-            <div class="categoryNews">
-              <h2 class="cat__title">Налоговая реформа в Казахстане</h2>
-
-              <div class="categoryNews__wrap">
-                {% for art in tax_reform_articles %}
-                  {% with
-                    image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
-                    image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
-                  %}
-                  <div class="card default">
-                    <a href="https://bes.media/news/{{ art.alias }}/">
-                      <picture>
-                        <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <img data-src="{{ image_jpeg_800 }}" alt="{{ art.image.alt or art.title }}" class="lazy" />
-                      </picture>
-
-                      <div class="card__content">
-                        <div class="card__title">{{ art.title }}</div>
-                        <div class="card__time">{{ art.published_date | pretty_date }}</div>
-                      </div>
-                    </a>
-                  </div>
-                  {% endwith %}
-                {% endfor %}
-              </div>
-
-              <a href="https://bes.media/category/nalogovaya-reforma-v-kazahstane/" class="showMore noFullWidth">
-                <div class="showMore__content">
-                  <span>Смотреть больше</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10.976 10L6.851 5.876 8.03 4.697 13.333 10 8.03 15.304 6.851 14.125 10.976 10Z" fill="#161616"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section
-            class="speciaSection"
-            style="background-image: url('/static/img/special__bg.png')"
-          >
-            <div class="container slider__container">
-              <div class="specialNews">
-                <h2 class="cat__title">Спецпроекты</h2>
-                <div class="special__slider splide">
-                  <div class="splide__track">
-                    <ul class="splide__list">
-                    <li class="card special splide__slide">
-                        <a href="https://projects.bes.media/kaztemirjoly">
-                          <picture>
-                            <source
-                              media="(max-width: 699px)"
-                              type="image/webp"
-                              data-srcset="https://img.bes.media/besmedia-photobank/media/2025-08-11/b9d87818-26c2-4032-b966-30d39881b85a.webp"
-                              srcset="
-                                https://img.bes.media/besmedia-photobank/media/2025-08-11/b9d87818-26c2-4032-b966-30d39881b85a.webp
-                              "
-                            />
-                            <source
-                              media="(min-width: 700px)"
-                              type="image/webp"
-                              data-srcset="https://img.bes.media/besmedia-photobank/media/2025-08-11/b9d87818-26c2-4032-b966-30d39881b85a.webp"
-                              srcset="
-                                https://img.bes.media/besmedia-photobank/media/2025-08-11/b9d87818-26c2-4032-b966-30d39881b85a.webp
-                              "
-                            />
-                            <img
-                              data-src="https://img.bes.media/besmedia-photobank/media/2025-08-11/82c8f507-6046-423f-bea0-6987eaccea42.jpeg"
-                              src="https://img.bes.media/besmedia-photobank/media/2025-08-11/82c8f507-6046-423f-bea0-6987eaccea42.jpeg"
-                              alt="Рельсы конкуренции"
-                              loading="lazy"
-                            />
-                          </picture>
-                          <div class="card__title">Рельсы конкуренции</div>
-                        </a>
-                      </li>
-                      <li class="card special splide__slide">
-                        <a href="https://projects.bes.media/smog">
-                          <picture>
-                            <source
-                              media="(max-width: 699px)"
-                              type="image/webp"
-                              data-srcset="https://img.bes.media/besmedia-photobank/media/2025-07-14/cb5c2493-bb34-43ce-a28f-f35a264a8315.webp"
-                              srcset="
-                                https://img.bes.media/besmedia-photobank/media/2025-07-14/cb5c2493-bb34-43ce-a28f-f35a264a8315.webp
-                              "
-                            />
-                            <source
-                              media="(min-width: 700px)"
-                              type="image/webp"
-                              data-srcset="https://img.bes.media/besmedia-photobank/media/2025-07-14/cb5c2493-bb34-43ce-a28f-f35a264a8315.webp"
-                              srcset="
-                                https://img.bes.media/besmedia-photobank/media/2025-07-14/cb5c2493-bb34-43ce-a28f-f35a264a8315.webp
-                              "
-                            />
-                            <img
-                              data-src="https://img.bes.media/besmedia-photobank/media/2025-07-14/e5c4ea56-8d81-4be6-8ed2-ffb7a3755c65.jpeg"
-                              src="https://img.bes.media/besmedia-photobank/media/2025-07-14/e5c4ea56-8d81-4be6-8ed2-ffb7a3755c65.jpeg"
-                              alt="Без права на чистый воздух"
-                              loading="lazy"
-                            />
-                          </picture>
-                          <div class="card__title">Без права на чистый воздух</div>
-                        </a>
-                      </li>
-
-                      <li class="card special splide__slide">
-                        <a href="https://projects.bes.media/nurjoly">
-                          <picture>
-                            <source
-                              media="(max-width: 699px)"
-                              type="image/webp"
-                              data-srcset="https://img.bes.media/besmedia-photobank/media/2025-07-14/776ea24c-9018-443e-a050-719d19afc6b4.webp"
-                              srcset="
-                                https://img.bes.media/besmedia-photobank/media/2025-07-14/776ea24c-9018-443e-a050-719d19afc6b4.webp
-                              "
-                            />
-                            <source
-                              media="(min-width: 700px)"
-                              type="image/webp"
-                              data-srcset="https://img.bes.media/besmedia-photobank/media/2025-07-14/776ea24c-9018-443e-a050-719d19afc6b4.webp"
-                              srcset="
-                                https://img.bes.media/besmedia-photobank/media/2025-07-14/776ea24c-9018-443e-a050-719d19afc6b4.webp
-                              "
-                            />
-                            <img
-                              data-src="https://img.bes.media/besmedia-photobank/media/2025-07-14/dde89b94-8759-47fa-9fbe-d56ec17c60f5.jpeg"
-                              src="https://img.bes.media/besmedia-photobank/media/2025-07-14/dde89b94-8759-47fa-9fbe-d56ec17c60f5.jpeg"
-                              alt="Ворота в Китай: Нур Жолы"
-                              loading="lazy"
-                            />
-                          </picture>
-                          <div class="card__title">Ворота в Китай: Нур Жолы</div>
-                        </a>
-                      </li>
-
-                      <li class="card special splide__slide">
-                        <a href="https://transport-almaty.bes.media/">
-                          <picture>
-                            <source
-                              media="(max-width: 699px)"
-                              type="image/webp"
-                              data-srcset="https://img.bes.media/besmedia-photobank/media/2025-07-14/5e194844-eeee-4f07-9b43-592a5a23c593.webp"
-                              srcset="
-                                https://img.bes.media/besmedia-photobank/media/2025-07-14/5e194844-eeee-4f07-9b43-592a5a23c593.webp
-                              "
-                            />
-                            <source
-                              media="(min-width: 700px)"
-                              type="image/webp"
-                              data-srcset="https://img.bes.media/besmedia-photobank/media/2025-07-14/5e194844-eeee-4f07-9b43-592a5a23c593.webp"
-                              srcset="
-                                https://img.bes.media/besmedia-photobank/media/2025-07-14/5e194844-eeee-4f07-9b43-592a5a23c593.webp
-                              "
-                            />
-                            <img
-                              data-src="https://img.bes.media/besmedia-photobank/media/2025-07-14/0ad9ac83-5ad0-4d78-8f33-788d11e93ce1.jpeg"
-                              src="https://img.bes.media/besmedia-photobank/media/2025-07-14/0ad9ac83-5ad0-4d78-8f33-788d11e93ce1.jpeg"
-                              alt="Общественный транспорт Алматы"
-                              loading="lazy"
-                            />
-                          </picture>
-                          <div class="card__title">
-                            Общественный транспорт Алматы
-                          </div>
-                        </a>
-                      </li>
-
-                      <li class="card special splide__slide">
-                        <a href="https://projects.bes.media/declaration/">
-                          <picture>
-                            <source
-                              media="(max-width: 699px)"
-                              type="image/webp"
-                              data-srcset="https://img.bes.media/besmedia-photobank/media/2025-07-14/ed70ca39-0fb0-4e70-bee6-ccbcaca30b34.webp"
-                              srcset="
-                                https://img.bes.media/besmedia-photobank/media/2025-07-14/ed70ca39-0fb0-4e70-bee6-ccbcaca30b34.webp
-                              "
-                            />
-                            <source
-                              media="(min-width: 700px)"
-                              type="image/webp"
-                              data-srcset="https://img.bes.media/besmedia-photobank/media/2025-07-14/ed70ca39-0fb0-4e70-bee6-ccbcaca30b34.webp"
-                              srcset="
-                                https://img.bes.media/besmedia-photobank/media/2025-07-14/ed70ca39-0fb0-4e70-bee6-ccbcaca30b34.webp
-                              "
-                            />
-                            <img
-                              data-src="https://img.bes.media/besmedia-photobank/media/2025-07-14/d10be477-a833-4e61-906d-af6fa3b151cf.jpeg"
-                              src="https://img.bes.media/besmedia-photobank/media/2025-07-14/d10be477-a833-4e61-906d-af6fa3b151cf.jpeg"
-                              alt="Всё о декларации"
-                              loading="lazy"
-                            />
-                          </picture>
-                          <div class="card__title">Всё о декларации</div>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="special__dots splide__pagination"></div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-        <section>
-          <div class="container">
-            <div class="categoryNews">
-              <h2 class="cat__title">Судебный репортаж</h2>
-
-              <div class="categoryNews__wrap">
-                {% for art in court_report_articles %}
-                  {% with
-                    image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
-                    image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
-                  %}
-                  <div class="card default">
-                    <a href="https://bes.media/category/sudebniy-reportazh/">
-                      <picture>
-                        <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <img data-src="{{ image_jpeg_800 }}" alt="{{ art.image.alt or art.title }}" class="lazy" />
-                      </picture>
-
-                      <div class="card__content">
-                        <div class="card__title">{{ art.title }}</div>
-                        <div class="card__time">{{ art.published_date | pretty_date }}</div>
-                      </div>
-                    </a>
-                  </div>
-                  {% endwith %}
-                {% endfor %}
-              </div>
-
-              <a href="{{ url_for('category', slug='sudebniy-reportazh') }}" class="showMore noFullWidth">
-                <div class="showMore__content">
-                  <span>Смотреть больше</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10.976 10L6.851 5.876 8.03 4.697 13.333 10 8.03 15.304 6.851 14.125 10.976 10Z" fill="#161616"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
-
-
-        <section>
-          <div class="container">
-            <div class="categoryNews">
-              <h2 class="cat__title">Поймём, что к чему</h2>
-
-              <div class="categoryNews__wrap">
-                {% for art in explainer_articles %}
-                  {% with
-                    image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
-                    image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
-                  %}
-                  <div class="card default">
-                    <a href="https://bes.media/news/{{ art.alias }}/">
-                      <picture>
-                        <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <img data-src="{{ image_jpeg_800 }}" alt="{{ art.image.alt or art.title }}" class="lazy" />
-                      </picture>
-
-                      <div class="card__content">
-                        <div class="card__title">{{ art.title }}</div>
-                        <div class="card__time">{{ art.published_date | pretty_date }}</div>
-                      </div>
-                    </a>
-                  </div>
-                  {% endwith %}
-                {% endfor %}
-              </div>
-
-              <a href="https://bes.media/category/pojmyom-chto-k-chemu/" class="showMore noFullWidth">
-                <div class="showMore__content">
-                  <span>Смотреть больше</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10.976 10L6.851 5.876 8.03 4.697 13.333 10 8.03 15.304 6.851 14.125 10.976 10Z" fill="#161616"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section>
-            <div class="container">
-              <a href="https://t.me/bessimptomno" class="social__block" target="_blank">
-                <div class="social__content">
-                  <div class="social__title">Узнавайте главное первым</div>
-                  <div class="social__desc">
-                    Подпишитесь и узнавайте о свежих новостях Казахстана, фото,
-                    видео и других эксклюзивах.
-                  </div>
-                </div>
-                <div class="social__icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="56"
-                    height="57"
-                    viewBox="0 0 56 57"
-                    fill="none"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M3.84971 27.549C18.8821 20.9996 28.906 16.6819 33.9215 14.5958C48.2417 8.63951 51.2174 7.60484 53.1568 7.57068C53.5834 7.56316 54.5372 7.66888 55.155 8.17019C55.6767 8.59349 55.8202 9.16531 55.8889 9.56665C55.9576 9.96798 56.0431 10.8822 55.9751 11.5966C55.1991 19.7503 51.8413 39.5372 50.133 48.6694C49.4102 52.5336 47.9869 53.8293 46.609 53.9561C43.6145 54.2317 41.3406 51.9771 38.4403 50.0759C33.9019 47.1009 31.3379 45.249 26.9326 42.346C21.8415 38.991 25.1418 37.147 28.0433 34.1335C28.8026 33.3449 41.9964 21.3441 42.2518 20.2554C42.2837 20.1193 42.3133 19.6117 42.0118 19.3437C41.7103 19.0758 41.2653 19.1674 40.9442 19.2403C40.489 19.3436 33.2388 24.1357 19.1936 33.6166C17.1357 35.0297 15.2717 35.7183 13.6016 35.6822C11.7604 35.6424 8.21877 34.6412 5.58593 33.7853C2.35665 32.7356 -0.209924 32.1806 0.0135665 30.3979C0.129974 29.4693 1.40869 28.5197 3.84971 27.549Z"
-                      fill="url(#paint0_linear_3038_2756)"
-                      fill-opacity="0.85"
-                    />
-                    <defs>
-                      <linearGradient
-                        id="paint0_linear_3038_2756"
-                        x1="56"
-                        y1="7.57031"
-                        x2="-7.59443"
-                        y2="23.3262"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stop-color="#037BC7" />
-                        <stop offset="0.991866" stop-color="#17AAF7" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-              </a>
-            </div>
-        </section>
-
-        <section>
-          <div class="container">
-            <div class="categoryNews">
-              <h2 class="cat__title">Вопросы к чиновникам</h2>
-
-              <div class="categoryNews__wrap">
-                {% for art in officials_questions %}
-                  {% with
-                    image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
-                    image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
-                  %}
-                  <div class="card default">
-                    <a href="https://bes.media/news/{{ art.alias }}/">
-                      <picture>
-                        <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <img data-src="{{ image_jpeg_800 }}" alt="{{ art.image.alt or art.title }}" class="lazy" />
-                      </picture>
-
-                      <div class="card__content">
-                        <div class="card__title">{{ art.title }}</div>
-                        <div class="card__time">{{ art.published_date | pretty_date }}</div>
-                      </div>
-                    </a>
-                  </div>
-                  {% endwith %}
-                {% endfor %}
-              </div>
-
-              <a href="https://bes.media/category/voprosy-chinovnikam/"" class="showMore noFullWidth">
-                <div class="showMore__content">
-                  <span>Смотреть больше</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10.976 10L6.851 5.876 8.03 4.697 13.333 10 8.03 15.304 6.851 14.125 10.976 10Z" fill="#161616"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div class="container">
-            <div class="categoryNews">
-              <h2 class="cat__title">Поговорим с...</h2>
-
-              <div class="categoryNews__wrap">
-                {% for art in interview_articles %}
-                  {% with
-                    image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
-                    image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
-                  %}
-                  <div class="card default">
-                    <a href="https://bes.media/news/{{ art.alias }}/">
-                      <picture>
-                        <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <img data-src="{{ image_jpeg_800 }}" alt="{{ art.image.alt or art.title }}" class="lazy" />
-                      </picture>
-
-                      <div class="card__content">
-                        <div class="card__title">{{ art.title }}</div>
-                        <div class="card__time">{{ art.published_date | pretty_date }}</div>
-                      </div>
-                    </a>
-                  </div>
-                  {% endwith %}
-                {% endfor %}
-              </div>
-
-              <a href="https://bes.media/category/pogovorim-s/" class="showMore noFullWidth">
-                <div class="showMore__content">
-                  <span>Смотреть больше</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10.976 10L6.851 5.876 8.03 4.697 13.333 10 8.03 15.304 6.851 14.125 10.976 10Z" fill="#161616"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div class="container">
-            <div class="categoryNews">
-              <h2 class="cat__title">Секрет успеха</h2>
-
-              <div class="categoryNews__wrap">
-                {% for art in success_stories %}
-                  {% with
-                    image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
-                    image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
-                  %}
-                  <div class="card default">
-                    <a href="https://bes.media/news/{{ art.alias }}/">
-                      <picture>
-                        <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ image_webp_800 }}" class="lazy" />
-                        <img data-src="{{ image_jpeg_800 }}" alt="{{ art.image.alt or art.title }}" class="lazy" />
-                      </picture>
-
-                      <div class="card__content">
-                        <div class="card__title">{{ art.title }}</div>
-                        <div class="card__time">{{ art.published_date | pretty_date }}</div>
-                      </div>
-                    </a>
-                  </div>
-                  {% endwith %}
-                {% endfor %}
-              </div>
-
-              <a href="https://bes.media/category/sekret-uspeha/" class="showMore noFullWidth">
-                <div class="showMore__content">
-                  <span>Смотреть больше</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10.976 10L6.851 5.876 8.03 4.697 13.333 10 8.03 15.304 6.851 14.125 10.976 10Z" fill="#161616"/>
-                  </svg>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
-        <section class="adSection adMobile">
-            <div class="container">
-              <div class="ad-wrapper-mobile-big">
-                <div id="ad-placeholder" class="ad-placeholder">BES.media</div>
-                <div id="adfox_17095555565288808"></div>
-                <script>
-                  window.yaContextCb.push(() => {
-                    Ya.adfoxCode.createAdaptive(
-                      {
-                        ownerId: 264109,
-                        containerId: "adfox_17095555565288808",
-                        params: {
-                          p1: "dbhtj",
-                          p2: "iwpn",
-                        },
-                      },
-                      ["phone"],
-                      {
-                        tabletWidth: 830,
-                        phoneWidth: 480,
-                        isAutoReloads: false,
-                      }
-                    );
-                  });
-                </script>
-              </div>
-            </div>
-          </section>
-    </main>
-{% include 'footer.html' %}
-{% include 'drawer.html' %}
+  </main>
+    {% include 'footer.html' %}
 {% endblock content %}
  {% block scripts %}
- <script src="/static/js/index.bundle.js?v=1.8" defer></script>
+{#                <script type="module" crossorigin src="/static/scripts/audioControls.chunk.js"></script>#}
+{#  <script type="module" crossorigin src="/static/scripts/main.chunk.js"></script>#}
+     <script type="module" crossorigin src="/static/scripts/main.js"></script>
 {% endblock scripts %}
