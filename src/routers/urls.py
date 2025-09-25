@@ -1,5 +1,5 @@
 from datetime import datetime
-
+import os
 from fastapi import APIRouter, Request, Depends, Query, HTTPException, Response
 from fastapi.exceptions import RequestValidationError
 from fastapi.templating import Jinja2Templates
@@ -34,6 +34,8 @@ from fastapi.responses import RedirectResponse
 router = APIRouter(tags=["App"])
 
 templates = Jinja2Templates(directory="templates")
+SITE_URL = os.getenv("SITE_URL", "https://nationalbusiness.kz")
+templates.env.globals['SITE_URL'] = SITE_URL
 templates.env.filters['pretty_date'] = pretty_date.pretty_date
 templates.env.filters['announce_date'] = pretty_date.announce_date
 templates.env.filters['article_pretty_date'] = pretty_date.article_pretty_date
@@ -41,70 +43,6 @@ templates.env.filters['format_number'] = format_number.format_number
 templates.env.filters['duration_mmss'] = pretty_date.duration_mmss
 templates.env.filters['duration_hhmm'] = pretty_date.duration_hhmm
 templates.env.filters['duration_minutes_only'] = pretty_date.duration_minutes_only
-
-# @router.get('/search')
-# async def search(
-#     request: Request,
-#     db: DBSessionDep,
-#     q: str = "",
-#     page: int = Query(default=1, ge=1),
-#     s: str = None,
-#     es: AsyncElasticsearch = Depends(get_elastic),
-#     author: str = None,
-# ):
-#     # sort_by = 'published_date:desc' if s == 'data' else None
-#     # articles_search = ArticlesImprovedSearch(index="articles", sort_param=sort_by)
-#     # total = 0
-#     # result = []
-#     # per_page = 6
-#     #
-#     # if q or author:
-#     #     await articles_search.search(search_val=q)
-#     #     elastic_result = await articles_search.get(
-#     #         elastic_session=es,
-#     #         from_=page,
-#     #         per_page=per_page,
-#     #         author=author
-#     #     )
-#     #     total = elastic_result['hits']['total']['value']
-#     #     result = [item['_source'] for item in elastic_result['hits']['hits']]
-#     dt = datetime.now() + TZ_SHIFT
-#     filters = and_(
-#         Article.published_date <= dt,
-#         Article.article_status == "P"
-#     )
-#     query = select(Article).options(selectinload(Article.categories)).filter(filters)
-#     if s == 'data':
-#         query = query.order_by(Article.published_date.desc())
-#
-#     if q:
-#         query = query.filter(Article.title.ilike(f'%{q}%'))
-#
-#     # if author:
-#     #     query = query.filter(Article.author_ids.in_([author]))
-#
-#
-#     # total_pages = (total + per_page - 1) // per_page
-#     pagination = Pagination(page=page, per_page=10)
-#     page_obj = await paginate(db, pagination, query)
-#     # data = PaginationResponse(
-#     #     page=page,
-#     #     per_page=per_page,
-#     #     pages=total_pages,
-#     #     total=total,
-#     #     items=query,
-#     #     has_previous=page > 1,
-#     #     has_next=page < total_pages,
-#     # )
-#     context = {
-#         "total": page_obj.total,
-#         "q": q,
-#         "page": page_obj,
-#         "page_number": page,
-#         "s": s,
-#         # "author": author
-#     }
-#     return templates.TemplateResponse(request=request, name="pages/search-test.html", context=context)
 
 @router.get('/search')
 async def search(
@@ -124,11 +62,6 @@ async def search(
         "s": result["sort"],
     }
     return templates.TemplateResponse(request=request, name="pages/search-test.html", context=context)
-
-
-# @router.get('/api/authors')
-# async def api_authors():
-#     return await api_author()
 
 
 @router.get('/')
@@ -156,24 +89,6 @@ async def allnews(request: Request, db: DBSessionDep, page: int = 1):
     return templates.TemplateResponse(request=request,
                                       name="pages/allnews.html",
                                       context=context)
-
-# @router.get('/amp/{slug}/')
-# async def amp_article(
-#     request: Request,
-#     db: DBSessionDep,
-#     slug: str,
-#     curr_redis = Depends(get_redis),   # ← добавили
-# ):
-#     context = await article_service.article_amp(
-#         db=db,
-#         slug=slug,
-#         curr_redis=curr_redis,         # ← передаём
-#     )
-#     return templates.TemplateResponse(
-#         request=request,
-#         name="pages/amp_article.html",
-#         context=context
-#     )
 
 
 @router.get('/category/{slug}/')
@@ -210,22 +125,10 @@ async def author(request: Request, db: DBSessionDep, slug: str, page: int = Quer
 async def contacts(request: Request):
     return templates.TemplateResponse(request=request, name="pages/contacts.html", context={})
 
-@router.get('/podcast/{slug}/', name="podcast_detail")
+@router.get('/podcasts/{slug}/', name="podcast_detail")
 async def podcast_page(request: Request, db: DBSessionDep, slug: str, curr_redis=Depends(get_redis)):
     context = await podcast_service.podcast_detail(db=db, slug=slug, curr_redis=curr_redis)
     return templates.TemplateResponse(request=request, name="pages/podcast.html", context=context)
-
-# @router.get('/data/')
-# async def data(request: Request):
-#     return templates.TemplateResponse(request=request, name="pages/data.html", context={})
-#
-# @router.get('/advertising/')
-# async def advertising(request: Request):
-#     return templates.TemplateResponse(request=request, name="pages/advertising.html", context={})
-#
-# @router.get('/material-use-policy/')
-# async def material_use_policy(request: Request):
-#     return templates.TemplateResponse(request=request, name="pages/material-use-policy.html", context={})
 
 @router.get('/about/')
 async def about(request: Request):

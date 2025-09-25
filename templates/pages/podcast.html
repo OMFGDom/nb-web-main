@@ -255,7 +255,7 @@
 
         {% set np = next_podcast or prev_podcast %}
         {% if np %}
-          <a class="podcast-next__item" href="/podcast/{{ np.alias }}/" aria-label="Перейти к следующему подкасту: {{ np.title|striptags|e }}">
+          <a class="podcast-next__item" href="{{ SITE_URL }}/podcast/{{ np.alias }}/" aria-label="Перейти к следующему подкасту: {{ np.title|striptags|e }}">
             <div class="podcast-next__thumb image-wrapper">
               <picture>
                 {% if np.image.image_webp_800 %}
@@ -337,7 +337,7 @@
 
         <hr class="podcast-details__divider" aria-hidden="true" />
 
-        <a class="podcast-details__more" href="/podcasts.html" aria-label="Смотреть еще подкасты">
+        <a class="podcast-details__more" href="{{ SITE_URL }}/podcasts/" aria-label="Смотреть еще подкасты">
           <span>Смотреть еще подкасты</span>
           <i class="pagination-arrow-next" aria-hidden="true"></i>
         </a>

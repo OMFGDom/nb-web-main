@@ -10,7 +10,7 @@
         <ul class="category-header__tags">
           {% for sc in subcategories %}
             <li class="category-header__tag">
-              <a href="/category/{{ sc.slug }}/" class="category-header__tag-link">{{ sc.title }}</a>
+              <a href="{{ SITE_URL }}/category/{{ sc.slug }}/" class="category-header__tag-link">{{ sc.title }}</a>
             </li>
             {% if not loop.last %}<span class="divider"></span>{% endif %}
           {% endfor %}
@@ -34,7 +34,7 @@
           image_jpeg_800 = f.image.image_jpeg_800 | default(f.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
         %}
         <div class="category-news__featured" aria-labelledby="featured-article-title">
-          <a class="category-news__featured-content" href="/news/{{ f.alias }}/">
+          <a class="category-news__featured-content" href="{{ SITE_URL }}/news/{{ f.alias }}/">
             <div class="category-news__featured-image-wrapper">
               <picture>
                 <source media="(max-width: 699px)" type="image/webp" srcset="{{ image_webp_800 }}">
@@ -59,7 +59,7 @@
           <article class="category-news__item">
             {% if art.badge_category %}<span class="category-news__badge">{{ art.badge_category }}</span>{% endif %}
             <h3 class="category-news__item-title">
-              <a href="/news/{{ art.alias }}/" class="category-news__item-link">{{ art.title }}</a>
+              <a href="{{ SITE_URL }}/news/{{ art.alias }}/" class="category-news__item-link">{{ art.title }}</a>
             </h3>
           </article>
         {% endfor %}
@@ -81,7 +81,7 @@
           <div class="category-articles__content">
             <div class="category-articles__text">
               {% if art.badge_category %}<div class="category-articles__category">{{ art.badge_category }}</div>{% endif %}
-              <h3 class="category-articles__title"><a href="/news/{{ art.alias }}/" class="category-articles__title-link">{{ art.title }}</a></h3>
+              <h3 class="category-articles__title"><a href="{{ SITE_URL }}/news/{{ art.alias }}/" class="category-articles__title-link">{{ art.title }}</a></h3>
               {% if art.description %}<p class="category-articles__excerpt">{{ art.description }}</p>{% endif %}
               {% if art.published_date %}
                 <time class="category-articles__time" datetime="{{ art.published_date.isoformat() }}">{{ art.published_date.strftime('%d.%m.%Y %H:%M') }}</time>
@@ -114,7 +114,7 @@
           image_jpeg_800 = f2.image.image_jpeg_800 | default(f2.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
         %}
         <div class="category-news__featured" aria-labelledby="featured-article-title-2">
-          <a class="category-news__featured-content" href="/news/{{ f2.alias }}/">
+          <a class="category-news__featured-content" href="{{ SITE_URL }}/news/{{ f2.alias }}/">
             <div class="category-news__featured-image-wrapper">
               <picture>
                 <source media="(max-width: 699px)" type="image/webp" srcset="{{ image_webp_800 }}">
@@ -139,7 +139,7 @@
           <article class="category-news__item">
             {% if art.badge_category %}<span class="category-news__badge">{{ art.badge_category }}</span>{% endif %}
             <h3 class="category-news__item-title">
-              <a href="/news/{{ art.alias }}/" class="category-news__item-link">{{ art.title }}</a>
+              <a href="{{ SITE_URL }}/news/{{ art.alias }}/" class="category-news__item-link">{{ art.title }}</a>
             </h3>
           </article>
         {% endfor %}

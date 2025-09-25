@@ -86,7 +86,7 @@
         {% set author_fullname = (author.firstName ~ ' ' ~ author.lastName) | trim %}
         {% set alt_text = author.image.alt | default(author_fullname, true) %}
 
-        <a href="{{ (SITE_URL or 'https://nationalbusiness.kz') }}/authors/{{ author.id }}/"
+        <a href="{{ SITE_URL }}/authors/{{ author.id }}/"
            class="author-item">
           <div class="author-image">
             <picture>

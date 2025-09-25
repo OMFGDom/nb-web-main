@@ -34,36 +34,34 @@
           credit_text     = article.image.source  | default('', true)
         %}
         <figure class="article-figure" aria-label="Article image with caption">
-          <picture>
-            {# WEBP srcset (lazy) #}
-            <source
-              type="image/webp"
-              data-srcset="
-                {% if image_webp_1200 %}{{ image_webp_1200 }} 1200w,{% endif %}
-                {% if image_webp_800  %}{{ image_webp_800  }} 800w,{% endif %}
-                {% if image_webp_200  %}{{ image_webp_200  }} 400w{% endif %}"
-              sizes="(max-width: 500px) 400px, (max-width: 900px) 800px, 1200px"
-            >
-            {# JPEG srcset (lazy) #}
-            <source
-              type="image/jpeg"
-              data-srcset="
-                {% if image_jpeg_1200 %}{{ image_jpeg_1200 }} 1200w,{% endif %}
-                {% if image_jpeg_800  %}{{ image_jpeg_800  }} 800w,{% endif %}
-                {% if image_jpeg_200  %}{{ image_jpeg_200  }} 400w{% endif %}"
-              sizes="(max-width: 500px) 400px, (max-width: 900px) 800px, 1200px"
-            >
-            {# Fallback img; используем data-src для ленивой загрузки, класс как в новой вёрстке #}
-            <img
-              class="lazy article-figure__image"
-              data-src="{{ fallback_img }}"
-              alt="{{ alt_text }}"
-              title="{{ title_text }}"
-              decoding="async"
-              loading="lazy"
-            >
-          </picture>
-
+            <picture>
+              {# WEBP srcset #}
+              <source
+                type="image/webp"
+                srcset="
+                  {% if image_webp_1200 %}{{ image_webp_1200 }} 1200w,{% endif %}
+                  {% if image_webp_800  %}{{ image_webp_800  }} 800w,{% endif %}
+                  {% if image_webp_200  %}{{ image_webp_200  }} 400w{% endif %}"
+                sizes="(max-width: 500px) 400px, (max-width: 900px) 800px, 1200px"
+              >
+              {# JPEG srcset #}
+              <source
+                type="image/jpeg"
+                srcset="
+                  {% if image_jpeg_1200 %}{{ image_jpeg_1200 }} 1200w,{% endif %}
+                  {% if image_jpeg_800  %}{{ image_jpeg_800  }} 800w,{% endif %}
+                  {% if image_jpeg_200  %}{{ image_jpeg_200  }} 400w{% endif %}"
+                sizes="(max-width: 500px) 400px, (max-width: 900px) 800px, 1200px"
+              >
+              {# Fallback img #}
+              <img
+                class="article-figure__image"
+                src="{{ fallback_img }}"
+                alt="{{ alt_text }}"
+                title="{{ title_text }}"
+                fetchpriority="high"
+              >
+            </picture>
           {# Подпись и кредит #}
           {% if caption_text or credit_text %}
             <figcaption class="article-figure__caption">

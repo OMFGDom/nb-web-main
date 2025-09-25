@@ -148,7 +148,7 @@
               {% endif %}
 
               <h3 id="work-{{ loop.index }}-title" class="author-work__title">
-                <a href="https://bes.media/news/{{ article.alias }}/">
+                <a href="{{ SITE_URL }}/news/{{ article.alias }}/">
                   {{ article.title }}
                 </a>
               </h3>
@@ -160,7 +160,7 @@
               {% endif %}
 
               <a class="author-work__read"
-                 href="https://bes.media/news/{{ article.alias }}/"
+                 href="{{ SITE_URL }}/news/{{ article.alias }}/"
                  aria-label="Читать статью: {{ article.title }}">
                 Читать статью
               </a>

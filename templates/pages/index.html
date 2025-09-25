@@ -73,7 +73,7 @@
                                   | default('/static/img/plug.jpg', true),
                 category = main_article.categories[-1].title if main_article.categories|length > 0 else "Новости"
               %}
-                <a class="news-card news-card-1" href="/news/{{ main_article.alias }}/">
+                <a class="news-card news-card-1" href="{{ SITE_URL }}/news/{{ main_article.alias }}/">
                   <div class="news-card__content">
                     <div class="news-card__badge">{{ category }}</div>
                     <h2 class="news-card__title">{{ main_article.title }}</h2>
@@ -109,7 +109,7 @@
                                     | default(art.image.image_800_jpeg, true),
                     category = art.categories[-1].title if art.categories|length > 0 else "Новости"
                   %}
-                    <a class="news-card-text-image" href="/news/{{ art.alias }}/">
+                    <a class="news-card-text-image" href="{{ SITE_URL }}/news/{{ art.alias }}/">
                       <div class="news-card-text-image__content">
                         <div class="news-card-text-image__badge">{{ category }}</div>
                         <h3 class="news-card-text-image__title">{{ art.title }}</h3>
@@ -137,7 +137,7 @@
             {% if third_articles %}
               <div class="news-scroll">
                 {% for art in third_articles %}
-                  <a class="news-card-text-image" href="/news/{{ art.alias }}/">
+                  <a class="news-card-text-image" href="{{ SITE_URL }}/news/{{ art.alias }}/">
                     <div class="news-card-text-image__content">
                       <div class="news-card-text-image__badge">{{ art.badge_category }}</div>
                       <h3 class="news-card-text-image__title">{{ art.title }}</h3>
@@ -164,7 +164,7 @@
         image_webp_800 = a.image.image_webp_800 | default(a.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
         image_jpeg_800 = a.image.image_jpeg_800 | default(a.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
       %}
-      <a class="news-card-wide" href="/news/{{ a.alias }}/">
+      <a class="news-card-wide" href="{{ SITE_URL }}/news/{{ a.alias }}/">
         <figure class="news-card-wide__media" aria-hidden="true">
           <picture>
             <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
@@ -190,7 +190,7 @@
     <h2>МНЕНИЕ</h2>
     {% if opinion_article %}
       {% set m = opinion_article %}
-      <a class="news-card-quote" href="/news/{{ m.alias }}/">
+      <a class="news-card-quote" href="{{ SITE_URL }}/news/{{ m.alias }}/">
         <div class="news-card-quote__content">
           <div class="news-card-quote__header">
             <i class="quote-symbol" data-size="26"></i>
@@ -227,7 +227,7 @@
         image_webp_800 = iv.image.image_webp_800 | default(iv.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
         image_jpeg_800 = iv.image.image_jpeg_800 | default(iv.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
       %}
-      <a class="video-card-1" href="/news/{{ iv.alias }}/">
+      <a class="video-card-1" href="{{ SITE_URL }}/news/{{ iv.alias }}/">
         <div class="video-card-1__content">
           <h3 class="video-card-1__title">{{ iv.quote | default(iv.title, true) }}</h3>
           <div class="video-card-1__meta">
@@ -271,7 +271,7 @@
       image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true),
       badge_title    = (art.categories[-1].title if art.categories else 'Новости')
     %}
-    <a class="news-card-2 {{ art.public_type_class }}" href="/news/{{ art.alias }}/">
+    <a class="news-card-2 {{ art.public_type_class }}" href="{{ SITE_URL }}/news/{{ art.alias }}/">
       <figure class="news-card-2__media">
         <picture>
           <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
@@ -300,7 +300,7 @@
     image_webp_800 = item.image.image_webp_800 | default(item.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
     image_jpeg_800 = item.image.image_jpeg_800 | default(item.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
   %}
-  <a class="interview-card-1" href="/news/{{ item.alias }}/">
+  <a class="interview-card-1" href="{{ SITE_URL }}/news/{{ item.alias }}/">
     <div class="interview-card-1__content">
       <figure class="interview-card-1__media">
         <picture>
@@ -366,7 +366,7 @@
           image_webp_800 = f.image.image_webp_800 | default(f.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
           image_jpeg_800 = f.image.image_jpeg_800 | default(f.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
         %}
-        <a class="featured-article" href="/news/{{ f.alias }}/">
+        <a class="featured-article" href="{{ SITE_URL }}/news/{{ f.alias }}/">
           <div class="featured-article__content">
             <div class="featured-article__text">
               <h2 class="featured-article__title">{{ f.title }}</h2>
@@ -403,7 +403,7 @@
       {% if economy_articles %}
       <section class="article-list">
         {% for art in economy_articles %}
-          <a class="article-list__item" href="/news/{{ art.alias }}/">
+          <a class="article-list__item" href="{{ SITE_URL }}/news/{{ art.alias }}/">
             <span class="article-list__category">{{ art.badge_category or 'Экономика' }}</span>
             <h3 class="article-list__title">{{ art.title }}</h3>
           </a>
@@ -415,7 +415,7 @@
         <h3>{{ economy_parent.title if economy_parent else 'Экономика' }}</h3>
         <div class="links">
           {% for cat in economy_subcategories %}
-            <a href="https://nationalbusiness.kz/category/{{ cat.slug }}/">{{ cat.title }}</a>
+            <a href="{{ SITE_URL }}/category/{{ cat.slug }}/">{{ cat.title }}</a>
           {% endfor %}
         </div>
       </div>
@@ -429,7 +429,7 @@
 
       <div class="podcast-section__content">
         {% for p in latest_podcasts %}
-          <a class="podcast-card" href="/podcast/{{ p.alias }}/">
+          <a class="podcast-card" href="{{ SITE_URL }}/podcasts/{{ p.alias }}/">
             <div class="podcast-card__media">
               <picture>
                 {% if p.image.image_webp_200 %}
@@ -481,7 +481,7 @@
         image_webp_800 = f.image.image_webp_800 | default(f.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
         image_jpeg_800 = f.image.image_jpeg_800 | default(f.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
       %}
-      <a class="featured-article featured-article--geopolitics" href="/news/{{ f.alias }}/">
+      <a class="featured-article featured-article--geopolitics" href="{{ SITE_URL }}/news/{{ f.alias }}/">
         <div class="featured-article__content">
           <div class="featured-article__text">
             <h2 class="featured-article__title">{{ f.title }}</h2>
@@ -512,7 +512,7 @@
       <h3>{{ geopolitics_parent.title if geopolitics_parent else 'Геополитика' }}</h3>
       <div class="links">
         {% for cat in geopolitics_subcategories %}
-          <a href="https://nationalbusiness.kz/category/{{ cat.slug }}/">{{ cat.title }}</a>
+          <a href="{{ SITE_URL }}/category/{{ cat.slug }}/">{{ cat.title }}</a>
         {% endfor %}
       </div>
     </div>
@@ -520,7 +520,7 @@
 
   <div class="geopolitics-news__grid">
     {% for art in geopolitics_articles[:4] %}
-      <a class="geopolitics-news__item {% if loop.index0 == 0 %}geopolitics-news__item--wide{% endif %}" href="/news/{{ art.alias }}/">
+      <a class="geopolitics-news__item {% if loop.index0 == 0 %}geopolitics-news__item--wide{% endif %}" href="{{ SITE_URL }}/news/{{ art.alias }}/">
         <div class="geopolitics-news__badge">{{ art.badge_category or 'Геополитика' }}</div>
         <h3 class="geopolitics-news__title">{{ art.title }}</h3>
         {% if art.published_date %}
@@ -552,7 +552,7 @@
       image_webp_800 = f.image.image_webp_800 | default(f.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
       image_jpeg_800 = f.image.image_jpeg_800 | default(f.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
     %}
-    <a class="featured-article" href="/news/{{ f.alias }}/">
+    <a class="featured-article" href="{{ SITE_URL }}/news/{{ f.alias }}/">
       <div class="featured-article__content">
         <div class="featured-article__text">
           <h2 class="featured-article__title">{{ f.title }}</h2>
@@ -582,7 +582,7 @@
   {% if research_articles %}
   <section class="article-list">
     {% for art in research_articles %}
-      <a class="article-list__item" href="/news/{{ art.alias }}/">
+      <a class="article-list__item" href="{{ SITE_URL }}/news/{{ art.alias }}/">
         <span class="article-list__category">{{ art.badge_category or 'Исследования' }}</span>
         <h3 class="article-list__title">{{ art.title }}</h3>
       </a>
@@ -594,7 +594,7 @@
     <h3>{{ research_parent.title if research_parent else 'Исследования' }}</h3>
     <div class="links">
       {% for cat in research_subcategories %}
-        <a href="https://nationalbusiness.kz/category/{{ cat.slug }}/">{{ cat.title }}</a>
+        <a href="{{ SITE_URL }}/category/{{ cat.slug }}/">{{ cat.title }}</a>
       {% endfor %}
     </div>
   </div>
@@ -621,7 +621,7 @@
         image_webp_800 = art.image.image_webp_800 | default(art.image.image_800_webp, true) | default('/static/img/plug.jpg', true),
         image_jpeg_800 = art.image.image_jpeg_800 | default(art.image.image_800_jpeg, true) | default('/static/img/plug.jpg', true)
       %}
-      <a class="news-card-2 news-card-2--lifestyle" href="/news/{{ art.alias }}/">
+      <a class="news-card-2 news-card-2--lifestyle" href="{{ SITE_URL }}/news/{{ art.alias }}/">
         <figure class="news-card-2__media">
           <picture>
             <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ image_webp_800 }}">
