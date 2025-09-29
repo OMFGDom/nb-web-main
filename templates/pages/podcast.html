@@ -77,211 +77,212 @@
   {% include 'header.html' %}
 
   <main class="podcast-page-layout" id="main" tabindex="-1">
-    <section class="podcast-hero" aria-labelledby="podcast-hero-title" role="region">
-      <div class="podcast-hero__inner">
-        <div class="podcast-hero__art">
-          <div class="image-wrapper">
-            <picture>
-              {% if podcast.image.image_webp_800 %}
-                <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ podcast.image.image_webp_800 }}">
-              {% endif %}
-              {% if podcast.image.image_webp_1200 %}
-                <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ podcast.image.image_webp_1200 }}">
-              {% endif %}
-              <img
-                data-src="{{ podcast.image.image_jpeg_1200 or podcast.image.image_jpeg_800 or podcast.image.image_jpeg_200 }}"
-                alt="{{ podcast.image.alt or podcast.title }}"
-                loading="lazy"
-                class="lazy" />
-            </picture>
-          </div>
+    <h1 class="subcategory-page-title desktop-only" style="max-width: var(--content-width);margin-inline:auto;">Подкаст</h1>
+      <div class="podcast-background">
+        <section class="podcast-hero" aria-labelledby="podcast-hero-title" role="region">
+  <div class="podcast-hero__inner">
+    <div class="podcast-hero__art">
+      <div class="image-wrapper">
+        <picture>
+          {% if podcast.image.image_webp_800 %}
+            <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ podcast.image.image_webp_800 }}">
+          {% endif %}
+          {% if podcast.image.image_webp_1200 %}
+            <source media="(min-width: 700px)" type="image/webp" data-srcset="{{ podcast.image.image_webp_1200 }}">
+          {% endif %}
+          <img
+            data-src="{{ podcast.image.image_jpeg_1200 or podcast.image.image_jpeg_800 or podcast.image.image_jpeg_200 }}"
+            alt="{{ podcast.image.alt or podcast.title }}"
+            loading="lazy"
+            class="lazy" />
+        </picture>
+      </div>
+    </div>
+
+    <header class="podcast-hero__header">
+      <p class="podcast-hero__series">{{ podcast.category_title }}</p>
+      <h1 id="podcast-hero-title" class="podcast-hero__title">{{ podcast.title }}</h1>
+    </header>
+
+    <div class="podcast-hero__player" aria-label="Проигрыватель эпизода" role="group">
+      <div class="podcast-hero__progress" aria-label="Прогресс" role="img" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="podcast-hero__time" aria-hidden="true">00:00</span>
+        <div class="podcast-hero__bar" aria-hidden="true">
+          <div class="podcast-hero__bar-bg"></div>
+          <div class="podcast-hero__thumb" style="left:0%"></div>
         </div>
+        <span class="podcast-hero__time" aria-hidden="true">
+          {% if podcast.podcast.duration_ms %}{{ podcast.podcast.duration_ms|duration_mmss }}{% else %}--:--{% endif %}
+        </span>
+      </div>
 
-        <header class="podcast-hero__header">
-          <p class="podcast-hero__series">{{ podcast.category_title }}</p>
-          <h1 id="podcast-hero-title" class="podcast-hero__title">{{ podcast.title }}</h1>
-        </header>
+      <div class="podcast-hero__controls">
+                <div class="podcast-hero__ctrl podcast-hero__volume-ctrl" id="change-audio-level">
+                    <button class="podcast-hero__volume-btn" aria-label="Регулировка громкости" title="Регулировка громкости">
+                        <div class="podcast-hero__volume-icon">
+                            <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path class="volume-speaker" d="M16.2727 6.45669C16.9808 7.40084 17.3636 8.5492 17.3636 9.7294C17.3636 10.9096 16.9808 12.058 16.2727 13.0021M19.9425 16.6719C20.8542 15.7602 21.5774 14.6779 22.0708 13.4867C22.5642 12.2955 22.8182 11.0187 22.8182 9.7294C22.8182 8.44005 22.5642 7.16333 22.0708 5.97213C21.5774 4.78093 20.8542 3.69858 19.9425 2.78688M10.8181 1.76798C10.8179 1.61603 10.7727 1.46755 10.6882 1.34128C10.6037 1.215 10.4836 1.1166 10.3432 1.05848C10.2028 1.00036 10.0484 0.985134 9.89932 1.01472C9.75028 1.0443 9.61334 1.11737 9.50578 1.22471L5.81416 4.91524C5.6717 5.05856 5.5022 5.17218 5.3155 5.24952C5.1288 5.32686 4.92861 5.36637 4.72653 5.36578H2.0909C1.80158 5.36578 1.5241 5.48072 1.31952 5.6853C1.11493 5.88988 1 6.16736 1 6.45669V13.0021C1 13.2914 1.11493 13.5689 1.31952 13.7735C1.5241 13.9781 1.80158 14.093 2.0909 14.093H4.72653C4.92861 14.0924 5.1288 14.1319 5.3155 14.2093C5.5022 14.2866 5.6717 14.4002 5.81416 14.5436L9.50469 18.2352C9.61226 18.343 9.74939 18.4164 9.89872 18.4461C10.048 18.4759 10.2029 18.4607 10.3435 18.4024C10.4842 18.3441 10.6044 18.2453 10.6889 18.1187C10.7734 17.992 10.8184 17.8431 10.8181 17.6908V1.76798Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
+                                <!-- Mute lines (hidden by default) -->
+                                <path class="volume-mute-lines" d="M22.82 6.45716L16.274 13.0032M16.274 6.45716L22.82 13.0032" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" style="display: none;"/>
+                            </svg>
+                        </div>
+                    </button>
 
-        <div class="podcast-hero__player" aria-label="Проигрыватель эпизода" role="group">
-          <div class="podcast-hero__progress" aria-label="Прогресс" role="img" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-            <span class="podcast-hero__time" aria-hidden="true">00:00</span>
-            <div class="podcast-hero__bar" aria-hidden="true">
-              <div class="podcast-hero__bar-bg"></div>
-              <div class="podcast-hero__thumb" style="left:0%"></div>
-            </div>
-            <span class="podcast-hero__time" aria-hidden="true">
-              {% if podcast.podcast.duration_ms %}{{ podcast.podcast.duration_ms|duration_mmss }}{% else %}--:--{% endif %}
-            </span>
-          </div>
-
-          <div class="podcast-hero__controls">
-                    <div class="podcast-hero__ctrl podcast-hero__volume-ctrl" id="change-audio-level">
-                        <button class="podcast-hero__volume-btn" aria-label="Регулировка громкости" title="Регулировка громкости">
-                            <div class="podcast-hero__volume-icon">
-                                <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path class="volume-speaker" d="M16.2727 6.45669C16.9808 7.40084 17.3636 8.5492 17.3636 9.7294C17.3636 10.9096 16.9808 12.058 16.2727 13.0021M19.9425 16.6719C20.8542 15.7602 21.5774 14.6779 22.0708 13.4867C22.5642 12.2955 22.8182 11.0187 22.8182 9.7294C22.8182 8.44005 22.5642 7.16333 22.0708 5.97213C21.5774 4.78093 20.8542 3.69858 19.9425 2.78688M10.8181 1.76798C10.8179 1.61603 10.7727 1.46755 10.6882 1.34128C10.6037 1.215 10.4836 1.1166 10.3432 1.05848C10.2028 1.00036 10.0484 0.985134 9.89932 1.01472C9.75028 1.0443 9.61334 1.11737 9.50578 1.22471L5.81416 4.91524C5.6717 5.05856 5.5022 5.17218 5.3155 5.24952C5.1288 5.32686 4.92861 5.36637 4.72653 5.36578H2.0909C1.80158 5.36578 1.5241 5.48072 1.31952 5.6853C1.11493 5.88988 1 6.16736 1 6.45669V13.0021C1 13.2914 1.11493 13.5689 1.31952 13.7735C1.5241 13.9781 1.80158 14.093 2.0909 14.093H4.72653C4.92861 14.0924 5.1288 14.1319 5.3155 14.2093C5.5022 14.2866 5.6717 14.4002 5.81416 14.5436L9.50469 18.2352C9.61226 18.343 9.74939 18.4164 9.89872 18.4461C10.048 18.4759 10.2029 18.4607 10.3435 18.4024C10.4842 18.3441 10.6044 18.2453 10.6889 18.1187C10.7734 17.992 10.8184 17.8431 10.8181 17.6908V1.76798Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"/>
-                                    <!-- Mute lines (hidden by default) -->
-                                    <path class="volume-mute-lines" d="M22.82 6.45716L16.274 13.0032M16.274 6.45716L22.82 13.0032" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" style="display: none;"/>
-                                </svg>
+                    <!-- Desktop Volume Slider (hidden by default) -->
+                    <div class="podcast-hero__volume-panel" aria-hidden="true">
+                        <div class="podcast-hero__volume-slider">
+                            <div class="podcast-hero__volume-track">
+                                <div class="podcast-hero__volume-bg"></div>
+                                <div class="podcast-hero__volume-fill"></div>
+                                <button class="podcast-hero__volume-thumb" aria-label="Перетащите для изменения громкости" role="slider" aria-valuemin="0" aria-valuemax="10" aria-valuenow="7"></button>
                             </div>
-                        </button>
-
-                        <!-- Desktop Volume Slider (hidden by default) -->
-                        <div class="podcast-hero__volume-panel" aria-hidden="true">
-                            <div class="podcast-hero__volume-slider">
-                                <div class="podcast-hero__volume-track">
-                                    <div class="podcast-hero__volume-bg"></div>
-                                    <div class="podcast-hero__volume-fill"></div>
-                                    <button class="podcast-hero__volume-thumb" aria-label="Перетащите для изменения громкости" role="slider" aria-valuemin="0" aria-valuemax="10" aria-valuenow="7"></button>
-                                </div>
-                                <span class="podcast-hero__volume-level" aria-live="polite">7</span>
-                            </div>
+                            <span class="podcast-hero__volume-level" aria-live="polite">7</span>
                         </div>
                     </div>
-                    <div class="main-controls">
-                        <button class="podcast-hero__ctrl" aria-label="Перемотать на 10 секунд назад"
-                            title="Перемотать на 10 секунд назад" id="audio-10sec-prev">
-                            <i class="audio-10sec-prev"></i>
-                        </button>
-                        <button class="podcast-hero__ctrl podcast-hero__ctrl--play" aria-label="Воспроизвести"
-                            title="Воспроизвести">
-                            <i class="audio-play"></i>
-                        </button>
-                        <button class="podcast-hero__ctrl" aria-label="Перемотать на 10 секунд вперед"
-                            title="Перемотать на 10 секунд вперед" id="audio-10sec-next">
-                            <i class="audio-10sec-next"></i>
-                        </button>
-                    </div>
-                    <div class="podcast-hero__ctrl" id="audio-settings">
-                        <i class="audio-settings"></i>
-                        <div class="audio-settings-panel" aria-hidden="true" role="dialog" aria-labelledby="settings-title">
-                            <div class="audio-settings-panel__content">
-                                <!-- Speed Setting -->
-                                <button class="audio-settings-panel__item" aria-label="Настройки скорости воспроизведения" aria-expanded="false" data-setting="speed">
-                                    <div class="audio-settings-panel__item-left">
-                                        <div class="audio-settings-panel__icon">
-                                            <i class="audio-speed"></i>
-                                        </div>
-                                        <span class="audio-settings-panel__label">Скорость</span>
+                </div>
+                <div class="main-controls">
+                    <button class="podcast-hero__ctrl" aria-label="Перемотать на 10 секунд назад"
+                        title="Перемотать на 10 секунд назад" id="audio-10sec-prev">
+                        <i class="audio-10sec-prev"></i>
+                    </button>
+                    <button class="podcast-hero__ctrl podcast-hero__ctrl--play" aria-label="Воспроизвести"
+                        title="Воспроизвести">
+                        <i class="audio-play"></i>
+                    </button>
+                    <button class="podcast-hero__ctrl" aria-label="Перемотать на 10 секунд вперед"
+                        title="Перемотать на 10 секунд вперед" id="audio-10sec-next">
+                        <i class="audio-10sec-next"></i>
+                    </button>
+                </div>
+                <div class="podcast-hero__ctrl" id="audio-settings">
+                    <i class="audio-settings"></i>
+                    <div class="audio-settings-panel" aria-hidden="true" role="dialog" aria-labelledby="settings-title">
+                        <div class="audio-settings-panel__content">
+                            <!-- Speed Setting -->
+                            <button class="audio-settings-panel__item" aria-label="Настройки скорости воспроизведения" aria-expanded="false" data-setting="speed">
+                                <div class="audio-settings-panel__item-left">
+                                    <div class="audio-settings-panel__icon">
+                                        <i class="audio-speed"></i>
                                     </div>
-                                    <div class="audio-settings-panel__item-right">
-                                        <span class="audio-settings-panel__value">Обычная</span>
-                                        <div class="audio-settings-panel__chevron">
-                                            <i class="audio-chevron-right" style="transform: rotate(90deg);"></i>
+                                    <span class="audio-settings-panel__label">Скорость</span>
+                                </div>
+                                <div class="audio-settings-panel__item-right">
+                                    <span class="audio-settings-panel__value">Обычная</span>
+                                    <div class="audio-settings-panel__chevron">
+                                        <i class="audio-chevron-right" style="transform: rotate(90deg);"></i>
+                                    </div>
+                                </div>
+                            </button>
+
+                            <!-- Divider -->
+                            <div class="audio-settings-panel__divider" aria-hidden="true"></div>
+
+                            <!-- Autoplay Setting -->
+                            <div class="audio-settings-panel__item audio-settings-panel__item--toggle">
+                                <div class="audio-settings-panel__item-left">
+                                    <div class="audio-settings-panel__icon">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M2.5 3.33335V16.6667M8.3575 3.57085C8.10459 3.4191 7.81594 3.33719 7.52103 3.33347C7.22611 3.32974 6.93549 3.40435 6.67883 3.54967C6.42218 3.69499 6.20868 3.90581 6.06014 4.16061C5.9116 4.41542 5.83333 4.70508 5.83333 5.00002V15C5.83333 15.295 5.9116 15.5846 6.06014 15.8394C6.20868 16.0942 6.42218 16.305 6.67883 16.4504C6.93549 16.5957 7.22611 16.6703 7.52103 16.6666C7.81594 16.6628 8.10459 16.5809 8.3575 16.4292L16.6883 11.4308C16.9356 11.2831 17.1404 11.0737 17.2827 10.8232C17.425 10.5727 17.4999 10.2896 17.5002 10.0016C17.5004 9.71347 17.426 9.43024 17.2841 9.17949C17.1423 8.92874 16.9379 8.71904 16.6908 8.57085L8.3575 3.57085Z" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <span class="audio-settings-panel__label">Автовоспроизведение</span>
+                                </div>
+                                <button class="audio-settings-panel__switch" aria-label="Переключить автовоспроизведение" role="switch" aria-checked="true" data-setting="autoplay">
+                                    <div class="audio-settings-panel__switch-track">
+                                        <div class="audio-settings-panel__switch-thumb">
+                                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g clip-path="url(#clip0_377_2930)">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.752 8.99902C15.752 5.2711 12.7299 2.24902 9.00195 2.24902C5.27403 2.24902 2.25195 5.2711 2.25195 8.99902C2.25195 12.7269 5.27403 15.749 9.00195 15.749C12.7299 15.749 15.752 12.7269 15.752 8.99902ZM11.7822 6.96875C11.4893 6.67586 11.0146 6.67586 10.7217 6.96875L8.25195 9.43848L7.28223 8.46875C6.98933 8.17586 6.51457 8.17586 6.22168 8.46875C5.92879 8.76164 5.92879 9.2364 6.22168 9.5293L7.72168 11.0293C8.01457 11.3222 8.48933 11.3222 8.78223 11.0293L11.7822 8.0293C12.0751 7.7364 12.0751 7.26164 11.7822 6.96875Z" fill="black"/>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.00195 2.24902C12.7299 2.24902 15.752 5.2711 15.752 8.99902C15.752 12.7269 12.7299 15.749 9.00195 15.749C5.27403 15.749 2.25195 12.7269 2.25195 8.99902C2.25195 5.2711 5.27403 2.24902 9.00195 2.24902ZM9.00195 17.249C13.5583 17.249 17.252 13.5554 17.252 8.99902C17.252 4.44267 13.5583 0.749023 9.00195 0.749023C4.4456 0.749023 0.751953 4.44267 0.751953 8.99902C0.751953 13.5554 4.4456 17.249 9.00195 17.249Z" fill="black"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0_377_2930">
+                                                        <rect width="18" height="18" fill="white"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
                                         </div>
                                     </div>
                                 </button>
+                            </div>
 
-                                <!-- Divider -->
-                                <div class="audio-settings-panel__divider" aria-hidden="true"></div>
-
-                                <!-- Autoplay Setting -->
-                                <div class="audio-settings-panel__item audio-settings-panel__item--toggle">
-                                    <div class="audio-settings-panel__item-left">
-                                        <div class="audio-settings-panel__icon">
-                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M2.5 3.33335V16.6667M8.3575 3.57085C8.10459 3.4191 7.81594 3.33719 7.52103 3.33347C7.22611 3.32974 6.93549 3.40435 6.67883 3.54967C6.42218 3.69499 6.20868 3.90581 6.06014 4.16061C5.9116 4.41542 5.83333 4.70508 5.83333 5.00002V15C5.83333 15.295 5.9116 15.5846 6.06014 15.8394C6.20868 16.0942 6.42218 16.305 6.67883 16.4504C6.93549 16.5957 7.22611 16.6703 7.52103 16.6666C7.81594 16.6628 8.10459 16.5809 8.3575 16.4292L16.6883 11.4308C16.9356 11.2831 17.1404 11.0737 17.2827 10.8232C17.425 10.5727 17.4999 10.2896 17.5002 10.0016C17.5004 9.71347 17.426 9.43024 17.2841 9.17949C17.1423 8.92874 16.9379 8.71904 16.6908 8.57085L8.3575 3.57085Z" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </div>
-                                        <span class="audio-settings-panel__label">Автовоспроизведение</span>
-                                    </div>
-                                    <button class="audio-settings-panel__switch" aria-label="Переключить автовоспроизведение" role="switch" aria-checked="true" data-setting="autoplay">
-                                        <div class="audio-settings-panel__switch-track">
-                                            <div class="audio-settings-panel__switch-thumb">
-                                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <g clip-path="url(#clip0_377_2930)">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.752 8.99902C15.752 5.2711 12.7299 2.24902 9.00195 2.24902C5.27403 2.24902 2.25195 5.2711 2.25195 8.99902C2.25195 12.7269 5.27403 15.749 9.00195 15.749C12.7299 15.749 15.752 12.7269 15.752 8.99902ZM11.7822 6.96875C11.4893 6.67586 11.0146 6.67586 10.7217 6.96875L8.25195 9.43848L7.28223 8.46875C6.98933 8.17586 6.51457 8.17586 6.22168 8.46875C5.92879 8.76164 5.92879 9.2364 6.22168 9.5293L7.72168 11.0293C8.01457 11.3222 8.48933 11.3222 8.78223 11.0293L11.7822 8.0293C12.0751 7.7364 12.0751 7.26164 11.7822 6.96875Z" fill="black"/>
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.00195 2.24902C12.7299 2.24902 15.752 5.2711 15.752 8.99902C15.752 12.7269 12.7299 15.749 9.00195 15.749C5.27403 15.749 2.25195 12.7269 2.25195 8.99902C2.25195 5.2711 5.27403 2.24902 9.00195 2.24902ZM9.00195 17.249C13.5583 17.249 17.252 13.5554 17.252 8.99902C17.252 4.44267 13.5583 0.749023 9.00195 0.749023C4.4456 0.749023 0.751953 4.44267 0.751953 8.99902C0.751953 13.5554 4.4456 17.249 9.00195 17.249Z" fill="black"/>
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0_377_2930">
-                                                            <rect width="18" height="18" fill="white"/>
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-                                            </div>
-                                        </div>
+                            <!-- Speed Settings Submenu -->
+                            <div class="audio-settings-panel__submenu" data-submenu="speed" aria-hidden="true">
+                                <header class="audio-settings-panel__submenu-header">
+                                    <button class="audio-settings-panel__back-btn" aria-label="Назад к настройкам">
+                                        <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0.000150466 6L6.09246 12L7.38477 10.7077L2.58477 6L7.38477 1.29231L6.09246 -5.64886e-08L0.000150466 6Z" fill="white"/>
+                                        </svg>
+                                        <span>Скорость</span>
                                     </button>
-                                </div>
-
-                                <!-- Speed Settings Submenu -->
-                                <div class="audio-settings-panel__submenu" data-submenu="speed" aria-hidden="true">
-                                    <header class="audio-settings-panel__submenu-header">
-                                        <button class="audio-settings-panel__back-btn" aria-label="Назад к настройкам">
-                                            <svg width="8" height="12" viewBox="0 0 8 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M0.000150466 6L6.09246 12L7.38477 10.7077L2.58477 6L7.38477 1.29231L6.09246 -5.64886e-08L0.000150466 6Z" fill="white"/>
-                                            </svg>
-                                            <span>Скорость</span>
-                                        </button>
-                                        <span class="audio-settings-panel__submenu-label">Параметры</span>
-                                    </header>
-                                    <div class="audio-settings-panel__submenu-options">
-                                        <button class="audio-settings-panel__option" data-speed="0.25" aria-label="Скорость 0.25x">
-                                            <span>0.25x</span>
-                                            <i class="audio-mark-enabled"></i>
-                                        </button>
-                                        <button class="audio-settings-panel__option" data-speed="0.5" aria-label="Скорость 0.5x">
-                                            <span>0.5x</span>
-                                            <i class="audio-mark-enabled"></i>
-                                        </button>
-                                        <button class="audio-settings-panel__option audio-settings-panel__option--active" data-speed="1" aria-label="Скорость Обычная">
-                                            <span>Обычная</span>
-                                            <i class="audio-mark-enabled"></i>
-                                        </button>
-                                        <button class="audio-settings-panel__option" data-speed="1.5" aria-label="Скорость 1.5x">
-                                            <span>1.5x</span>
-                                            <i class="audio-mark-enabled"></i>
-                                        </button>
-                                        <button class="audio-settings-panel__option" data-speed="2" aria-label="Скорость 2x">
-                                            <span>2x</span>
-                                            <i class="audio-mark-enabled"></i>
-                                        </button>
-                                    </div>
+                                    <span class="audio-settings-panel__submenu-label">Параметры</span>
+                                </header>
+                                <div class="audio-settings-panel__submenu-options">
+                                    <button class="audio-settings-panel__option" data-speed="0.25" aria-label="Скорость 0.25x">
+                                        <span>0.25x</span>
+                                        <i class="audio-mark-enabled"></i>
+                                    </button>
+                                    <button class="audio-settings-panel__option" data-speed="0.5" aria-label="Скорость 0.5x">
+                                        <span>0.5x</span>
+                                        <i class="audio-mark-enabled"></i>
+                                    </button>
+                                    <button class="audio-settings-panel__option audio-settings-panel__option--active" data-speed="1" aria-label="Скорость Обычная">
+                                        <span>Обычная</span>
+                                        <i class="audio-mark-enabled"></i>
+                                    </button>
+                                    <button class="audio-settings-panel__option" data-speed="1.5" aria-label="Скорость 1.5x">
+                                        <span>1.5x</span>
+                                        <i class="audio-mark-enabled"></i>
+                                    </button>
+                                    <button class="audio-settings-panel__option" data-speed="2" aria-label="Скорость 2x">
+                                        <span>2x</span>
+                                        <i class="audio-mark-enabled"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-          <audio class="podcast-hero__audio" preload="metadata" hidden
-                 data-src="{{ podcast.podcast.audio_mp3 if podcast.podcast and podcast.podcast.audio_mp3 else '' }}"></audio>
+      <audio class="podcast-hero__audio" preload="metadata" hidden
+             data-src="{{ podcast.podcast.audio_mp3 if podcast.podcast and podcast.podcast.audio_mp3 else '' }}"></audio>
+    </div>
+  </div>
+</section>
+        <section class="podcast-next" aria-labelledby="podcast-next-title" role="region">
+  <div class="podcast-next__inner">
+    <h2 id="podcast-next-title" class="visually-hidden">Следующий подкаст</h2>
+
+    {% set np = next_podcast or prev_podcast %}
+    {% if np %}
+      <a class="podcast-next__item" href="{{ SITE_URL }}/podcast/{{ np.alias }}/" aria-label="Перейти к следующему подкасту: {{ np.title|striptags|e }}">
+        <div class="podcast-next__thumb image-wrapper">
+          <picture>
+            {% if np.image.image_webp_800 %}
+              <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ np.image.image_webp_800 }}">
+            {% endif %}
+            <img data-src="{{ np.image.image_jpeg_800 or np.image.image_jpeg_200 }}"
+                 alt="{{ np.image.alt or np.title }}"
+                 loading="lazy" class="lazy" />
+          </picture>
         </div>
+        <div class="podcast-next__content">
+          <p class="podcast-next__series">{{ np.category_title }}</p>
+          <p class="podcast-next__title">{{ np.title }}</p>
+          <p class="podcast-next__duration" aria-label="Длительность">
+            {% if np.podcast and np.podcast.duration_ms %}
+              {{ np.podcast.duration_ms|duration_hhmm }}
+            {% else %}
+              &nbsp;
+            {% endif %}
+          </p>
+        </div>
+      </a>
+    {% endif %}
+  </div>
+</section>
       </div>
-    </section>
-
-    <section class="podcast-next" aria-labelledby="podcast-next-title" role="region">
-      <div class="podcast-next__inner">
-        <h2 id="podcast-next-title" class="visually-hidden">Следующий подкаст</h2>
-
-        {% set np = next_podcast or prev_podcast %}
-        {% if np %}
-          <a class="podcast-next__item" href="{{ SITE_URL }}/podcast/{{ np.alias }}/" aria-label="Перейти к следующему подкасту: {{ np.title|striptags|e }}">
-            <div class="podcast-next__thumb image-wrapper">
-              <picture>
-                {% if np.image.image_webp_800 %}
-                  <source media="(max-width: 699px)" type="image/webp" data-srcset="{{ np.image.image_webp_800 }}">
-                {% endif %}
-                <img data-src="{{ np.image.image_jpeg_800 or np.image.image_jpeg_200 }}"
-                     alt="{{ np.image.alt or np.title }}"
-                     loading="lazy" class="lazy" />
-              </picture>
-            </div>
-            <div class="podcast-next__content">
-              <p class="podcast-next__series">{{ np.category_title }}</p>
-              <p class="podcast-next__title">{{ np.title }}</p>
-              <p class="podcast-next__duration" aria-label="Длительность">
-                {% if np.podcast and np.podcast.duration_ms %}
-                  {{ np.podcast.duration_ms|duration_hhmm }}
-                {% else %}
-                  &nbsp;
-                {% endif %}
-              </p>
-            </div>
-          </a>
-        {% endif %}
-      </div>
-    </section>
-
     <section class="podcast-details" aria-labelledby="podcast-details-title" role="region">
       <h2 id="podcast-details-title" class="visually-hidden">Описание эпизода</h2>
       <div class="podcast-details__inner">
