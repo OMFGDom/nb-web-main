@@ -95,14 +95,14 @@
       <nav class="author-tabs" aria-label="Навигация по странице автора">
         <ul class="author-tabs__list" role="tablist">
           <li role="presentation">
-            <button class="author-tabs__item author-tabs__item--active" role="tab" aria-selected="true" type="button">
-              Об авторе
-            </button>
+                <a href="#author-about" class="author-tabs__item author-tabs__item--active" role="tab" aria-selected="true">
+                Об авторе
+              </a>
           </li>
           <li role="presentation">
-            <button class="author-tabs__item" role="tab" aria-selected="false" type="button">
-              Работы
-            </button>
+              <a href="#author-works" class="author-tabs__item" role="tab" aria-selected="false">
+                Работы
+              </a>
           </li>
         </ul>
       </nav>
@@ -110,7 +110,7 @@
   </section>
 
   {# ======================= ABOUT (описание) ======================= #}
-  <section class="author-about" aria-labelledby="author-about-title">
+  <section id="author-about" class="author-about" aria-labelledby="author-about-title">
     <div class="author-about__container">
       <h2 id="author-about-title" class="visually-hidden">Об авторе</h2>
 
@@ -123,7 +123,7 @@
   </section>
 
   {# ======================= WORKS ======================= #}
-  <section class="author-works" aria-labelledby="author-works-title">
+  <section id="author-works" class="author-works" aria-labelledby="author-works-title">
     <div class="author-works__header">
       <hr class="author-works__divider" aria-hidden="true" />
       <h2 id="author-works-title" class="author-works__title">работы</h2>

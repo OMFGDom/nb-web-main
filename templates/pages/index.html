@@ -135,7 +135,7 @@
             {% endif %}
           </div>
             {% if third_articles %}
-              <div class="news-scroll">
+              <div class="news-scroll nezumi-scrollbar">
                 {% for art in third_articles %}
                   <a class="news-card-text-image" href="{{ SITE_URL }}/news/{{ art.alias }}/">
                     <div class="news-card-text-image__content">
@@ -429,7 +429,7 @@
 
       <div class="podcast-section__content">
         {% for p in latest_podcasts %}
-          <a class="podcast-card" href="{{ SITE_URL }}/podcasts/{{ p.alias }}/">
+              <a class="podcast-card" href="{{ SITE_URL }}/podcasts/{{ p.alias }}/">
             <div class="podcast-card__media">
               <picture>
                 {% if p.image.image_webp_200 %}
